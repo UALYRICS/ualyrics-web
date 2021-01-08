@@ -1,0 +1,5 @@
+type Artist @model @key(fields: ["firstLetter", "name"]) {
+  firstLetter: ID!
+  name: String!
+  image: String!
+}
