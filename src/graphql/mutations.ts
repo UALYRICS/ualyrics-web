@@ -10,7 +10,17 @@ export const createArtist = /* GraphQL */ `
     createArtist(input: $input, condition: $condition) {
       firstLetter
       name
-      image
+      geniusId
+      imageUrl
+      albums {
+        name
+        geniusId
+        imageUrl
+        songs {
+          name
+          geniusId
+        }
+      }
       createdAt
       updatedAt
     }
@@ -24,7 +34,17 @@ export const updateArtist = /* GraphQL */ `
     updateArtist(input: $input, condition: $condition) {
       firstLetter
       name
-      image
+      geniusId
+      imageUrl
+      albums {
+        name
+        geniusId
+        imageUrl
+        songs {
+          name
+          geniusId
+        }
+      }
       createdAt
       updatedAt
     }
@@ -38,7 +58,17 @@ export const deleteArtist = /* GraphQL */ `
     deleteArtist(input: $input, condition: $condition) {
       firstLetter
       name
-      image
+      geniusId
+      imageUrl
+      albums {
+        name
+        geniusId
+        imageUrl
+        songs {
+          name
+          geniusId
+        }
+      }
       createdAt
       updatedAt
     }

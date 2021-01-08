@@ -1,6 +1,6 @@
 {
   "auth": {
-    "ualyricsweb45b3ac6f": {
+    "ualyricsweb89a50bb5": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authualyricsweb45b3ac6f"
+              "userPoolId": "authualyricsweb89a50bb5"
             }
           },
           "additionalAuthenticationProviders": []

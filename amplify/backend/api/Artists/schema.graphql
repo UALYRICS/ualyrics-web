@@ -1,5 +1,19 @@
 type Artist @model @key(fields: ["firstLetter", "name"]) {
-  firstLetter: ID!
+  firstLetter: String!
   name: String!
-  image: String!
+  geniusId: Int!
+  imageUrl: String  
+  albums: [Album]
+}
+
+type Album {
+  name: String!
+  geniusId: Int!
+  imageUrl: String!
+  songs: [Song]
+}
+
+type Song {
+  name: String!
+  geniusId: Int!
 }

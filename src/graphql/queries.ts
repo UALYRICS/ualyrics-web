@@ -3,11 +3,21 @@
 // this is an auto generated file. This will be overwritten
 
 export const getArtist = /* GraphQL */ `
-  query GetArtist($firstLetter: ID!, $name: String!) {
+  query GetArtist($firstLetter: String!, $name: String!) {
     getArtist(firstLetter: $firstLetter, name: $name) {
       firstLetter
       name
-      image
+      geniusId
+      imageUrl
+      albums {
+        name
+        geniusId
+        imageUrl
+        songs {
+          name
+          geniusId
+        }
+      }
       createdAt
       updatedAt
     }
@@ -15,7 +25,7 @@ export const getArtist = /* GraphQL */ `
 `;
 export const listArtists = /* GraphQL */ `
   query ListArtists(
-    $firstLetter: ID
+    $firstLetter: String
     $name: ModelStringKeyConditionInput
     $filter: ModelArtistFilterInput
     $limit: Int
@@ -33,7 +43,13 @@ export const listArtists = /* GraphQL */ `
       items {
         firstLetter
         name
-        image
+        geniusId
+        imageUrl
+        albums {
+          name
+          geniusId
+          imageUrl
+        }
         createdAt
         updatedAt
       }

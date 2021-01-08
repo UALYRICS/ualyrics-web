@@ -5,15 +5,56 @@
 export type CreateArtistInput = {
   firstLetter: string,
   name: string,
-  image: string,
+  geniusId: number,
+  imageUrl?: string | null,
+  albums?: Array< AlbumInput | null > | null,
+};
+
+export type AlbumInput = {
+  name: string,
+  geniusId: number,
+  imageUrl: string,
+  songs?: Array< SongInput | null > | null,
+};
+
+export type SongInput = {
+  name: string,
+  geniusId: number,
 };
 
 export type ModelArtistConditionInput = {
-  image?: ModelStringInput | null,
+  geniusId?: ModelIntInput | null,
+  imageUrl?: ModelStringInput | null,
   and?: Array< ModelArtistConditionInput | null > | null,
   or?: Array< ModelArtistConditionInput | null > | null,
   not?: ModelArtistConditionInput | null,
 };
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export enum ModelAttributeTypes {
+  binary = "binary",
+  binarySet = "binarySet",
+  bool = "bool",
+  list = "list",
+  map = "map",
+  number = "number",
+  numberSet = "numberSet",
+  string = "string",
+  stringSet = "stringSet",
+  _null = "_null",
+}
+
 
 export type ModelStringInput = {
   ne?: string | null,
@@ -31,20 +72,6 @@ export type ModelStringInput = {
   size?: ModelSizeInput | null,
 };
 
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
 export type ModelSizeInput = {
   ne?: number | null,
   eq?: number | null,
@@ -58,7 +85,9 @@ export type ModelSizeInput = {
 export type UpdateArtistInput = {
   firstLetter: string,
   name: string,
-  image?: string | null,
+  geniusId?: number | null,
+  imageUrl?: string | null,
+  albums?: Array< AlbumInput | null > | null,
 };
 
 export type DeleteArtistInput = {
@@ -77,28 +106,13 @@ export type ModelStringKeyConditionInput = {
 };
 
 export type ModelArtistFilterInput = {
-  firstLetter?: ModelIDInput | null,
+  firstLetter?: ModelStringInput | null,
   name?: ModelStringInput | null,
-  image?: ModelStringInput | null,
+  geniusId?: ModelIntInput | null,
+  imageUrl?: ModelStringInput | null,
   and?: Array< ModelArtistFilterInput | null > | null,
   or?: Array< ModelArtistFilterInput | null > | null,
   not?: ModelArtistFilterInput | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
 };
 
 export enum ModelSortDirection {
@@ -117,7 +131,19 @@ export type CreateArtistMutation = {
     __typename: "Artist",
     firstLetter: string,
     name: string,
-    image: string,
+    geniusId: number,
+    imageUrl: string | null,
+    albums:  Array< {
+      __typename: "Album",
+      name: string,
+      geniusId: number,
+      imageUrl: string,
+      songs:  Array< {
+        __typename: "Song",
+        name: string,
+        geniusId: number,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -133,7 +159,19 @@ export type UpdateArtistMutation = {
     __typename: "Artist",
     firstLetter: string,
     name: string,
-    image: string,
+    geniusId: number,
+    imageUrl: string | null,
+    albums:  Array< {
+      __typename: "Album",
+      name: string,
+      geniusId: number,
+      imageUrl: string,
+      songs:  Array< {
+        __typename: "Song",
+        name: string,
+        geniusId: number,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -149,7 +187,19 @@ export type DeleteArtistMutation = {
     __typename: "Artist",
     firstLetter: string,
     name: string,
-    image: string,
+    geniusId: number,
+    imageUrl: string | null,
+    albums:  Array< {
+      __typename: "Album",
+      name: string,
+      geniusId: number,
+      imageUrl: string,
+      songs:  Array< {
+        __typename: "Song",
+        name: string,
+        geniusId: number,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -165,7 +215,19 @@ export type GetArtistQuery = {
     __typename: "Artist",
     firstLetter: string,
     name: string,
-    image: string,
+    geniusId: number,
+    imageUrl: string | null,
+    albums:  Array< {
+      __typename: "Album",
+      name: string,
+      geniusId: number,
+      imageUrl: string,
+      songs:  Array< {
+        __typename: "Song",
+        name: string,
+        geniusId: number,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -187,7 +249,14 @@ export type ListArtistsQuery = {
       __typename: "Artist",
       firstLetter: string,
       name: string,
-      image: string,
+      geniusId: number,
+      imageUrl: string | null,
+      albums:  Array< {
+        __typename: "Album",
+        name: string,
+        geniusId: number,
+        imageUrl: string,
+      } | null > | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -200,7 +269,19 @@ export type OnCreateArtistSubscription = {
     __typename: "Artist",
     firstLetter: string,
     name: string,
-    image: string,
+    geniusId: number,
+    imageUrl: string | null,
+    albums:  Array< {
+      __typename: "Album",
+      name: string,
+      geniusId: number,
+      imageUrl: string,
+      songs:  Array< {
+        __typename: "Song",
+        name: string,
+        geniusId: number,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -211,7 +292,19 @@ export type OnUpdateArtistSubscription = {
     __typename: "Artist",
     firstLetter: string,
     name: string,
-    image: string,
+    geniusId: number,
+    imageUrl: string | null,
+    albums:  Array< {
+      __typename: "Album",
+      name: string,
+      geniusId: number,
+      imageUrl: string,
+      songs:  Array< {
+        __typename: "Song",
+        name: string,
+        geniusId: number,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -222,7 +315,19 @@ export type OnDeleteArtistSubscription = {
     __typename: "Artist",
     firstLetter: string,
     name: string,
-    image: string,
+    geniusId: number,
+    imageUrl: string | null,
+    albums:  Array< {
+      __typename: "Album",
+      name: string,
+      geniusId: number,
+      imageUrl: string,
+      songs:  Array< {
+        __typename: "Song",
+        name: string,
+        geniusId: number,
+      } | null > | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,

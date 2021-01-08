@@ -7,7 +7,17 @@ export const onCreateArtist = /* GraphQL */ `
     onCreateArtist {
       firstLetter
       name
-      image
+      geniusId
+      imageUrl
+      albums {
+        name
+        geniusId
+        imageUrl
+        songs {
+          name
+          geniusId
+        }
+      }
       createdAt
       updatedAt
     }
@@ -18,7 +28,17 @@ export const onUpdateArtist = /* GraphQL */ `
     onUpdateArtist {
       firstLetter
       name
-      image
+      geniusId
+      imageUrl
+      albums {
+        name
+        geniusId
+        imageUrl
+        songs {
+          name
+          geniusId
+        }
+      }
       createdAt
       updatedAt
     }
@@ -29,7 +49,17 @@ export const onDeleteArtist = /* GraphQL */ `
     onDeleteArtist {
       firstLetter
       name
-      image
+      geniusId
+      imageUrl
+      albums {
+        name
+        geniusId
+        imageUrl
+        songs {
+          name
+          geniusId
+        }
+      }
       createdAt
       updatedAt
     }
