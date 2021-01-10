@@ -1,0 +1,17 @@
+.first-letter-toolbar {
+  text-align: center;
+}
+
+.first-letter-toolbar > a {
+  display: inline-block;
+  padding-right: 10px;
+  font-size: calc(10px + 2vmin);
+  text-decoration: none;
+  color: #404040;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.first-letter-toolbar a:visited {
+  color: #404040;
+}

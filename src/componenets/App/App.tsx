@@ -4,19 +4,25 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Home from '../Home/Home';
 import BrowseArtists from '../BrowseArtists/BrowseArtists';
+import { Page } from '../Page/Page';
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Page>
+            <Home />
+          </Page>
         </Route>
-        <Route path="/:firstLetter" children={<BrowseArtists />} />
+        <Route path="/:firstLetter">
+          <Page>
+            <BrowseArtists />
+          </Page>
+        </Route>
       </Switch>
     </Router>
   );

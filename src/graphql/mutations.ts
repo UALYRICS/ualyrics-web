@@ -8,21 +8,29 @@ export const createArtist = /* GraphQL */ `
     $condition: ModelArtistConditionInput
   ) {
     createArtist(input: $input, condition: $condition) {
+      geniusId
       firstLetter
       name
-      geniusId
       imageUrl
       albums {
         name
-        geniusId
         imageUrl
-        songs {
-          name
-          geniusId
-        }
       }
       createdAt
       updatedAt
+      songs {
+        items {
+          id
+          geniusId
+          artistGeniusId
+          name
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -32,21 +40,29 @@ export const updateArtist = /* GraphQL */ `
     $condition: ModelArtistConditionInput
   ) {
     updateArtist(input: $input, condition: $condition) {
+      geniusId
       firstLetter
       name
-      geniusId
       imageUrl
       albums {
         name
-        geniusId
         imageUrl
-        songs {
-          name
-          geniusId
-        }
       }
       createdAt
       updatedAt
+      songs {
+        items {
+          id
+          geniusId
+          artistGeniusId
+          name
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -56,21 +72,125 @@ export const deleteArtist = /* GraphQL */ `
     $condition: ModelArtistConditionInput
   ) {
     deleteArtist(input: $input, condition: $condition) {
+      geniusId
       firstLetter
       name
-      geniusId
       imageUrl
       albums {
         name
-        geniusId
         imageUrl
-        songs {
-          name
-          geniusId
-        }
       }
       createdAt
       updatedAt
+      songs {
+        items {
+          id
+          geniusId
+          artistGeniusId
+          name
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const createSong = /* GraphQL */ `
+  mutation CreateSong(
+    $input: CreateSongInput!
+    $condition: ModelSongConditionInput
+  ) {
+    createSong(input: $input, condition: $condition) {
+      id
+      geniusId
+      artistGeniusId
+      name
+      imageUrl
+      createdAt
+      updatedAt
+      artist {
+        geniusId
+        firstLetter
+        name
+        imageUrl
+        albums {
+          name
+          imageUrl
+        }
+        createdAt
+        updatedAt
+        songs {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const updateSong = /* GraphQL */ `
+  mutation UpdateSong(
+    $input: UpdateSongInput!
+    $condition: ModelSongConditionInput
+  ) {
+    updateSong(input: $input, condition: $condition) {
+      id
+      geniusId
+      artistGeniusId
+      name
+      imageUrl
+      createdAt
+      updatedAt
+      artist {
+        geniusId
+        firstLetter
+        name
+        imageUrl
+        albums {
+          name
+          imageUrl
+        }
+        createdAt
+        updatedAt
+        songs {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const deleteSong = /* GraphQL */ `
+  mutation DeleteSong(
+    $input: DeleteSongInput!
+    $condition: ModelSongConditionInput
+  ) {
+    deleteSong(input: $input, condition: $condition) {
+      id
+      geniusId
+      artistGeniusId
+      name
+      imageUrl
+      createdAt
+      updatedAt
+      artist {
+        geniusId
+        firstLetter
+        name
+        imageUrl
+        albums {
+          name
+          imageUrl
+        }
+        createdAt
+        updatedAt
+        songs {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `;

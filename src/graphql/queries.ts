@@ -2,27 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getArtist = /* GraphQL */ `
-  query GetArtist($firstLetter: String!, $name: String!) {
-    getArtist(firstLetter: $firstLetter, name: $name) {
-      firstLetter
-      name
-      geniusId
-      imageUrl
-      albums {
-        name
-        geniusId
-        imageUrl
-        songs {
-          name
-          geniusId
-        }
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const listArtists = /* GraphQL */ `
   query ListArtists(
     $firstLetter: String
@@ -41,17 +20,106 @@ export const listArtists = /* GraphQL */ `
       sortDirection: $sortDirection
     ) {
       items {
+        geniusId
         firstLetter
         name
-        geniusId
         imageUrl
         albums {
           name
-          geniusId
           imageUrl
         }
         createdAt
         updatedAt
+        songs {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getArtist = /* GraphQL */ `
+  query GetArtist($firstLetter: String!, $name: String!) {
+    getArtist(firstLetter: $firstLetter, name: $name) {
+      geniusId
+      firstLetter
+      name
+      imageUrl
+      albums {
+        name
+        imageUrl
+      }
+      createdAt
+      updatedAt
+      songs {
+        items {
+          id
+          geniusId
+          artistGeniusId
+          name
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const getSong = /* GraphQL */ `
+  query GetSong($id: ID!) {
+    getSong(id: $id) {
+      id
+      geniusId
+      artistGeniusId
+      name
+      imageUrl
+      createdAt
+      updatedAt
+      artist {
+        geniusId
+        firstLetter
+        name
+        imageUrl
+        albums {
+          name
+          imageUrl
+        }
+        createdAt
+        updatedAt
+        songs {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const listSongs = /* GraphQL */ `
+  query ListSongs(
+    $filter: ModelSongFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSongs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        geniusId
+        artistGeniusId
+        name
+        imageUrl
+        createdAt
+        updatedAt
+        artist {
+          geniusId
+          firstLetter
+          name
+          imageUrl
+          createdAt
+          updatedAt
+        }
+        owner
       }
       nextToken
     }
