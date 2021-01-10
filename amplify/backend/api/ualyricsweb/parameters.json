@@ -1,0 +1,13 @@
+{
+  "AppSyncApiName": "ualyricsweb",
+  "DynamoDBBillingMode": "PROVISIONED",
+  "DynamoDBEnableServerSideEncryption": false,
+  "DynamoDBModelTableReadIOPS": 1,
+  "DynamoDBModelTableWriteIOPS": 1,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authualyricsweb21abc85621abc856",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

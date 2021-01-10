@@ -1,6 +1,22 @@
 {
   "auth": {
-    "ualyricsweb89a50bb5": {
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "ualyricsweb21abc85621abc856",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
+    },
+    "ualyricsweb21abc85621abc856": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -8,7 +24,7 @@
     }
   },
   "api": {
-    "Artists": {
+    "ualyricsweb": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -16,10 +32,18 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authualyricsweb89a50bb5"
+              "userPoolId": "authualyricsweb21abc85621abc856"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 7,
+                "description": "api-key"
+              }
+            }
+          ]
         }
       }
     }

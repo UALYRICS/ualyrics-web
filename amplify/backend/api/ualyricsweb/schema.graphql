@@ -1,0 +1,44 @@
+
+type Artist
+  @model 
+  @key(fields: ["firstLetter", "name"])
+  @auth (
+    rules: [
+      { allow: public, operations: [read] },
+      { allow: private, operations: [read, create, update] },
+      { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
+    ]
+  ) 
+{
+  geniusId: String!
+  firstLetter: String!
+  name: String!
+  imageUrl: String!
+  albums: [Album]
+  songs: [Song] @connection(keyName: "byArtist", fields: ["geniusId"])
+}
+
+type Album 
+{
+  name: String!
+  imageUrl: String!
+}
+
+type Song 
+  @model
+  @key(name: "byArtist", fields: ["artistGeniusId"])
+  @auth (
+    rules: [
+      { allow: owner },
+      { allow: private, operations: [read] },
+      { allow: public, operations: [read] },
+      { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
+    ]
+  )
+{
+  geniusId: String!
+  artistGeniusId: String!
+  artist: Artist @connection(fields: ["artistGeniusId"])
+  name: String!
+  imageUrl: String!
+}

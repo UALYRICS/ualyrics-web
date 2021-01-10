@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "ualyricsweb89a50bb5_identitypool_89a50bb5",
+    "identityPoolName": "ualyricsweb21abc856_identitypool_21abc856",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ualyri89a50bb5",
-    "userPoolName": "ualyricsweb89a50bb5_userpool_89a50bb5",
+    "resourceNameTruncated": "ualyri21abc856",
+    "userPoolName": "ualyricsweb21abc856_userpool_21abc856",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "ualyri89a50bb5_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ualyri21abc856_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "89a50bb5",
-    "resourceName": "ualyricsweb89a50bb5",
+    "sharedId": "21abc856",
+    "resourceName": "ualyricsweb21abc85621abc856",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,9 +45,15 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "manual",
+    "thirdPartyAuth": false,
+    "userPoolGroups": true,
+    "adminQueries": false,
     "triggers": "{}",
-    "userPoolGroupList": [],
+    "hostedUI": false,
+    "userPoolGroupList": [
+        "Admin"
+    ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "parentStack": {
