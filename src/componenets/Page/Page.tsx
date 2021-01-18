@@ -5,14 +5,14 @@ import FirstLetterToolbar from './FirstLetterToolbar';
 import './Page.css';
 import { Logo } from './Logo';
 import { Footer } from './Footer';
-import { Search } from '../Search/Search';
+import { SearchBar } from '../Search/SearchBar';
 
 export const Page: FunctionComponent<{}> = ({ children }) => (
   <>
   <Container maxWidth="md" className="content">
     <Logo />
     <FirstLetterToolbar/>
-    <Search/>
+    <SearchBar/>
     <Box>{ children }</Box>
   </Container>
   <Footer/>

@@ -4,7 +4,7 @@ import { fetchArtistsByFirstLetter } from "../../service/artists-service";
 import { Char } from "../../model/char";
 import { useParams } from "react-router-dom";
 
-function BrowseArtists() {
+export const BrowseArtists = () => {
   let { firstLetter } = useParams();
   const [artists, setArtists] = useState<Artist[]>();
 
@@ -31,6 +31,4 @@ function BrowseArtists() {
       ))}
     </div>
   );
-}
-
-export default BrowseArtists;
+};

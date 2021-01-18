@@ -6,8 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 import Home from '../Home/Home';
-import BrowseArtists from '../BrowseArtists/BrowseArtists';
+import { BrowseArtists } from '../BrowseArtists/BrowseArtists';
 import { Page } from '../Page/Page';
+import { SearchPage } from '../Search/SearchPage';
 
 function App() {
   return (
@@ -16,6 +17,11 @@ function App() {
         <Route exact path="/">
           <Page>
             <Home />
+          </Page>
+        </Route>
+        <Route exact path="/find">
+          <Page>
+            <SearchPage />
           </Page>
         </Route>
         <Route path="/:firstLetter">
