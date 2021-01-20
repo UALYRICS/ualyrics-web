@@ -1,6 +1,12 @@
-import Genius, { Song } from "genius-lyrics";
+import { Song } from "genius-lyrics";
+import axios from "axios";
 
 export const search = async (term: string): Promise<Array<Song>> => {
-  const Client = new Genius.Client('i6skCYqy5w6sNOHpW32r436jn9NoQPzBikS3mAXeMQnfbJh1hg-i8y7nIPhF4oe7', { requestOptions: {baseURL: process.env.REACT_APP_GENIUS_API_URL} }); // Scrapes if no key is provided
-  return await Client.songs.search(term);
+  const key = 'i6skCYqy5w6sNOHpW32r436jn9NoQPzBikS3mAXeMQnfbJh1hg-i8y7nIPhF4oe7';
+  const response = await axios.get(`${process.env.REACT_APP_GENIUS_API_URL}/api/search?q=${term}`, {
+    headers: {
+        'Authorization': `Bearer ${key}`
+    }
+});
+return response.data.response.hits.filter(s => s.type === "song").map(s => new Song(s.result, key, true));
 }

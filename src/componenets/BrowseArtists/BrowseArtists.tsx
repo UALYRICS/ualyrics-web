@@ -3,6 +3,7 @@ import { Artist } from "../../model/artist";
 import { fetchArtistsByFirstLetter } from "../../service/artists-service";
 import { Char } from "../../model/char";
 import { useParams } from "react-router-dom";
+import "./BrowseArtists.css";
 
 export const BrowseArtists = () => {
   let { firstLetter } = useParams();
@@ -24,9 +25,15 @@ export const BrowseArtists = () => {
     <div>
       {artists?.map((a) => (
         <div key={a.geniusId}>
-          <h2>{a.name}</h2>
-          <p>{a.geniusId}</p>
-          <img src={a.imageUrl} alt='Artist' />
+          <div className="row">
+              <div>
+                <img src={a.imageUrl} className='icon' alt="Song thumbnail" />
+              </div>	
+              <div className="left-margin">
+                <h4>{a.name}</h4>
+              </div>
+          </div>
+          <div className="clear"></div>
         </div>
       ))}
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import "./SearchBar.css";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,7 +16,7 @@ export const SearchBar = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="search-bar">
       <input type="text" placeholder="Назва чи слова пісні" value={searchTerm} onChange={handleTermChange}/>
       <button type="submit">Пошук</button>
     </form>
