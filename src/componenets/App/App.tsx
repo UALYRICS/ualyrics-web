@@ -9,6 +9,7 @@ import Home from '../Home/Home';
 import { BrowseArtists } from '../BrowseArtists/BrowseArtists';
 import { Page } from '../Page/Page';
 import { SearchPage } from '../Search/SearchPage';
+import { SongPage } from '../SongPage/SongPage';
 
 function App() {
   return (
@@ -22,6 +23,11 @@ function App() {
         <Route exact path="/find">
           <Page>
             <SearchPage />
+          </Page>
+        </Route>
+        <Route path="/song/:songGeniusId">
+          <Page>
+            <SongPage />
           </Page>
         </Route>
         <Route path="/:firstLetter">

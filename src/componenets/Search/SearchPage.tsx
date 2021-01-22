@@ -3,6 +3,7 @@ import { search } from '../../service/search-service';
 import { useLocation } from "react-router-dom";
 import { Song } from "genius-lyrics";
 import './SearchPage.css';
+import {Link} from "react-router-dom";
 
 export const SearchPage = () => {
   let query = useQuery();
@@ -29,7 +30,7 @@ export const SearchPage = () => {
                 <img src={item.thumbnail} className='icon' alt="Song thumbnail" />
               </div>	
               <div className="left-margin">
-                <h4>{item.title}</h4>
+                <h4><Link to={`/song/${item.id}`}>{item.title}</Link></h4>
                 <h4>{item.artist?.name}</h4>
               </div>
           </div>
