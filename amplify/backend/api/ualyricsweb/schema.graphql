@@ -1,48 +1,73 @@
 
 type Artist
-  @model 
-  @key(fields: ["firstLetter", "name"])
+  @model
+  @key(name:"ByFirstLetter", fields: ["firstLetter", "title"])
   @aws_api_key
   @aws_cognito_user_pools
   @auth (
     rules: [
       { allow: public, operations: [read] },
-      { allow: private, operations: [read, create, update] },
+      { allow: private, operations: [read, create] },
       { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
     ]
   ) 
 {
-  geniusId: String!
+  id: ID!
+  externalId: String!
   firstLetter: String!
-  name: String!
-  imageUrl: String!
-  albums: [Album]
-  songs: [Song] @connection(keyName: "byArtist", fields: ["geniusId"])
+  title: String!
+  description: String
+  thumbnailUrl: String!
+  albums: [Album] @connection(keyName: "byArtist", fields: ["id"])
+  songs: [Song] @connection(keyName: "byArtist", fields: ["id"])
 }
 
-type Album 
+type Album
+  @model
+  @key(name: "byArtist", fields: ["artistId", "title"])
+  @aws_api_key
+  @aws_cognito_user_pools
+  @auth (
+    rules: [
+      { allow: public, operations: [read] },
+      { allow: private, operations: [read, create] },
+      { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
+    ]
+  )
 {
-  name: String!
-  imageUrl: String!
+  id: ID!
+  artistId: ID!
+  title: String!
+  thumbnailUrl: String!
+  songs: [Song] @connection(keyName: "byAlbum", fields: ["id"])
 }
 
 type Song 
   @model
-  @key(name: "byArtist", fields: ["artistGeniusId"])
+  @key(name: "byArtist", fields: ["artistId", "title"])
+  @key(name: "byAlbum", fields: ["albumId", "title"])
   @aws_api_key
   @aws_cognito_user_pools
   @auth (
     rules: [
       { allow: owner },
-      { allow: private, operations: [read] },
       { allow: public, operations: [read] },
       { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
     ]
   )
 {
-  geniusId: String!
-  artistGeniusId: String!
-  artist: Artist @connection(fields: ["artistGeniusId"])
-  name: String!
+  id: ID!
+  artistId: ID!
+  albumId: ID!
+  externalId: String!
+  artist: Artist @connection(fields: ["artistId"])
+  album: Album @connection(fields: ["albumId"])
+  title: String!
   imageUrl: String!
+  lyrics: [Line]!
+}
+
+type Line {
+  original: String!
+  translation: String
 }

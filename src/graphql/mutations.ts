@@ -8,22 +8,32 @@ export const createArtist = /* GraphQL */ `
     $condition: ModelArtistConditionInput
   ) {
     createArtist(input: $input, condition: $condition) {
-      geniusId
+      id
+      externalId
       firstLetter
-      name
-      imageUrl
-      albums {
-        name
-        imageUrl
-      }
+      title
+      description
+      thumbnailUrl
       createdAt
       updatedAt
+      albums {
+        items {
+          id
+          artistId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       songs {
         items {
           id
-          geniusId
-          artistGeniusId
-          name
+          artistId
+          albumId
+          externalId
+          title
           imageUrl
           createdAt
           updatedAt
@@ -40,22 +50,32 @@ export const updateArtist = /* GraphQL */ `
     $condition: ModelArtistConditionInput
   ) {
     updateArtist(input: $input, condition: $condition) {
-      geniusId
+      id
+      externalId
       firstLetter
-      name
-      imageUrl
-      albums {
-        name
-        imageUrl
-      }
+      title
+      description
+      thumbnailUrl
       createdAt
       updatedAt
+      albums {
+        items {
+          id
+          artistId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       songs {
         items {
           id
-          geniusId
-          artistGeniusId
-          name
+          artistId
+          albumId
+          externalId
+          title
           imageUrl
           createdAt
           updatedAt
@@ -72,22 +92,119 @@ export const deleteArtist = /* GraphQL */ `
     $condition: ModelArtistConditionInput
   ) {
     deleteArtist(input: $input, condition: $condition) {
-      geniusId
+      id
+      externalId
       firstLetter
-      name
-      imageUrl
+      title
+      description
+      thumbnailUrl
+      createdAt
+      updatedAt
       albums {
-        name
-        imageUrl
+        items {
+          id
+          artistId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const createAlbum = /* GraphQL */ `
+  mutation CreateAlbum(
+    $input: CreateAlbumInput!
+    $condition: ModelAlbumConditionInput
+  ) {
+    createAlbum(input: $input, condition: $condition) {
+      id
+      artistId
+      title
+      thumbnailUrl
       createdAt
       updatedAt
       songs {
         items {
           id
-          geniusId
-          artistGeniusId
-          name
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const updateAlbum = /* GraphQL */ `
+  mutation UpdateAlbum(
+    $input: UpdateAlbumInput!
+    $condition: ModelAlbumConditionInput
+  ) {
+    updateAlbum(input: $input, condition: $condition) {
+      id
+      artistId
+      title
+      thumbnailUrl
+      createdAt
+      updatedAt
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const deleteAlbum = /* GraphQL */ `
+  mutation DeleteAlbum(
+    $input: DeleteAlbumInput!
+    $condition: ModelAlbumConditionInput
+  ) {
+    deleteAlbum(input: $input, condition: $condition) {
+      id
+      artistId
+      title
+      thumbnailUrl
+      createdAt
+      updatedAt
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          externalId
+          title
           imageUrl
           createdAt
           updatedAt
@@ -105,21 +222,38 @@ export const createSong = /* GraphQL */ `
   ) {
     createSong(input: $input, condition: $condition) {
       id
-      geniusId
-      artistGeniusId
-      name
+      artistId
+      albumId
+      externalId
+      title
       imageUrl
+      lyrics {
+        original
+        translation
+      }
       createdAt
       updatedAt
       artist {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {
@@ -137,21 +271,38 @@ export const updateSong = /* GraphQL */ `
   ) {
     updateSong(input: $input, condition: $condition) {
       id
-      geniusId
-      artistGeniusId
-      name
+      artistId
+      albumId
+      externalId
+      title
       imageUrl
+      lyrics {
+        original
+        translation
+      }
       createdAt
       updatedAt
       artist {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {
@@ -169,21 +320,38 @@ export const deleteSong = /* GraphQL */ `
   ) {
     deleteSong(input: $input, condition: $condition) {
       id
-      geniusId
-      artistGeniusId
-      name
+      artistId
+      albumId
+      externalId
+      title
       imageUrl
+      lyrics {
+        original
+        translation
+      }
       createdAt
       updatedAt
       artist {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {

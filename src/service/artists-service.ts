@@ -14,8 +14,9 @@ export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Arra
         }) as GraphQLResult<ListArtistsQuery>;
 
     return results.data?.listArtists?.items?.map(item => ({
-        name: item?.name,
-        geniusId: item?.geniusId,
-        imageUrl: item?.imageUrl,
+        id: item?.id,
+        title: item?.title,
+        externalId: item?.externalId,
+        thumbnailUrl: item?.thumbnailUrl,
     }) as Artist) || [];
 }

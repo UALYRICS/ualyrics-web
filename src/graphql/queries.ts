@@ -4,30 +4,82 @@
 
 export const listArtists = /* GraphQL */ `
   query ListArtists(
-    $firstLetter: String
-    $name: ModelStringKeyConditionInput
     $filter: ModelArtistFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listArtists(
-      firstLetter: $firstLetter
-      name: $name
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listArtists(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getArtist = /* GraphQL */ `
+  query GetArtist($id: ID!) {
+    getArtist(id: $id) {
+      id
+      externalId
+      firstLetter
+      title
+      description
+      thumbnailUrl
+      createdAt
+      updatedAt
+      albums {
+        items {
+          id
+          artistId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const listAlbums = /* GraphQL */ `
+  query ListAlbums(
+    $filter: ModelAlbumFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAlbums(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {
@@ -38,25 +90,22 @@ export const listArtists = /* GraphQL */ `
     }
   }
 `;
-export const getArtist = /* GraphQL */ `
-  query GetArtist($firstLetter: String!, $name: String!) {
-    getArtist(firstLetter: $firstLetter, name: $name) {
-      geniusId
-      firstLetter
-      name
-      imageUrl
-      albums {
-        name
-        imageUrl
-      }
+export const getAlbum = /* GraphQL */ `
+  query GetAlbum($id: ID!) {
+    getAlbum(id: $id) {
+      id
+      artistId
+      title
+      thumbnailUrl
       createdAt
       updatedAt
       songs {
         items {
           id
-          geniusId
-          artistGeniusId
-          name
+          artistId
+          albumId
+          externalId
+          title
           imageUrl
           createdAt
           updatedAt
@@ -71,21 +120,38 @@ export const getSong = /* GraphQL */ `
   query GetSong($id: ID!) {
     getSong(id: $id) {
       id
-      geniusId
-      artistGeniusId
-      name
+      artistId
+      albumId
+      externalId
+      title
       imageUrl
+      lyrics {
+        original
+        translation
+      }
       createdAt
       updatedAt
       artist {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {
@@ -105,17 +171,32 @@ export const listSongs = /* GraphQL */ `
     listSongs(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        geniusId
-        artistGeniusId
-        name
+        artistId
+        albumId
+        externalId
+        title
         imageUrl
+        lyrics {
+          original
+          translation
+        }
         createdAt
         updatedAt
         artist {
-          geniusId
+          id
+          externalId
           firstLetter
-          name
-          imageUrl
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          title
+          thumbnailUrl
           createdAt
           updatedAt
         }

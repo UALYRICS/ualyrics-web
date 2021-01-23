@@ -5,22 +5,32 @@
 export const onCreateArtist = /* GraphQL */ `
   subscription OnCreateArtist {
     onCreateArtist {
-      geniusId
+      id
+      externalId
       firstLetter
-      name
-      imageUrl
-      albums {
-        name
-        imageUrl
-      }
+      title
+      description
+      thumbnailUrl
       createdAt
       updatedAt
+      albums {
+        items {
+          id
+          artistId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       songs {
         items {
           id
-          geniusId
-          artistGeniusId
-          name
+          artistId
+          albumId
+          externalId
+          title
           imageUrl
           createdAt
           updatedAt
@@ -34,22 +44,32 @@ export const onCreateArtist = /* GraphQL */ `
 export const onUpdateArtist = /* GraphQL */ `
   subscription OnUpdateArtist {
     onUpdateArtist {
-      geniusId
+      id
+      externalId
       firstLetter
-      name
-      imageUrl
-      albums {
-        name
-        imageUrl
-      }
+      title
+      description
+      thumbnailUrl
       createdAt
       updatedAt
+      albums {
+        items {
+          id
+          artistId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       songs {
         items {
           id
-          geniusId
-          artistGeniusId
-          name
+          artistId
+          albumId
+          externalId
+          title
           imageUrl
           createdAt
           updatedAt
@@ -63,22 +83,110 @@ export const onUpdateArtist = /* GraphQL */ `
 export const onDeleteArtist = /* GraphQL */ `
   subscription OnDeleteArtist {
     onDeleteArtist {
-      geniusId
+      id
+      externalId
       firstLetter
-      name
-      imageUrl
+      title
+      description
+      thumbnailUrl
+      createdAt
+      updatedAt
       albums {
-        name
-        imageUrl
+        items {
+          id
+          artistId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onCreateAlbum = /* GraphQL */ `
+  subscription OnCreateAlbum {
+    onCreateAlbum {
+      id
+      artistId
+      title
+      thumbnailUrl
       createdAt
       updatedAt
       songs {
         items {
           id
-          geniusId
-          artistGeniusId
-          name
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onUpdateAlbum = /* GraphQL */ `
+  subscription OnUpdateAlbum {
+    onUpdateAlbum {
+      id
+      artistId
+      title
+      thumbnailUrl
+      createdAt
+      updatedAt
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onDeleteAlbum = /* GraphQL */ `
+  subscription OnDeleteAlbum {
+    onDeleteAlbum {
+      id
+      artistId
+      title
+      thumbnailUrl
+      createdAt
+      updatedAt
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          externalId
+          title
           imageUrl
           createdAt
           updatedAt
@@ -90,24 +198,41 @@ export const onDeleteArtist = /* GraphQL */ `
   }
 `;
 export const onCreateSong = /* GraphQL */ `
-  subscription OnCreateSong {
-    onCreateSong {
+  subscription OnCreateSong($owner: String) {
+    onCreateSong(owner: $owner) {
       id
-      geniusId
-      artistGeniusId
-      name
+      artistId
+      albumId
+      externalId
+      title
       imageUrl
+      lyrics {
+        original
+        translation
+      }
       createdAt
       updatedAt
       artist {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {
@@ -119,24 +244,41 @@ export const onCreateSong = /* GraphQL */ `
   }
 `;
 export const onUpdateSong = /* GraphQL */ `
-  subscription OnUpdateSong {
-    onUpdateSong {
+  subscription OnUpdateSong($owner: String) {
+    onUpdateSong(owner: $owner) {
       id
-      geniusId
-      artistGeniusId
-      name
+      artistId
+      albumId
+      externalId
+      title
       imageUrl
+      lyrics {
+        original
+        translation
+      }
       createdAt
       updatedAt
       artist {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {
@@ -148,24 +290,41 @@ export const onUpdateSong = /* GraphQL */ `
   }
 `;
 export const onDeleteSong = /* GraphQL */ `
-  subscription OnDeleteSong {
-    onDeleteSong {
+  subscription OnDeleteSong($owner: String) {
+    onDeleteSong(owner: $owner) {
       id
-      geniusId
-      artistGeniusId
-      name
+      artistId
+      albumId
+      externalId
+      title
       imageUrl
+      lyrics {
+        original
+        translation
+      }
       createdAt
       updatedAt
       artist {
-        geniusId
+        id
+        externalId
         firstLetter
-        name
-        imageUrl
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
         albums {
-          name
-          imageUrl
+          nextToken
         }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        title
+        thumbnailUrl
         createdAt
         updatedAt
         songs {

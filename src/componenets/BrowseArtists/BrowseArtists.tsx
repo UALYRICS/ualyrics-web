@@ -24,13 +24,13 @@ export const BrowseArtists = () => {
   return (
     <div>
       {artists?.map((a) => (
-        <div key={a.geniusId}>
+        <div key={a.id}>
           <div className="row">
               <div>
-                <img src={a.imageUrl} className='icon' alt="Song thumbnail" />
+                <img src={a.thumbnailUrl} className='icon' alt="Song thumbnail" />
               </div>	
               <div className="left-margin">
-                <h4>{a.name}</h4>
+                <h4>{a.title}</h4>
               </div>
           </div>
           <div className="clear"></div>
