@@ -10,14 +10,14 @@ export const SongPage = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const lyricsData = await scrapLyrics(songGeniusId);
-        setLyrics(lyricsData);
+        const lyricsData = await scrapLyrics("https://genius.com/Ceza-beatcoin-lyrics");
+        setLyrics(lyricsData?.getLyrics?.body);
       } catch (error) {
-        console.error("Error fetching artists", error);
+        console.error("Error fetching lyrics", error);
       }
     }
     getData();
   }, [songGeniusId]);
 
-  return <p className="lyrics">${lyrics}</p>
+  return <p className="lyrics">{lyrics}</p>
 }

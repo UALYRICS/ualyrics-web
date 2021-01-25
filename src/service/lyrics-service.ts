@@ -1,12 +1,15 @@
-import axios from "axios";
-import htmlparser from "node-html-parser";
+import { API } from "aws-amplify";
+import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
+import { getLyrics } from "../graphql/queries";
+import { GetLyricsQuery } from "../API";
 
-export const scrapLyrics = async (songGeniusId: Number) => {
-  const url = process.env.REACT_APP_GENIUS_WEB_URL ? process.env.REACT_APP_GENIUS_WEB_URL : '';
-  const { data } = await axios.get(`${url}/songs/${songGeniusId}`);
-  const DOM = htmlparser(data);
-  const lyricsDiv = DOM.querySelector(".lyrics");
-  if (!lyricsDiv || !lyricsDiv.text) throw new Error('No results');
 
-  return lyricsDiv.text.trim();
+export const scrapLyrics = async (songPath: String) => {
+  const { data } = await API.graphql({
+    query: getLyrics,
+    variables: {url: songPath},
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
+    }) as GraphQLResult<GetLyricsQuery>;
+
+  return data;
 };

@@ -10,6 +10,7 @@ import { BrowseArtists } from '../BrowseArtists/BrowseArtists';
 import { Page } from '../Page/Page';
 import { SearchPage } from '../Search/SearchPage';
 import { SongPage } from '../SongPage/SongPage';
+import { AddSongPage } from '../AddSongPage/AddSongPage';
 
 function App() {
   return (
@@ -25,7 +26,12 @@ function App() {
             <SearchPage />
           </Page>
         </Route>
-        <Route path="/song/:songGeniusId">
+        <Route path="/song">
+          <Page>
+            <AddSongPage />
+          </Page>
+        </Route>
+        <Route path="/song/:id">
           <Page>
             <SongPage />
           </Page>

@@ -2,6 +2,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getLyrics = /* GraphQL */ `
+  query GetLyrics($url: String) {
+    getLyrics(url: $url) {
+      body
+    }
+  }
+`;
 export const listArtists = /* GraphQL */ `
   query ListArtists(
     $filter: ModelArtistFilterInput
@@ -126,6 +133,7 @@ export const getSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
+        numuber
         original
         translation
       }
@@ -177,6 +185,7 @@ export const listSongs = /* GraphQL */ `
         title
         imageUrl
         lyrics {
+          numuber
           original
           translation
         }

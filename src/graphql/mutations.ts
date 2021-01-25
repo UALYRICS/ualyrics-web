@@ -228,6 +228,7 @@ export const createSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
+        numuber
         original
         translation
       }
@@ -277,6 +278,7 @@ export const updateSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
+        numuber
         original
         translation
       }
@@ -326,6 +328,7 @@ export const deleteSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
+        numuber
         original
         translation
       }

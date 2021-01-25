@@ -64,10 +64,19 @@ type Song
   album: Album @connection(fields: ["albumId"])
   title: String!
   imageUrl: String!
-  lyrics: [Line]!
+  lyrics: [LyricsLine]!
 }
 
-type Line {
+type LyricsLine {
+  numuber: Int!
   original: String!
   translation: String
+}
+
+type Query {
+  getLyrics(url: String): SongLyricsResponse @function(name: "getlyrics-${env}")
+}
+
+type SongLyricsResponse {
+  body: String!
 }

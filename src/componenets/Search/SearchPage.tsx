@@ -30,7 +30,7 @@ export const SearchPage = () => {
                 <img src={item.thumbnail} className='icon' alt="Song thumbnail" />
               </div>	
               <div className="left-margin">
-                <h4><Link to={`/song/${item.id}`}>{item.title}</Link></h4>
+                <h4><Link to={`/song?geniusId=${item.id}`}>{item.title}</Link></h4>
                 <h4>{item.artist?.name}</h4>
               </div>
           </div>

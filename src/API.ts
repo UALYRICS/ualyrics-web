@@ -125,10 +125,11 @@ export type CreateSongInput = {
   externalId: string,
   title: string,
   imageUrl: string,
-  lyrics: Array< LineInput | null >,
+  lyrics: Array< LyricsLineInput | null >,
 };
 
-export type LineInput = {
+export type LyricsLineInput = {
+  numuber: number,
   original: string,
   translation?: string | null,
 };
@@ -151,7 +152,7 @@ export type UpdateSongInput = {
   externalId?: string | null,
   title?: string | null,
   imageUrl?: string | null,
-  lyrics?: Array< LineInput | null > | null,
+  lyrics?: Array< LyricsLineInput | null > | null,
 };
 
 export type DeleteSongInput = {
@@ -450,7 +451,8 @@ export type CreateSongMutation = {
     title: string,
     imageUrl: string,
     lyrics:  Array< {
-      __typename: "Line",
+      __typename: "LyricsLine",
+      numuber: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -507,7 +509,8 @@ export type UpdateSongMutation = {
     title: string,
     imageUrl: string,
     lyrics:  Array< {
-      __typename: "Line",
+      __typename: "LyricsLine",
+      numuber: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -564,7 +567,8 @@ export type DeleteSongMutation = {
     title: string,
     imageUrl: string,
     lyrics:  Array< {
-      __typename: "Line",
+      __typename: "LyricsLine",
+      numuber: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -603,6 +607,17 @@ export type DeleteSongMutation = {
       } | null,
     } | null,
     owner: string | null,
+  } | null,
+};
+
+export type GetLyricsQueryVariables = {
+  url?: string | null,
+};
+
+export type GetLyricsQuery = {
+  getLyrics:  {
+    __typename: "SongLyricsResponse",
+    body: string,
   } | null,
 };
 
@@ -757,7 +772,8 @@ export type GetSongQuery = {
     title: string,
     imageUrl: string,
     lyrics:  Array< {
-      __typename: "Line",
+      __typename: "LyricsLine",
+      numuber: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -817,7 +833,8 @@ export type ListSongsQuery = {
       title: string,
       imageUrl: string,
       lyrics:  Array< {
-        __typename: "Line",
+        __typename: "LyricsLine",
+        numuber: number,
         original: string,
         translation: string | null,
       } | null >,
@@ -1076,7 +1093,8 @@ export type OnCreateSongSubscription = {
     title: string,
     imageUrl: string,
     lyrics:  Array< {
-      __typename: "Line",
+      __typename: "LyricsLine",
+      numuber: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -1132,7 +1150,8 @@ export type OnUpdateSongSubscription = {
     title: string,
     imageUrl: string,
     lyrics:  Array< {
-      __typename: "Line",
+      __typename: "LyricsLine",
+      numuber: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -1188,7 +1207,8 @@ export type OnDeleteSongSubscription = {
     title: string,
     imageUrl: string,
     lyrics:  Array< {
-      __typename: "Line",
+      __typename: "LyricsLine",
+      numuber: number,
       original: string,
       translation: string | null,
     } | null >,
