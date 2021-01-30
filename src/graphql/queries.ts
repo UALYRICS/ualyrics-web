@@ -51,6 +51,7 @@ export const getArtist = /* GraphQL */ `
         items {
           id
           artistId
+          externalId
           title
           thumbnailUrl
           createdAt
@@ -75,6 +76,43 @@ export const getArtist = /* GraphQL */ `
     }
   }
 `;
+export const getArtistsByFirstLetter = /* GraphQL */ `
+  query GetArtistsByFirstLetter(
+    $firstLetter: String
+    $title: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelArtistFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getArtistsByFirstLetter(
+      firstLetter: $firstLetter
+      title: $title
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        externalId
+        firstLetter
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
+        albums {
+          nextToken
+        }
+        songs {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const listAlbums = /* GraphQL */ `
   query ListAlbums(
     $filter: ModelAlbumFilterInput
@@ -85,6 +123,7 @@ export const listAlbums = /* GraphQL */ `
       items {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt
@@ -102,6 +141,7 @@ export const getAlbum = /* GraphQL */ `
     getAlbum(id: $id) {
       id
       artistId
+      externalId
       title
       thumbnailUrl
       createdAt
@@ -123,6 +163,39 @@ export const getAlbum = /* GraphQL */ `
     }
   }
 `;
+export const getAlbumsByArtistId = /* GraphQL */ `
+  query GetAlbumsByArtistId(
+    $artistId: ID
+    $title: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelAlbumFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getAlbumsByArtistId(
+      artistId: $artistId
+      title: $title
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        artistId
+        externalId
+        title
+        thumbnailUrl
+        createdAt
+        updatedAt
+        songs {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getSong = /* GraphQL */ `
   query GetSong($id: ID!) {
     getSong(id: $id) {
@@ -133,7 +206,7 @@ export const getSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
-        numuber
+        number
         original
         translation
       }
@@ -158,6 +231,7 @@ export const getSong = /* GraphQL */ `
       album {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt
@@ -185,7 +259,7 @@ export const listSongs = /* GraphQL */ `
         title
         imageUrl
         lyrics {
-          numuber
+          number
           original
           translation
         }
@@ -204,6 +278,119 @@ export const listSongs = /* GraphQL */ `
         album {
           id
           artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getSongsByArtistId = /* GraphQL */ `
+  query GetSongsByArtistId(
+    $artistId: ID
+    $title: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelSongFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getSongsByArtistId(
+      artistId: $artistId
+      title: $title
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics {
+          number
+          original
+          translation
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getSongsByAlbumId = /* GraphQL */ `
+  query GetSongsByAlbumId(
+    $albumId: ID
+    $title: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelSongFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getSongsByAlbumId(
+      albumId: $albumId
+      title: $title
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics {
+          number
+          original
+          translation
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
           title
           thumbnailUrl
           createdAt

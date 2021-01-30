@@ -10,7 +10,7 @@ import { BrowseArtists } from '../BrowseArtists/BrowseArtists';
 import { Page } from '../Page/Page';
 import { SearchPage } from '../Search/SearchPage';
 import { SongPage } from '../SongPage/SongPage';
-import { AddSongPage } from '../AddSongPage/AddSongPage';
+import AddSongPage from '../AddSongPage/AddSongPage';
 
 function App() {
   return (

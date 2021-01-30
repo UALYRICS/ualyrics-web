@@ -1,7 +1,7 @@
 
 type Artist
   @model
-  @key(name:"ByFirstLetter", fields: ["firstLetter", "title"])
+  @key(name:"ByFirstLetter", fields: ["firstLetter", "title"], queryField:"getArtistsByFirstLetter")
   @aws_api_key
   @aws_cognito_user_pools
   @auth (
@@ -24,7 +24,7 @@ type Artist
 
 type Album
   @model
-  @key(name: "byArtist", fields: ["artistId", "title"])
+  @key(name: "byArtist", fields: ["artistId", "title"], queryField:"getAlbumsByArtistId")
   @aws_api_key
   @aws_cognito_user_pools
   @auth (
@@ -37,6 +37,7 @@ type Album
 {
   id: ID!
   artistId: ID!
+  externalId: String!
   title: String!
   thumbnailUrl: String!
   songs: [Song] @connection(keyName: "byAlbum", fields: ["id"])
@@ -44,8 +45,8 @@ type Album
 
 type Song 
   @model
-  @key(name: "byArtist", fields: ["artistId", "title"])
-  @key(name: "byAlbum", fields: ["albumId", "title"])
+  @key(name: "byArtist", fields: ["artistId", "title"], queryField:"getSongsByArtistId")
+  @key(name: "byAlbum", fields: ["albumId", "title"], queryField:"getSongsByAlbumId")
   @aws_api_key
   @aws_cognito_user_pools
   @auth (
@@ -68,7 +69,7 @@ type Song
 }
 
 type LyricsLine {
-  numuber: Int!
+  number: Int!
   original: String!
   translation: String
 }

@@ -20,6 +20,7 @@ export const createArtist = /* GraphQL */ `
         items {
           id
           artistId
+          externalId
           title
           thumbnailUrl
           createdAt
@@ -62,6 +63,7 @@ export const updateArtist = /* GraphQL */ `
         items {
           id
           artistId
+          externalId
           title
           thumbnailUrl
           createdAt
@@ -104,6 +106,7 @@ export const deleteArtist = /* GraphQL */ `
         items {
           id
           artistId
+          externalId
           title
           thumbnailUrl
           createdAt
@@ -136,6 +139,7 @@ export const createAlbum = /* GraphQL */ `
     createAlbum(input: $input, condition: $condition) {
       id
       artistId
+      externalId
       title
       thumbnailUrl
       createdAt
@@ -165,6 +169,7 @@ export const updateAlbum = /* GraphQL */ `
     updateAlbum(input: $input, condition: $condition) {
       id
       artistId
+      externalId
       title
       thumbnailUrl
       createdAt
@@ -194,6 +199,7 @@ export const deleteAlbum = /* GraphQL */ `
     deleteAlbum(input: $input, condition: $condition) {
       id
       artistId
+      externalId
       title
       thumbnailUrl
       createdAt
@@ -228,7 +234,7 @@ export const createSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
-        numuber
+        number
         original
         translation
       }
@@ -253,6 +259,7 @@ export const createSong = /* GraphQL */ `
       album {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt
@@ -278,7 +285,7 @@ export const updateSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
-        numuber
+        number
         original
         translation
       }
@@ -303,6 +310,7 @@ export const updateSong = /* GraphQL */ `
       album {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt
@@ -328,7 +336,7 @@ export const deleteSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
-        numuber
+        number
         original
         translation
       }
@@ -353,6 +361,7 @@ export const deleteSong = /* GraphQL */ `
       album {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt

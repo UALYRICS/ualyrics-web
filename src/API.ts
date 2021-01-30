@@ -78,12 +78,14 @@ export type DeleteArtistInput = {
 export type CreateAlbumInput = {
   id?: string | null,
   artistId: string,
+  externalId: string,
   title: string,
   thumbnailUrl: string,
 };
 
 export type ModelAlbumConditionInput = {
   artistId?: ModelIDInput | null,
+  externalId?: ModelStringInput | null,
   title?: ModelStringInput | null,
   thumbnailUrl?: ModelStringInput | null,
   and?: Array< ModelAlbumConditionInput | null > | null,
@@ -110,6 +112,7 @@ export type ModelIDInput = {
 export type UpdateAlbumInput = {
   id: string,
   artistId?: string | null,
+  externalId?: string | null,
   title?: string | null,
   thumbnailUrl?: string | null,
 };
@@ -129,7 +132,7 @@ export type CreateSongInput = {
 };
 
 export type LyricsLineInput = {
-  numuber: number,
+  number: number,
   original: string,
   translation?: string | null,
 };
@@ -171,9 +174,26 @@ export type ModelArtistFilterInput = {
   not?: ModelArtistFilterInput | null,
 };
 
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type ModelAlbumFilterInput = {
   id?: ModelIDInput | null,
   artistId?: ModelIDInput | null,
+  externalId?: ModelStringInput | null,
   title?: ModelStringInput | null,
   thumbnailUrl?: ModelStringInput | null,
   and?: Array< ModelAlbumFilterInput | null > | null,
@@ -215,6 +235,7 @@ export type CreateArtistMutation = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -263,6 +284,7 @@ export type UpdateArtistMutation = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -311,6 +333,7 @@ export type DeleteArtistMutation = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -347,6 +370,7 @@ export type CreateAlbumMutation = {
     __typename: "Album",
     id: string,
     artistId: string,
+    externalId: string,
     title: string,
     thumbnailUrl: string,
     createdAt: string,
@@ -380,6 +404,7 @@ export type UpdateAlbumMutation = {
     __typename: "Album",
     id: string,
     artistId: string,
+    externalId: string,
     title: string,
     thumbnailUrl: string,
     createdAt: string,
@@ -413,6 +438,7 @@ export type DeleteAlbumMutation = {
     __typename: "Album",
     id: string,
     artistId: string,
+    externalId: string,
     title: string,
     thumbnailUrl: string,
     createdAt: string,
@@ -452,7 +478,7 @@ export type CreateSongMutation = {
     imageUrl: string,
     lyrics:  Array< {
       __typename: "LyricsLine",
-      numuber: number,
+      number: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -481,6 +507,7 @@ export type CreateSongMutation = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,
@@ -510,7 +537,7 @@ export type UpdateSongMutation = {
     imageUrl: string,
     lyrics:  Array< {
       __typename: "LyricsLine",
-      numuber: number,
+      number: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -539,6 +566,7 @@ export type UpdateSongMutation = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,
@@ -568,7 +596,7 @@ export type DeleteSongMutation = {
     imageUrl: string,
     lyrics:  Array< {
       __typename: "LyricsLine",
-      numuber: number,
+      number: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -597,6 +625,7 @@ export type DeleteSongMutation = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,
@@ -674,6 +703,7 @@ export type GetArtistQuery = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -700,6 +730,41 @@ export type GetArtistQuery = {
   } | null,
 };
 
+export type GetArtistsByFirstLetterQueryVariables = {
+  firstLetter?: string | null,
+  title?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelArtistFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetArtistsByFirstLetterQuery = {
+  getArtistsByFirstLetter:  {
+    __typename: "ModelArtistConnection",
+    items:  Array< {
+      __typename: "Artist",
+      id: string,
+      externalId: string,
+      firstLetter: string,
+      title: string,
+      description: string | null,
+      thumbnailUrl: string,
+      createdAt: string,
+      updatedAt: string,
+      albums:  {
+        __typename: "ModelAlbumConnection",
+        nextToken: string | null,
+      } | null,
+      songs:  {
+        __typename: "ModelSongConnection",
+        nextToken: string | null,
+      } | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type ListAlbumsQueryVariables = {
   filter?: ModelAlbumFilterInput | null,
   limit?: number | null,
@@ -713,6 +778,7 @@ export type ListAlbumsQuery = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,
@@ -735,6 +801,7 @@ export type GetAlbumQuery = {
     __typename: "Album",
     id: string,
     artistId: string,
+    externalId: string,
     title: string,
     thumbnailUrl: string,
     createdAt: string,
@@ -758,6 +825,36 @@ export type GetAlbumQuery = {
   } | null,
 };
 
+export type GetAlbumsByArtistIdQueryVariables = {
+  artistId?: string | null,
+  title?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelAlbumFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetAlbumsByArtistIdQuery = {
+  getAlbumsByArtistId:  {
+    __typename: "ModelAlbumConnection",
+    items:  Array< {
+      __typename: "Album",
+      id: string,
+      artistId: string,
+      externalId: string,
+      title: string,
+      thumbnailUrl: string,
+      createdAt: string,
+      updatedAt: string,
+      songs:  {
+        __typename: "ModelSongConnection",
+        nextToken: string | null,
+      } | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type GetSongQueryVariables = {
   id: string,
 };
@@ -773,7 +870,7 @@ export type GetSongQuery = {
     imageUrl: string,
     lyrics:  Array< {
       __typename: "LyricsLine",
-      numuber: number,
+      number: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -802,6 +899,7 @@ export type GetSongQuery = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,
@@ -834,7 +932,7 @@ export type ListSongsQuery = {
       imageUrl: string,
       lyrics:  Array< {
         __typename: "LyricsLine",
-        numuber: number,
+        number: number,
         original: string,
         translation: string | null,
       } | null >,
@@ -855,6 +953,117 @@ export type ListSongsQuery = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
+        title: string,
+        thumbnailUrl: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetSongsByArtistIdQueryVariables = {
+  artistId?: string | null,
+  title?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelSongFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetSongsByArtistIdQuery = {
+  getSongsByArtistId:  {
+    __typename: "ModelSongConnection",
+    items:  Array< {
+      __typename: "Song",
+      id: string,
+      artistId: string,
+      albumId: string,
+      externalId: string,
+      title: string,
+      imageUrl: string,
+      lyrics:  Array< {
+        __typename: "LyricsLine",
+        number: number,
+        original: string,
+        translation: string | null,
+      } | null >,
+      createdAt: string,
+      updatedAt: string,
+      artist:  {
+        __typename: "Artist",
+        id: string,
+        externalId: string,
+        firstLetter: string,
+        title: string,
+        description: string | null,
+        thumbnailUrl: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      album:  {
+        __typename: "Album",
+        id: string,
+        artistId: string,
+        externalId: string,
+        title: string,
+        thumbnailUrl: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetSongsByAlbumIdQueryVariables = {
+  albumId?: string | null,
+  title?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelSongFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetSongsByAlbumIdQuery = {
+  getSongsByAlbumId:  {
+    __typename: "ModelSongConnection",
+    items:  Array< {
+      __typename: "Song",
+      id: string,
+      artistId: string,
+      albumId: string,
+      externalId: string,
+      title: string,
+      imageUrl: string,
+      lyrics:  Array< {
+        __typename: "LyricsLine",
+        number: number,
+        original: string,
+        translation: string | null,
+      } | null >,
+      createdAt: string,
+      updatedAt: string,
+      artist:  {
+        __typename: "Artist",
+        id: string,
+        externalId: string,
+        firstLetter: string,
+        title: string,
+        description: string | null,
+        thumbnailUrl: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      album:  {
+        __typename: "Album",
+        id: string,
+        artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -883,6 +1092,7 @@ export type OnCreateArtistSubscription = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -926,6 +1136,7 @@ export type OnUpdateArtistSubscription = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -969,6 +1180,7 @@ export type OnDeleteArtistSubscription = {
         __typename: "Album",
         id: string,
         artistId: string,
+        externalId: string,
         title: string,
         thumbnailUrl: string,
         createdAt: string,
@@ -1000,6 +1212,7 @@ export type OnCreateAlbumSubscription = {
     __typename: "Album",
     id: string,
     artistId: string,
+    externalId: string,
     title: string,
     thumbnailUrl: string,
     createdAt: string,
@@ -1028,6 +1241,7 @@ export type OnUpdateAlbumSubscription = {
     __typename: "Album",
     id: string,
     artistId: string,
+    externalId: string,
     title: string,
     thumbnailUrl: string,
     createdAt: string,
@@ -1056,6 +1270,7 @@ export type OnDeleteAlbumSubscription = {
     __typename: "Album",
     id: string,
     artistId: string,
+    externalId: string,
     title: string,
     thumbnailUrl: string,
     createdAt: string,
@@ -1094,7 +1309,7 @@ export type OnCreateSongSubscription = {
     imageUrl: string,
     lyrics:  Array< {
       __typename: "LyricsLine",
-      numuber: number,
+      number: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -1123,6 +1338,7 @@ export type OnCreateSongSubscription = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,
@@ -1151,7 +1367,7 @@ export type OnUpdateSongSubscription = {
     imageUrl: string,
     lyrics:  Array< {
       __typename: "LyricsLine",
-      numuber: number,
+      number: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -1180,6 +1396,7 @@ export type OnUpdateSongSubscription = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,
@@ -1208,7 +1425,7 @@ export type OnDeleteSongSubscription = {
     imageUrl: string,
     lyrics:  Array< {
       __typename: "LyricsLine",
-      numuber: number,
+      number: number,
       original: string,
       translation: string | null,
     } | null >,
@@ -1237,6 +1454,7 @@ export type OnDeleteSongSubscription = {
       __typename: "Album",
       id: string,
       artistId: string,
+      externalId: string,
       title: string,
       thumbnailUrl: string,
       createdAt: string,

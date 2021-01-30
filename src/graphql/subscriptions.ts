@@ -17,6 +17,7 @@ export const onCreateArtist = /* GraphQL */ `
         items {
           id
           artistId
+          externalId
           title
           thumbnailUrl
           createdAt
@@ -56,6 +57,7 @@ export const onUpdateArtist = /* GraphQL */ `
         items {
           id
           artistId
+          externalId
           title
           thumbnailUrl
           createdAt
@@ -95,6 +97,7 @@ export const onDeleteArtist = /* GraphQL */ `
         items {
           id
           artistId
+          externalId
           title
           thumbnailUrl
           createdAt
@@ -124,6 +127,7 @@ export const onCreateAlbum = /* GraphQL */ `
     onCreateAlbum {
       id
       artistId
+      externalId
       title
       thumbnailUrl
       createdAt
@@ -150,6 +154,7 @@ export const onUpdateAlbum = /* GraphQL */ `
     onUpdateAlbum {
       id
       artistId
+      externalId
       title
       thumbnailUrl
       createdAt
@@ -176,6 +181,7 @@ export const onDeleteAlbum = /* GraphQL */ `
     onDeleteAlbum {
       id
       artistId
+      externalId
       title
       thumbnailUrl
       createdAt
@@ -207,7 +213,7 @@ export const onCreateSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
-        numuber
+        number
         original
         translation
       }
@@ -232,6 +238,7 @@ export const onCreateSong = /* GraphQL */ `
       album {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt
@@ -254,7 +261,7 @@ export const onUpdateSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
-        numuber
+        number
         original
         translation
       }
@@ -279,6 +286,7 @@ export const onUpdateSong = /* GraphQL */ `
       album {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt
@@ -301,7 +309,7 @@ export const onDeleteSong = /* GraphQL */ `
       title
       imageUrl
       lyrics {
-        numuber
+        number
         original
         translation
       }
@@ -326,6 +334,7 @@ export const onDeleteSong = /* GraphQL */ `
       album {
         id
         artistId
+        externalId
         title
         thumbnailUrl
         createdAt

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Artist } from "../../model/artist";
+import { Artist } from "../../models";
 import { fetchArtistsByFirstLetter } from "../../service/artists-service";
-import { Char } from "../../model/char";
+import { Char } from "../../models/char";
 import { useParams } from "react-router-dom";
 import "./BrowseArtists.css";
 
@@ -20,6 +20,8 @@ export const BrowseArtists = () => {
     }
     getData();
   }, [firstLetter]);
+
+  console.log('I am here. artists are: ', artists);
 
   return (
     <div>
