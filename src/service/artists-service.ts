@@ -1,5 +1,5 @@
 import { Char } from "../models/char";
-import { Artist, Song } from "../models";
+import { Artist } from "../models";
 import { API } from "aws-amplify";
 import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
 import { getArtistsByFirstLetter, getArtist } from "../graphql/queries";

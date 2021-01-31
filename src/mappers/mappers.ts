@@ -19,13 +19,13 @@ export function mapSongResultToSong(song: SongResult | null): Song {
     externalId: song?.externalId!,
     title: song?.title!,
     imageUrl: song?.imageUrl!,
-    lyrics: song!.lyrics!.map(line => {
+    lyrics: song?.lyrics?.map(line => {
       return {
         number: song!.lyrics![line!.number]!.number,
         original: song!.lyrics![line!.number]!.original,
         translation: song!.lyrics![line!.number]!.translation || undefined
       }
-    })
+    }) || []
   };
 }
 
