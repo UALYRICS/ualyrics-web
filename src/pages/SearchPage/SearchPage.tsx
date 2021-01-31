@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { search } from '../../service/search-service';
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Song } from "genius-lyrics";
 import './SearchPage.css';
-import {Link} from "react-router-dom";
 
 export const SearchPage = () => {
   let query = useQuery();

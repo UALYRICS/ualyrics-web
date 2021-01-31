@@ -3,7 +3,7 @@ import { Artist } from "../../models";
 import { fetchArtistsByFirstLetter } from "../../service/artists-service";
 import { Char } from "../../models/char";
 import { useParams } from "react-router-dom";
-import "./BrowseArtists.css";
+import "./BrowseArtistsPage.css";
 
 export const BrowseArtists = () => {
   let { firstLetter } = useParams();

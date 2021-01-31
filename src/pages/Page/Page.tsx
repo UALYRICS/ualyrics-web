@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import FirstLetterToolbar from './FirstLetterToolbar';
+import FirstLetterToolbar from '../../componenets/FirstLetterToolbar/FirstLetterToolbar';
 import './Page.css';
-import { Logo } from './Logo';
-import { Footer } from './Footer';
-import { SearchBar } from '../Search/SearchBar';
+import { Logo } from '../../componenets/Logo/Logo';
+import { Footer } from '../../componenets/Footer/Footer';
+import { SearchBar } from '../../componenets/SearchBar/SearchBar';
 
 export const Page: FunctionComponent<{}> = ({ children }) => (
   <>

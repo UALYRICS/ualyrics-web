@@ -5,12 +5,12 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Home from '../Home/Home';
-import { BrowseArtists } from '../BrowseArtists/BrowseArtists';
-import { Page } from '../Page/Page';
-import { SearchPage } from '../Search/SearchPage';
-import { SongPage } from '../SongPage/SongPage';
-import AddSongPage from '../AddSongPage/AddSongPage';
+import Home from '../pages/HomePage/HomePage';
+import { BrowseArtists } from '../pages/BrowseArtistsPage/BrowseArtistsPage';
+import { Page } from '../pages/Page/Page';
+import { SearchPage } from '../pages/SearchPage/SearchPage';
+import { SongPage } from '../pages/SongPage/SongPage';
+import AddSongPage from '../pages/AddSongPage/AddSongPage';
 
 function App() {
   return (
