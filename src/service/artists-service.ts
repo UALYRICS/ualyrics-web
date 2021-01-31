@@ -1,10 +1,11 @@
 import { Char } from "../models/char";
-import { Artist } from "../models";
+import { Artist, Song } from "../models";
 import { API } from "aws-amplify";
 import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
-import { getArtistsByFirstLetter } from "../graphql/queries";
+import { getArtistsByFirstLetter, getArtist } from "../graphql/queries";
 import { createArtist as createArtistMutation } from "../graphql/mutations";
-import { CreateArtistInput, CreateArtistMutation, GetArtistsByFirstLetterQuery } from "../API";
+import { CreateArtistInput, CreateArtistMutation, GetArtistsByFirstLetterQuery, GetArtistQuery } from "../API";
+import { mapResultDataToArtist, mapSingleArtistResultToArtist } from "../mappers/mappers";
 
 export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Artist[]> {
   const results = await API.graphql({
@@ -23,6 +24,18 @@ export async function createArtistIfNotExists(artist: Artist): Promise<string>{
   }
 
   return await createArtist(artist);
+}
+
+export async function getArtistById(artistId: string): Promise<Artist> {
+  const result = await API.graphql({
+    query: getArtist,
+    variables: {
+      id: artistId,
+    },
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
+  }) as GraphQLResult<GetArtistQuery>;
+
+  return mapSingleArtistResultToArtist(result.data!.getArtist!);
 }
 
 async function fetchArtistsByFirstLetterAndTitle(firstLetter: Char, title: string): Promise<Artist | null> {
@@ -60,14 +73,4 @@ async function createArtist(artist: Artist): Promise<string>{
   } else {
     throw new Error('Artist could not be created.');
   }
-}
-
-function mapResultDataToArtist(item: {id: string, title: string, externalId: string, thumbnailUrl: string} | null): Artist{
-  console.log('mapping: ', item);
-  return {
-    id: item?.id,
-    title: item?.title,
-    externalId: item?.externalId,
-    thumbnailUrl: item?.thumbnailUrl,
-  } as Artist;
 }

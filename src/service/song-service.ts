@@ -3,8 +3,10 @@ import axios from "axios";
 import { Song } from "../models";
 import { API } from "aws-amplify";
 import { createSong as createSongMutation } from "../graphql/mutations";
-import { CreateSongInput, CreateSongMutation } from "../API";
+import { getSong } from "../graphql/queries";
+import { CreateSongInput, CreateSongMutation, GetSongQuery } from "../API";
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
+import { mapSongResultToSong } from "../mappers/mappers";
 
 export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> => {
   const key = 'i6skCYqy5w6sNOHpW32r436jn9NoQPzBikS3mAXeMQnfbJh1hg-i8y7nIPhF4oe7';
@@ -40,3 +42,15 @@ export const createSong = async (artistId: string, albumId: string, song: Song):
     throw new Error('Song could not be created.');
   }
 };
+
+export const getSongById = async (id: string): Promise<Song> => {
+  const result = await API.graphql({
+    query: getSong,
+    variables: {
+      id: id,
+    },
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
+  }) as GraphQLResult<GetSongQuery>;
+
+  return mapSongResultToSong(result.data!.getSong!);
+}

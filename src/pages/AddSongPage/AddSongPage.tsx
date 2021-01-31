@@ -6,6 +6,8 @@ import { scrapLyrics } from '../../service/lyrics-service';
 import { LyricsLine, Song } from '../../models';
 import { saveSongTranslation } from '../../service/translation-serice';
 import { withAuthenticator } from "@aws-amplify/ui-react";
+import { mapGeniusSongToSong } from "../../mappers/mappers";
+import { SongDetails } from "../../componenets/Song/SongDetails";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -14,16 +16,16 @@ const useQuery = () => {
 const AddSongPage = () => {
   const geniusId = parseInt(useQuery().get("geniusId") || '');
 
-  const [song, setSong] = useState<GeniusSong>();
-  const [lyrics, setLyrics] = useState<LyricsLine[]>();
+  const [song, setSong] = useState<Song>();
+  //const [lyrics, setLyrics] = useState<LyricsLine[]>();
 
   useEffect(() => {
     async function getData() {
       try {
         const songData = await getGeniusSongById(geniusId) as GeniusSong;
-        setSong(songData);
         const lyricsData = await scrapLyrics(songData.url);
-        setLyrics(lyricsData?.getLyrics?.body.split('\n').map((line, index) => ({number: index, original: line} as LyricsLine)));
+        const lyrics = lyricsData!.getLyrics!.body.split('\n').map((line, index) => ({number: index, original: line} as LyricsLine));
+        setSong(mapGeniusSongToSong(songData, lyrics));
       } catch (error) {
         console.error("Error fetching lyrics or song", error);
       }
@@ -31,50 +33,27 @@ const AddSongPage = () => {
     getData();
   }, [geniusId]);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>, index: number) {
-    lyrics![index] = {number: lyrics![index].number, original: lyrics![index].original, translation: e.target.value} ;
-    setLyrics(lyrics);
+  function handleLyricsChange(e: React.ChangeEvent<HTMLInputElement>, index: number) {
+    song!.lyrics[index] = {number: song!.lyrics![index]!.number, original: song!.lyrics![index]!.original, translation: e.target.value} ;
+    setSong(song);
   }
   
   function handleSave(){
-    const newSong = {
-      id: '',
-      title: song?.title,
-      externalId: song?.id.toString(),
-      lyrics,
-      imageUrl: song?.thumbnail,
-      artist: {
-        title: song?.artist.name,
-        thumbnailUrl: song?.artist.thumbnail,
-        firstLetter: song?.artist?.name.charAt(0),
-        externalId: song?.artist.id.toString(),
-      },
-      album: {
-        externalId: song?.raw.album?.id.toString(),
-        title: song?.raw.album?.name,
-        thumbnailUrl: song?.raw.album?.cover_art_url
-      }
-    } as Song;
-    saveSongTranslation(newSong);
+    saveSongTranslation(song!);
   }
 
   return (
     <>
-      <img src={song?.thumbnail} alt="Album cover" />
-      <div><b>Title:</b></div>
-      <div>{song?.title}</div>
-      <br/>
-      <div><b>By:</b></div>
-      <div>{song?.artist.name}</div>
+      <SongDetails song={song} />
       <br/>
       <div><b>Lyrics:</b></div>
-      {lyrics?.map((line, index) => {
-        const translationEl = line.original.length === 0 ?
+      {song?.lyrics?.map((line, index) => {
+        const translationEl = line!.original.length === 0 ?
         (<br/>) :
-        (<input type="text" value={lyrics[index].translation} onChange={(e) => handleChange(e, index)} />)
+        (<input type="text" value={song!.lyrics![index]!.translation} onChange={(e) => handleLyricsChange(e, index)} />)
           return (
             <div key={index}>
-              <div>{line.original}</div>
+              <div>{line!.original}</div>
               <div>{translationEl}</div>
             </div>
           )

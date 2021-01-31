@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Artist } from "../../models";
 import { fetchArtistsByFirstLetter } from "../../service/artists-service";
 import { Char } from "../../models/char";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./BrowseArtistsPage.css";
 
 export const BrowseArtists = () => {
@@ -21,18 +21,16 @@ export const BrowseArtists = () => {
     getData();
   }, [firstLetter]);
 
-  console.log('I am here. artists are: ', artists);
-
   return (
     <div>
-      {artists?.map((a) => (
-        <div key={a.id}>
+      {artists?.map((artist) => (
+        <div key={artist.id}>
           <div className="row">
               <div>
-                <img src={a.thumbnailUrl} className='icon' alt="Song thumbnail" />
+                <img src={artist.thumbnailUrl} className='icon' alt="Song thumbnail" />
               </div>	
               <div className="left-margin">
-                <h4>{a.title}</h4>
+                <h4><Link to={`/artist/${artist.id}`}>{artist.title}</Link></h4>
               </div>
           </div>
           <div className="clear"></div>

@@ -11,6 +11,7 @@ import { Page } from '../pages/Page/Page';
 import { SearchPage } from '../pages/SearchPage/SearchPage';
 import { SongPage } from '../pages/SongPage/SongPage';
 import AddSongPage from '../pages/AddSongPage/AddSongPage';
+import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
 
 function App() {
   return (
@@ -26,14 +27,19 @@ function App() {
             <SearchPage />
           </Page>
         </Route>
+        <Route path="/song/:songId">
+          <Page>
+            <SongPage />
+          </Page>
+        </Route>
         <Route path="/song">
           <Page>
             <AddSongPage />
           </Page>
         </Route>
-        <Route path="/song/:id">
+        <Route path="/artist/:artistId">
           <Page>
-            <SongPage />
+            <ArtistPage />
           </Page>
         </Route>
         <Route path="/:firstLetter">

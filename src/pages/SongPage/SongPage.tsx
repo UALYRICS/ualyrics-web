@@ -1,23 +1,30 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
-import {scrapLyrics} from "../../service/lyrics-service"; 
+import { SongDetails } from "../../componenets/Song/SongDetails";
+import { SongLyrics } from "../../componenets/Song/SongLyrics";
+import { Song } from "../../models";
+import { getSongById } from "../../service/song-service"; 
 import "./SongPage.css";
 
 export const SongPage = () => {
-  let { songGeniusId } = useParams();
-  const [lyrics, setLyrics] = useState<string>();
+  let { songId } = useParams();
+  const [song, setSong] = useState<Song>();
 
   useEffect(() => {
     async function getData() {
       try {
-        const lyricsData = await scrapLyrics("https://genius.com/Ceza-beatcoin-lyrics");
-        setLyrics(lyricsData?.getLyrics?.body);
+        const songData = await getSongById(songId);
+        setSong(songData);
       } catch (error) {
-        console.error("Error fetching lyrics", error);
+        console.error("Error fetching song", error);
       }
     }
     getData();
-  }, [songGeniusId]);
-
-  return <p className="lyrics">{lyrics}</p>
+  }, [songId]);
+  return (
+    <>
+      <SongDetails song={song}/>
+      <SongLyrics song={song!} />
+    </>
+  )
 }
