@@ -22,15 +22,15 @@ export const SearchPage = () => {
 
   return (
     <div>
-      {searchResults.map(item => (
-        <div key={item.id}>
+      {searchResults.map(song => (
+        <div key={song.id}>
           <div className="row">
               <div>
-                <img src={item.thumbnail} className='icon' alt="Song thumbnail" />
+                <img src={song.thumbnail} className='icon' alt="Song thumbnail" />
               </div>	
               <div className="left-margin">
-                <h4><Link to={`/song?geniusId=${item.id}`}>{item.title}</Link></h4>
-                <h4>{item.artist?.name}</h4>
+                <h4><Link to={`/song?geniusId=${song.id}`}>{song.title}</Link></h4>
+                <h4>{song.artist?.name}</h4>
               </div>
           </div>
           <div className="clear"></div>

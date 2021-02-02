@@ -1,7 +1,7 @@
 import { Song as GeniusSong } from "genius-lyrics";
 import axios from "axios";
 import { Song } from "../models";
-import { API } from "aws-amplify";
+import { API, Storage } from "aws-amplify";
 import { createSong as createSongMutation } from "../graphql/mutations";
 import { getSong } from "../graphql/queries";
 import { CreateSongInput, CreateSongMutation, GetSongQuery } from "../API";
@@ -35,6 +35,8 @@ export const createSong = async (artistId: string, albumId: string, song: Song):
     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
   }) as GraphQLResult<CreateSongMutation>;
 
+  updateLatestFile(song);
+
   const id = result.data?.createSong?.id;
   if(id){
     return id;
@@ -54,3 +56,12 @@ export const getSongById = async (id: string): Promise<Song> => {
 
   return mapSongResultToSong(result.data!.getSong!);
 }
+
+const updateLatestFile = async (song: Song) => {
+  const data = await Storage.get(`recentlyadded.json`, { download: true }) as {Body: {text(): Promise<string>}};
+  data.Body.text().then(recentAddadData => { 
+    const songs = JSON.parse(recentAddadData) as Array<Song>;
+    songs.unshift(song);
+    Storage.put(`recentlyadded.json`, JSON.stringify(songs));
+  })
+};
