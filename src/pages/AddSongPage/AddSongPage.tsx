@@ -17,12 +17,13 @@ const AddSongPage = () => {
   const geniusId = parseInt(useQuery().get("geniusId") || '');
 
   const [song, setSong] = useState<Song>();
-  //const [lyrics, setLyrics] = useState<LyricsLine[]>();
 
   useEffect(() => {
     async function getData() {
       try {
         const songData = await getGeniusSongById(geniusId) as GeniusSong;
+        setSong(mapGeniusSongToSong(songData, []));
+
         const lyricsData = await scrapLyrics(songData.url);
         const lyrics = lyricsData!.getLyrics!.body.split('\n').map((line, index) => ({number: index, original: line} as LyricsLine));
         setSong(mapGeniusSongToSong(songData, lyrics));

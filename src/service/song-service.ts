@@ -19,7 +19,7 @@ export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> =
   return new GeniusSong(response.data.response.song, key, true);
 }
 
-export const createSong = async (artistId: string, albumId: string, song: Song): Promise<string> => {
+export const createSong = async (artistId: string, albumId: string, song: Song): Promise<Song> => {
   const result = await API.graphql({
     query: createSongMutation,
     variables: { 
@@ -35,16 +35,11 @@ export const createSong = async (artistId: string, albumId: string, song: Song):
     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
   }) as GraphQLResult<CreateSongMutation>;
 
-  const id = result.data?.createSong?.id;
+  const createdSong = mapSongResultToSong(result.data?.createSong!)
 
-  song = Song.copyOf(song, (song) => {song.id = id || ''});
-  updateLatestFile(song);
+  updateLatestFile(createdSong);
 
-  if(id){
-    return id;
-  } else {
-    throw new Error('Song could not be created.');
-  }
+  return createdSong;
 };
 
 export const getSongById = async (id: string): Promise<Song> => {
