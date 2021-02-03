@@ -35,9 +35,11 @@ export const createSong = async (artistId: string, albumId: string, song: Song):
     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
   }) as GraphQLResult<CreateSongMutation>;
 
+  const id = result.data?.createSong?.id;
+
+  song = Song.copyOf(song, (song) => {song.id = id || ''});
   updateLatestFile(song);
 
-  const id = result.data?.createSong?.id;
   if(id){
     return id;
   } else {
