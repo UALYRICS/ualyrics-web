@@ -19,12 +19,8 @@ export interface SongResult {
   imageUrl: string,
   createdAt: string,
   updatedAt: string,
-  owner: string | null,
-  lyrics?: Array<{
-    number: number,
-    original: string,
-    translation?: string | null,
-  } | null> | null
+  owner?: string | null,
+  lyrics?: string
 }
 
 export interface GetArtistResult extends GetArtistListResult{

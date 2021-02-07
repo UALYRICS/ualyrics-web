@@ -1,22 +1,28 @@
-import { Song as GeniusSong } from "genius-lyrics";
-import axios from "axios";
 import { Song } from "../models";
 import { API, Storage } from "aws-amplify";
 import { createSong as createSongMutation } from "../graphql/mutations";
 import { getSong } from "../graphql/queries";
 import { CreateSongInput, CreateSongMutation, GetSongQuery } from "../API";
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
-import { mapSongResultToSong } from "../mappers/mappers";
+import { mapSongResultToSong, mapGeniusSongToSong } from "../mappers/mappers";
+import { scrapLyrics } from "./lyrics-service";
+import { createArtistIfNotExists } from './artists-service';
+import { createAlbumIfNotExists } from './albums-service';
+import { getGeniusSongById } from './genius-service';
 
-export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> => {
-  const key = 'i6skCYqy5w6sNOHpW32r436jn9NoQPzBikS3mAXeMQnfbJh1hg-i8y7nIPhF4oe7';
-  const url = process.env.REACT_APP_GENIUS_API_URL ? process.env.REACT_APP_GENIUS_API_URL : '';
-  const response = await axios.get(`${url}/api/songs/${geniusId}`, {
-    headers: {
-        'Authorization': `Bearer ${key}`
-    }
-  });
-  return new GeniusSong(response.data.response.song, key, true);
+export async function saveSongToDb(song: Song): Promise<Song> {
+  const artistId = await createArtistIfNotExists(song.artist!);
+  const albumId = await createAlbumIfNotExists(artistId, song?.album!);
+  return await createSong(artistId, albumId, song);
+}
+
+export const getGeniusSong = async (geniusId: number): Promise<Song> => {
+  const geniusSong = await getGeniusSongById(geniusId);
+  const lyricsData = await scrapLyrics(geniusSong.url);
+  const song =  mapGeniusSongToSong(geniusSong, lyricsData!.getLyrics!.body);
+  
+  // saving song asynchronously
+  return await saveSongToDb(song);
 }
 
 export const createSong = async (artistId: string, albumId: string, song: Song): Promise<Song> => {

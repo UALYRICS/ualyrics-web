@@ -7,11 +7,19 @@ export declare class SongLyricsResponse {
   constructor(init: ModelInit<SongLyricsResponse>);
 }
 
-export declare class LyricsLine {
-  readonly number: number;
-  readonly original: string;
-  readonly translation?: string;
-  constructor(init: ModelInit<LyricsLine>);
+export declare class Referent {
+  readonly externalId: number;
+  readonly content: string;
+  readonly records?: (Annotation | null)[];
+  constructor(init: ModelInit<Referent>);
+}
+
+export declare class Annotation {
+  readonly externalId: number;
+  readonly text: string;
+  readonly author: string;
+  readonly authorThumbnailUrl: string;
+  constructor(init: ModelInit<Annotation>);
 }
 
 export declare class Artist {
@@ -45,7 +53,31 @@ export declare class Song {
   readonly album?: Album;
   readonly title: string;
   readonly imageUrl: string;
-  readonly lyrics: (LyricsLine | null)[];
+  readonly lyrics: string;
+  readonly referents?: (Referent | null)[];
   constructor(init: ModelInit<Song>);
   static copyOf(source: Song, mutator: (draft: MutableModel<Song>) => MutableModel<Song> | void): Song;
+}
+
+export declare class Translation {
+  readonly id: string;
+  readonly owner: string;
+  readonly createdAt: string;
+  readonly songId: string;
+  readonly rating: number;
+  readonly lyrics: string;
+  readonly song?: Song;
+  constructor(init: ModelInit<Translation>);
+  static copyOf(source: Translation, mutator: (draft: MutableModel<Translation>) => MutableModel<Translation> | void): Translation;
+}
+
+export declare class Comment {
+  readonly id: string;
+  readonly translationId: string;
+  readonly createdAt: string;
+  readonly text: string;
+  readonly lineNumber?: number;
+  readonly translation?: Translation;
+  constructor(init: ModelInit<Comment>);
+  static copyOf(source: Comment, mutator: (draft: MutableModel<Comment>) => MutableModel<Comment> | void): Comment;
 }

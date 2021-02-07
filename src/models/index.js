@@ -4,12 +4,15 @@ import { schema } from './schema';
 
 
 
-const { Artist, Album, Song, SongLyricsResponse, LyricsLine } = initSchema(schema);
+const { Artist, Album, Song, Translation, Comment, SongLyricsResponse, Referent, Annotation } = initSchema(schema);
 
 export {
   Artist,
   Album,
   Song,
+  Translation,
+  Comment,
   SongLyricsResponse,
-  LyricsLine
+  Referent,
+  Annotation
 };

@@ -1,5 +1,5 @@
 import { GetArtistListResult, GetArtistResult, SongResult } from "./result-types";
-import { Artist, LyricsLine, Song } from "../models";
+import { Artist, Song } from "../models";
 import { Song as GeniusSong } from "genius-lyrics";
 
 export function mapSingleArtistResultToArtist(item: GetArtistResult): Artist {
@@ -19,13 +19,7 @@ export function mapSongResultToSong(song: SongResult | null): Song {
     externalId: song?.externalId!,
     title: song?.title!,
     imageUrl: song?.imageUrl!,
-    lyrics: song?.lyrics?.map(line => {
-      return {
-        number: song!.lyrics![line!.number]!.number,
-        original: song!.lyrics![line!.number]!.original,
-        translation: song!.lyrics![line!.number]!.translation || undefined
-      }
-    }) || []
+    lyrics: song!.lyrics!
   };
 }
 
@@ -39,7 +33,7 @@ export function mapResultDataToArtist(item: GetArtistListResult | null): Artist 
   } as Artist;
 }
 
-export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: LyricsLine[]): Song {
+export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Song {
   return {
     id: '', // this is required but unknown
     externalId: geniusSong.id.toString(),

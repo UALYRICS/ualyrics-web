@@ -51,8 +51,8 @@ type Song
   @aws_cognito_user_pools
   @auth (
     rules: [
-      { allow: owner },
       { allow: public, operations: [read] },
+      { allow: private, operations: [read, create] },
       { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
     ]
   )
@@ -65,13 +65,65 @@ type Song
   album: Album @connection(fields: ["albumId"])
   title: String!
   imageUrl: String!
-  lyrics: [LyricsLine]!
+  lyrics: String!
+  referents: [Referent]
 }
 
-type LyricsLine {
-  number: Int!
-  original: String!
-  translation: String
+type Referent {
+  externalId: Int!
+  content: String!
+  records: [Annotation]
+}
+
+type Annotation {
+  externalId: Int!
+  text: String!
+  author: String!
+  authorThumbnailUrl: String!
+}
+
+type Translation
+  @model
+  @key(name: "bySong", fields: ["songId", "rating"], queryField:"getTranslationsBySongId")
+  @key(name: "byOwner", fields: ["owner", "createdAt"], queryField:"getTranslationsByOwner")
+  @aws_api_key
+  @aws_cognito_user_pools
+  @auth (
+    rules: [
+      { allow: owner },
+      { allow: public, operations: [read] },
+      { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
+    ]
+  )
+{
+  id: ID!
+  owner: String!
+  createdAt: AWSDateTime!
+  songId: ID!
+  rating: Int!
+  lyrics: String!
+  song: Song @connection(fields: ["songId"])
+}
+
+type Comment
+  @model
+  @key(name: "byTranslation", fields: ["translationId", "createdAt"], queryField:"getCommentsByTranslationId")
+  @aws_api_key
+  @aws_cognito_user_pools
+  @auth (
+    rules: [
+      { allow: owner },
+      { allow: public, operations: [read] },
+      { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
+    ]
+  )
+{
+  id: ID!
+  translationId: ID!
+  createdAt: AWSDateTime!
+  text: String!
+  lineNumber: Int,
+  translation: Translation @connection(fields: ["translationId"])
 }
 
 type Query {

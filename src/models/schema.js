@@ -310,13 +310,20 @@ export const schema = {
                 },
                 "lyrics": {
                     "name": "lyrics",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "referents": {
+                    "name": "referents",
                     "isArray": true,
                     "type": {
-                        "nonModel": "LyricsLine"
+                        "nonModel": "Referent"
                     },
                     "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": false
+                    "isArrayNullable": true
                 }
             },
             "syncable": true,
@@ -346,6 +353,257 @@ export const schema = {
                             "title"
                         ],
                         "queryField": "getSongsByAlbumId"
+                    }
+                },
+                {
+                    "type": "aws_api_key",
+                    "properties": {}
+                },
+                {
+                    "type": "aws_cognito_user_pools",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "read",
+                                    "create"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "Admin"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "read",
+                                    "delete"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Translation": {
+            "name": "Translation",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "songId": {
+                    "name": "songId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "rating": {
+                    "name": "rating",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lyrics": {
+                    "name": "lyrics",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "song": {
+                    "name": "song",
+                    "isArray": false,
+                    "type": {
+                        "model": "Song"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "Translations",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "bySong",
+                        "fields": [
+                            "songId",
+                            "rating"
+                        ],
+                        "queryField": "getTranslationsBySongId"
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byOwner",
+                        "fields": [
+                            "owner",
+                            "createdAt"
+                        ],
+                        "queryField": "getTranslationsByOwner"
+                    }
+                },
+                {
+                    "type": "aws_api_key",
+                    "properties": {}
+                },
+                {
+                    "type": "aws_cognito_user_pools",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "identityClaim": "cognito:username",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "Admin"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "read",
+                                    "delete"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Comment": {
+            "name": "Comment",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "translationId": {
+                    "name": "translationId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "text": {
+                    "name": "text",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lineNumber": {
+                    "name": "lineNumber",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "translation": {
+                    "name": "translation",
+                    "isArray": false,
+                    "type": {
+                        "model": "Translation"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "Comments",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byTranslation",
+                        "fields": [
+                            "translationId",
+                            "createdAt"
+                        ],
+                        "queryField": "getCommentsByTranslationId"
                     }
                 },
                 {
@@ -412,32 +670,68 @@ export const schema = {
                 }
             }
         },
-        "LyricsLine": {
-            "name": "LyricsLine",
+        "Referent": {
+            "name": "Referent",
             "fields": {
-                "number": {
-                    "name": "number",
+                "externalId": {
+                    "name": "externalId",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
-                "original": {
-                    "name": "original",
+                "content": {
+                    "name": "content",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "translation": {
-                    "name": "translation",
+                "records": {
+                    "name": "records",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "Annotation"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                }
+            }
+        },
+        "Annotation": {
+            "name": "Annotation",
+            "fields": {
+                "externalId": {
+                    "name": "externalId",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "text": {
+                    "name": "text",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "author": {
+                    "name": "author",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "authorThumbnailUrl": {
+                    "name": "authorThumbnailUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
                     "attributes": []
                 }
             }
         }
     },
-    "version": "d15a439548419f6e1d4c5bee21bec970"
+    "version": "0745d404ba2391c65d5826bb17f6bfab"
 };

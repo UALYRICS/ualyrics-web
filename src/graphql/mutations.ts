@@ -36,9 +36,9 @@ export const createArtist = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -79,9 +79,9 @@ export const updateArtist = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -122,9 +122,9 @@ export const deleteArtist = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -152,9 +152,9 @@ export const createAlbum = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -182,9 +182,9 @@ export const updateAlbum = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -212,9 +212,9 @@ export const deleteAlbum = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -233,10 +233,16 @@ export const createSong = /* GraphQL */ `
       externalId
       title
       imageUrl
-      lyrics {
-        number
-        original
-        translation
+      lyrics
+      referents {
+        externalId
+        content
+        records {
+          externalId
+          text
+          author
+          authorThumbnailUrl
+        }
       }
       createdAt
       updatedAt
@@ -268,7 +274,6 @@ export const createSong = /* GraphQL */ `
           nextToken
         }
       }
-      owner
     }
   }
 `;
@@ -284,10 +289,16 @@ export const updateSong = /* GraphQL */ `
       externalId
       title
       imageUrl
-      lyrics {
-        number
-        original
-        translation
+      lyrics
+      referents {
+        externalId
+        content
+        records {
+          externalId
+          text
+          author
+          authorThumbnailUrl
+        }
       }
       createdAt
       updatedAt
@@ -319,7 +330,6 @@ export const updateSong = /* GraphQL */ `
           nextToken
         }
       }
-      owner
     }
   }
 `;
@@ -335,10 +345,16 @@ export const deleteSong = /* GraphQL */ `
       externalId
       title
       imageUrl
-      lyrics {
-        number
-        original
-        translation
+      lyrics
+      referents {
+        externalId
+        content
+        records {
+          externalId
+          text
+          author
+          authorThumbnailUrl
+        }
       }
       createdAt
       updatedAt
@@ -368,6 +384,263 @@ export const deleteSong = /* GraphQL */ `
         updatedAt
         songs {
           nextToken
+        }
+      }
+    }
+  }
+`;
+export const createTranslation = /* GraphQL */ `
+  mutation CreateTranslation(
+    $input: CreateTranslationInput!
+    $condition: ModelTranslationConditionInput
+  ) {
+    createTranslation(input: $input, condition: $condition) {
+      id
+      owner
+      createdAt
+      songId
+      rating
+      lyrics
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics
+        referents {
+          externalId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;
+export const updateTranslation = /* GraphQL */ `
+  mutation UpdateTranslation(
+    $input: UpdateTranslationInput!
+    $condition: ModelTranslationConditionInput
+  ) {
+    updateTranslation(input: $input, condition: $condition) {
+      id
+      owner
+      createdAt
+      songId
+      rating
+      lyrics
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics
+        referents {
+          externalId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;
+export const deleteTranslation = /* GraphQL */ `
+  mutation DeleteTranslation(
+    $input: DeleteTranslationInput!
+    $condition: ModelTranslationConditionInput
+  ) {
+    deleteTranslation(input: $input, condition: $condition) {
+      id
+      owner
+      createdAt
+      songId
+      rating
+      lyrics
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics
+        referents {
+          externalId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    createComment(input: $input, condition: $condition) {
+      id
+      translationId
+      createdAt
+      text
+      lineNumber
+      updatedAt
+      translation {
+        id
+        owner
+        createdAt
+        songId
+        rating
+        lyrics
+        updatedAt
+        song {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    updateComment(input: $input, condition: $condition) {
+      id
+      translationId
+      createdAt
+      text
+      lineNumber
+      updatedAt
+      translation {
+        id
+        owner
+        createdAt
+        songId
+        rating
+        lyrics
+        updatedAt
+        song {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    deleteComment(input: $input, condition: $condition) {
+      id
+      translationId
+      createdAt
+      text
+      lineNumber
+      updatedAt
+      translation {
+        id
+        owner
+        createdAt
+        songId
+        rating
+        lyrics
+        updatedAt
+        song {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
         }
       }
       owner

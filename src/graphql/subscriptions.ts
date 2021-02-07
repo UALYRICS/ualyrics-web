@@ -33,9 +33,9 @@ export const onCreateArtist = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -73,9 +73,9 @@ export const onUpdateArtist = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -113,9 +113,9 @@ export const onDeleteArtist = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -140,9 +140,9 @@ export const onCreateAlbum = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -167,9 +167,9 @@ export const onUpdateAlbum = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -194,9 +194,9 @@ export const onDeleteAlbum = /* GraphQL */ `
           externalId
           title
           imageUrl
+          lyrics
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
@@ -204,18 +204,24 @@ export const onDeleteAlbum = /* GraphQL */ `
   }
 `;
 export const onCreateSong = /* GraphQL */ `
-  subscription OnCreateSong($owner: String) {
-    onCreateSong(owner: $owner) {
+  subscription OnCreateSong {
+    onCreateSong {
       id
       artistId
       albumId
       externalId
       title
       imageUrl
-      lyrics {
-        number
-        original
-        translation
+      lyrics
+      referents {
+        externalId
+        content
+        records {
+          externalId
+          text
+          author
+          authorThumbnailUrl
+        }
       }
       createdAt
       updatedAt
@@ -247,23 +253,28 @@ export const onCreateSong = /* GraphQL */ `
           nextToken
         }
       }
-      owner
     }
   }
 `;
 export const onUpdateSong = /* GraphQL */ `
-  subscription OnUpdateSong($owner: String) {
-    onUpdateSong(owner: $owner) {
+  subscription OnUpdateSong {
+    onUpdateSong {
       id
       artistId
       albumId
       externalId
       title
       imageUrl
-      lyrics {
-        number
-        original
-        translation
+      lyrics
+      referents {
+        externalId
+        content
+        records {
+          externalId
+          text
+          author
+          authorThumbnailUrl
+        }
       }
       createdAt
       updatedAt
@@ -293,54 +304,298 @@ export const onUpdateSong = /* GraphQL */ `
         updatedAt
         songs {
           nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeleteSong = /* GraphQL */ `
+  subscription OnDeleteSong {
+    onDeleteSong {
+      id
+      artistId
+      albumId
+      externalId
+      title
+      imageUrl
+      lyrics
+      referents {
+        externalId
+        content
+        records {
+          externalId
+          text
+          author
+          authorThumbnailUrl
+        }
+      }
+      createdAt
+      updatedAt
+      artist {
+        id
+        externalId
+        firstLetter
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
+        albums {
+          nextToken
+        }
+        songs {
+          nextToken
+        }
+      }
+      album {
+        id
+        artistId
+        externalId
+        title
+        thumbnailUrl
+        createdAt
+        updatedAt
+        songs {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onCreateTranslation = /* GraphQL */ `
+  subscription OnCreateTranslation($owner: String) {
+    onCreateTranslation(owner: $owner) {
+      id
+      owner
+      createdAt
+      songId
+      rating
+      lyrics
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics
+        referents {
+          externalId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;
+export const onUpdateTranslation = /* GraphQL */ `
+  subscription OnUpdateTranslation($owner: String) {
+    onUpdateTranslation(owner: $owner) {
+      id
+      owner
+      createdAt
+      songId
+      rating
+      lyrics
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics
+        referents {
+          externalId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;
+export const onDeleteTranslation = /* GraphQL */ `
+  subscription OnDeleteTranslation($owner: String) {
+    onDeleteTranslation(owner: $owner) {
+      id
+      owner
+      createdAt
+      songId
+      rating
+      lyrics
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        externalId
+        title
+        imageUrl
+        lyrics
+        referents {
+          externalId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          externalId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          externalId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment($owner: String) {
+    onCreateComment(owner: $owner) {
+      id
+      translationId
+      createdAt
+      text
+      lineNumber
+      updatedAt
+      translation {
+        id
+        owner
+        createdAt
+        songId
+        rating
+        lyrics
+        updatedAt
+        song {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
         }
       }
       owner
     }
   }
 `;
-export const onDeleteSong = /* GraphQL */ `
-  subscription OnDeleteSong($owner: String) {
-    onDeleteSong(owner: $owner) {
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment($owner: String) {
+    onUpdateComment(owner: $owner) {
       id
-      artistId
-      albumId
-      externalId
-      title
-      imageUrl
-      lyrics {
-        number
-        original
-        translation
-      }
+      translationId
       createdAt
+      text
+      lineNumber
       updatedAt
-      artist {
+      translation {
         id
-        externalId
-        firstLetter
-        title
-        description
-        thumbnailUrl
+        owner
         createdAt
+        songId
+        rating
+        lyrics
         updatedAt
-        albums {
-          nextToken
-        }
-        songs {
-          nextToken
+        song {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
         }
       }
-      album {
+      owner
+    }
+  }
+`;
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment($owner: String) {
+    onDeleteComment(owner: $owner) {
+      id
+      translationId
+      createdAt
+      text
+      lineNumber
+      updatedAt
+      translation {
         id
-        artistId
-        externalId
-        title
-        thumbnailUrl
+        owner
         createdAt
+        songId
+        rating
+        lyrics
         updatedAt
-        songs {
-          nextToken
+        song {
+          id
+          artistId
+          albumId
+          externalId
+          title
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
         }
       }
       owner
