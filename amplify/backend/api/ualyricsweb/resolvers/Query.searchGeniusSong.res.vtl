@@ -1,0 +1,8 @@
+#set( $body = $util.parseJson($context.result.body))
+#set( $songs = [] )
+
+#foreach( $entry in $body.response.hits )
+  $util.qr($songs.add($entry.get("result")))
+#end
+
+$util.toJson($songs)

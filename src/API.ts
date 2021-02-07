@@ -1108,6 +1108,41 @@ export type GetGeniusSongQuery = {
   } | null,
 };
 
+export type SearchGeniusSongQueryVariables = {
+  term?: string | null,
+};
+
+export type SearchGeniusSongQuery = {
+  searchGeniusSong:  Array< {
+    __typename: "GeniusSong",
+    id: number,
+    title: string,
+    url: string,
+    header_image_thumbnail_url: string,
+    header_image_url: string,
+    song_art_image_thumbnail_url: string,
+    song_art_image_url: string,
+    album:  {
+      __typename: "GeniusAlbum",
+      id: number,
+      name: string,
+      cover_art_url: string,
+    },
+    primary_artist:  {
+      __typename: "GeniusArtist",
+      id: number,
+      name: string,
+      header_image_url: string,
+      image_url: string,
+    },
+    media:  Array< {
+      __typename: "GeniusMedia",
+      provider: string,
+      url: string,
+    } | null >,
+  } | null > | null,
+};
+
 export type ListArtistsQueryVariables = {
   filter?: ModelArtistFilterInput | null,
   limit?: number | null,

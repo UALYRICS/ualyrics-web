@@ -129,6 +129,7 @@ type Comment
 type Query {
   getLyrics(url: String): SongLyricsResponse @function(name: "getlyrics-${env}")
   getGeniusSong(id: Int): GeniusSong
+  searchGeniusSong(term: String): [GeniusSong]
 }
 
 type SongLyricsResponse {
@@ -143,9 +144,9 @@ type GeniusSong {
   header_image_url: String!
   song_art_image_thumbnail_url: String!
   song_art_image_url: String!
-  album: GeniusAlbum!
+  album: GeniusAlbum
   primary_artist: GeniusArtist!
-  media: [GeniusMedia]!
+  media: [GeniusMedia]
 }
 
 type GeniusArtist {

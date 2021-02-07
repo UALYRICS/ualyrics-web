@@ -728,7 +728,7 @@ export const schema = {
                     "type": {
                         "nonModel": "GeniusAlbum"
                     },
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "primary_artist": {
@@ -748,7 +748,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": false
+                    "isArrayNullable": true
                 }
             }
         },

@@ -87,6 +87,48 @@
         ]
        }
       }
+     },
+     "QuerySearchGeniusSong": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+       "ApiId": {
+        "Ref": "AppSyncApiId"
+       },
+       "DataSourceName": {
+        "Fn::GetAtt": [
+         "GeniusDatasource",
+         "Name"
+        ]
+       },
+       "TypeName": "Query",
+       "FieldName": "searchGeniusSong",
+       "RequestMappingTemplateS3Location": {
+        "Fn::Sub": [
+         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Query.searchGeniusSong.req.vtl",
+         {
+          "S3DeploymentBucket": {
+           "Ref": "S3DeploymentBucket"
+          },
+          "S3DeploymentRootKey": {
+           "Ref": "S3DeploymentRootKey"
+          }
+         }
+        ]
+       },
+       "ResponseMappingTemplateS3Location": {
+        "Fn::Sub": [
+         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Query.searchGeniusSong.res.vtl",
+         {
+          "S3DeploymentBucket": {
+           "Ref": "S3DeploymentBucket"
+          },
+          "S3DeploymentRootKey": {
+           "Ref": "S3DeploymentRootKey"
+          }
+         }
+        ]
+       }
+      }
      }
   },
   "Conditions": {

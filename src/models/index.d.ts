@@ -15,9 +15,9 @@ export declare class GeniusSong {
   readonly header_image_url: string;
   readonly song_art_image_thumbnail_url: string;
   readonly song_art_image_url: string;
-  readonly album: GeniusAlbum;
+  readonly album?: GeniusAlbum;
   readonly primary_artist: GeniusArtist;
-  readonly media: (GeniusMedia | null)[];
+  readonly media?: (GeniusMedia | null)[];
   constructor(init: ModelInit<GeniusSong>);
 }
 

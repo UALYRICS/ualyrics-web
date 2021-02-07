@@ -55,6 +55,30 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "searchGeniusSong",
+          "description" : null,
+          "args" : [ {
+            "name" : "term",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "OBJECT",
+              "name" : "GeniusSong",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "listArtists",
           "description" : null,
           "args" : [ {
