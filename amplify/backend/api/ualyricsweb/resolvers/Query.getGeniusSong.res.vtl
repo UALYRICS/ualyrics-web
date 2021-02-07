@@ -1,0 +1,3 @@
+#set( $body = $util.parseJson($context.result.body))
+
+$util.toJson($body.response.song)

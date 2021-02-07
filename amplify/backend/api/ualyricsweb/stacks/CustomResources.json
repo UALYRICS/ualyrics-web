@@ -24,13 +24,70 @@
     "S3DeploymentRootKey": {
       "Type": "String",
       "Description": "An S3 key relative to the S3DeploymentBucket that points to the root\nof the deployment directory."
+    },
+    "GeniusEndpoint": {
+      "Type": "String",
+      "Description": "Genius API endpoint."
     }
   },
   "Resources": {
-    "EmptyResource": {
-      "Type": "Custom::EmptyResource",
-      "Condition": "AlwaysFalse"
-    }
+    "GeniusDatasource":{
+      "Type" : "AWS::AppSync::DataSource",
+      "Properties" : {
+        "ApiId" :{
+          "Ref": "AppSyncApiId"
+        },
+        "HttpConfig" : {
+          "Endpoint" : { 
+            "Ref":"GeniusEndpoint"
+          }
+        },
+        "Name" : "GeniusDatasource",
+        "Type" : "HTTP"
+      }
+    },
+    "QueryGeniusSong": {
+      "Type": "AWS::AppSync::Resolver",
+      "Properties": {
+       "ApiId": {
+        "Ref": "AppSyncApiId"
+       },
+       "DataSourceName": {
+        "Fn::GetAtt": [
+         "GeniusDatasource",
+         "Name"
+        ]
+       },
+       "TypeName": "Query",
+       "FieldName": "getGeniusSong",
+       "RequestMappingTemplateS3Location": {
+        "Fn::Sub": [
+         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Query.getGeniusSong.req.vtl",
+         {
+          "S3DeploymentBucket": {
+           "Ref": "S3DeploymentBucket"
+          },
+          "S3DeploymentRootKey": {
+           "Ref": "S3DeploymentRootKey"
+          }
+         }
+        ]
+       },
+       "ResponseMappingTemplateS3Location": {
+        "Fn::Sub": [
+         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Query.getGeniusSong.res.vtl",
+         {
+          "S3DeploymentBucket": {
+           "Ref": "S3DeploymentBucket"
+          },
+          "S3DeploymentRootKey": {
+           "Ref": "S3DeploymentRootKey"
+          }
+         }
+        ]
+       }
+      }
+     }
   },
   "Conditions": {
     "HasEnvironmentParameter": {

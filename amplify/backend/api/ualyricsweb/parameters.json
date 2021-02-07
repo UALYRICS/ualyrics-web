@@ -10,5 +10,6 @@
       "authualyricsweb21abc85621abc856",
       "Outputs.UserPoolId"
     ]
-  }
+  },
+  "GeniusEndpoint": "https://api.genius.com"
 }

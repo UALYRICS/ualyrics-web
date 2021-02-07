@@ -32,7 +32,7 @@ const AddSongPage = () => {
       <SongDetails song={song} />
       <br/>
       <div><b>Lyrics:</b></div>
-      <p>{song?.lyrics}</p>
+      <p className="lyrics">{song?.lyrics}</p>
     </>
   );
 }

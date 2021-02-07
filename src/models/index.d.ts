@@ -7,6 +7,41 @@ export declare class SongLyricsResponse {
   constructor(init: ModelInit<SongLyricsResponse>);
 }
 
+export declare class GeniusSong {
+  readonly id: number;
+  readonly title: string;
+  readonly url: string;
+  readonly header_image_thumbnail_url: string;
+  readonly header_image_url: string;
+  readonly song_art_image_thumbnail_url: string;
+  readonly song_art_image_url: string;
+  readonly album: GeniusAlbum;
+  readonly primary_artist: GeniusArtist;
+  readonly media: (GeniusMedia | null)[];
+  constructor(init: ModelInit<GeniusSong>);
+}
+
+export declare class GeniusAlbum {
+  readonly id: number;
+  readonly name: string;
+  readonly cover_art_url: string;
+  constructor(init: ModelInit<GeniusAlbum>);
+}
+
+export declare class GeniusArtist {
+  readonly id: number;
+  readonly name: string;
+  readonly header_image_url: string;
+  readonly image_url: string;
+  constructor(init: ModelInit<GeniusArtist>);
+}
+
+export declare class GeniusMedia {
+  readonly provider: string;
+  readonly url: string;
+  constructor(init: ModelInit<GeniusMedia>);
+}
+
 export declare class Referent {
   readonly externalId: number;
   readonly content: string;

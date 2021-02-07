@@ -4,7 +4,7 @@ import { schema } from './schema';
 
 
 
-const { Artist, Album, Song, Translation, Comment, SongLyricsResponse, Referent, Annotation } = initSchema(schema);
+const { Artist, Album, Song, Translation, Comment, SongLyricsResponse, GeniusSong, GeniusAlbum, GeniusArtist, GeniusMedia, Referent, Annotation } = initSchema(schema);
 
 export {
   Artist,
@@ -13,6 +13,10 @@ export {
   Translation,
   Comment,
   SongLyricsResponse,
+  GeniusSong,
+  GeniusAlbum,
+  GeniusArtist,
+  GeniusMedia,
   Referent,
   Annotation
 };

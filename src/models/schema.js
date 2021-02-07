@@ -670,6 +670,166 @@ export const schema = {
                 }
             }
         },
+        "GeniusSong": {
+            "name": "GeniusSong",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "url": {
+                    "name": "url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "header_image_thumbnail_url": {
+                    "name": "header_image_thumbnail_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "header_image_url": {
+                    "name": "header_image_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "song_art_image_thumbnail_url": {
+                    "name": "song_art_image_thumbnail_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "song_art_image_url": {
+                    "name": "song_art_image_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "album": {
+                    "name": "album",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "GeniusAlbum"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "primary_artist": {
+                    "name": "primary_artist",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "GeniusArtist"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "media": {
+                    "name": "media",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "GeniusMedia"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": false
+                }
+            }
+        },
+        "GeniusAlbum": {
+            "name": "GeniusAlbum",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "cover_art_url": {
+                    "name": "cover_art_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
+        "GeniusArtist": {
+            "name": "GeniusArtist",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "header_image_url": {
+                    "name": "header_image_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "image_url": {
+                    "name": "image_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
+        "GeniusMedia": {
+            "name": "GeniusMedia",
+            "fields": {
+                "provider": {
+                    "name": "provider",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "url": {
+                    "name": "url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
         "Referent": {
             "name": "Referent",
             "fields": {
@@ -733,5 +893,5 @@ export const schema = {
             }
         }
     },
-    "version": "0745d404ba2391c65d5826bb17f6bfab"
+    "version": "87c5cacfe51705b175e7d642a9b47f22"
 };

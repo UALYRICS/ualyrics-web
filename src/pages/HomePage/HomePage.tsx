@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <>
-      <div><h2>Latest</h2></div>
+      <div><h2>Останні додані переклади</h2></div>
       <SongsList songs={recentlyAdded}/>
     </>
   )

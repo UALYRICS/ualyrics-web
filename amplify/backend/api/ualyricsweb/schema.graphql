@@ -128,8 +128,40 @@ type Comment
 
 type Query {
   getLyrics(url: String): SongLyricsResponse @function(name: "getlyrics-${env}")
+  getGeniusSong(id: Int): GeniusSong
 }
 
 type SongLyricsResponse {
   body: String!
+}
+
+type GeniusSong {
+  id: Int!
+  title: String!
+  url: String!
+  header_image_thumbnail_url: String!
+  header_image_url: String!
+  song_art_image_thumbnail_url: String!
+  song_art_image_url: String!
+  album: GeniusAlbum!
+  primary_artist: GeniusArtist!
+  media: [GeniusMedia]!
+}
+
+type GeniusArtist {
+  id: Int!
+  name: String!
+  header_image_url: String!
+  image_url: String!
+}
+
+type GeniusAlbum {
+  id: Int!
+  name: String!
+  cover_art_url: String!
+}
+
+type GeniusMedia {
+  provider: String!
+  url: String!
 }

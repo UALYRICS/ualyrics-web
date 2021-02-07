@@ -1,6 +1,5 @@
 import { GetArtistListResult, GetArtistResult, SongResult } from "./result-types";
-import { Artist, Song } from "../models";
-import { Song as GeniusSong } from "genius-lyrics";
+import { Artist, GeniusSong, Song } from "../models";
 
 export function mapSingleArtistResultToArtist(item: GetArtistResult): Artist {
   return {
@@ -38,21 +37,21 @@ export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Son
     id: '', // this is required but unknown
     externalId: geniusSong.id.toString(),
     title: geniusSong.title,
-    imageUrl: geniusSong.thumbnail,
+    imageUrl: geniusSong.song_art_image_thumbnail_url,
     lyrics: lyrics,
     artist: {
       id: '',
-      title: geniusSong?.artist.name,
-      thumbnailUrl: geniusSong?.artist.thumbnail,
-      firstLetter: geniusSong?.artist?.name.charAt(0),
-      externalId: geniusSong?.artist.id.toString(),
+      title: geniusSong?.primary_artist.name,
+      thumbnailUrl: geniusSong?.primary_artist.image_url,
+      firstLetter: geniusSong?.primary_artist?.name.charAt(0),
+      externalId: geniusSong?.primary_artist.id.toString(),
     },
     album: {
       id: '',
       artistId: '',
-      externalId: geniusSong?.raw.album?.id.toString(),
-      title: geniusSong?.raw.album?.name,
-      thumbnailUrl: geniusSong?.raw.album?.cover_art_url
+      externalId: geniusSong?.album?.id.toString(),
+      title: geniusSong?.album?.name,
+      thumbnailUrl: geniusSong?.album?.cover_art_url
     }
   }
 }
