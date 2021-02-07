@@ -20,6 +20,10 @@ export const SearchPage = () => {
     getData();
   }, [searchTerm]);
 
+  if(searchResults.length === 0){
+    return <></>;
+  }
+
   return (
     <div>
       {searchResults.map(song => (

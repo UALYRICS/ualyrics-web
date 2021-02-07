@@ -4,7 +4,6 @@ import { SongDetails } from "../../componenets/Song/SongDetails";
 import { SongLyrics } from "../../componenets/Song/SongLyrics";
 import { Song } from "../../models";
 import { getSongById } from "../../service/song-service"; 
-import "./SongPage.css";
 
 export const SongPage = () => {
   let { songId } = useParams();
@@ -24,7 +23,7 @@ export const SongPage = () => {
   return (
     <>
       <SongDetails song={song}/>
-      <SongLyrics song={song!} />
+      <SongLyrics song={song} />
     </>
   )
 }

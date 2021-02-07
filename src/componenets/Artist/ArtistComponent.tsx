@@ -6,6 +6,11 @@ export const ArtistComponent = ({artist}: {artist: Artist | undefined}) => {
   const songs = artist?.songs?.map(song => (
     <li key={song?.id}><Link to={`/song/${song?.id}`}>{song?.title}</Link></li>
   ));
+
+  if(!artist) {
+    return <></>;
+  }
+
   return (
     <>
       <div>Name: {artist?.title}</div>

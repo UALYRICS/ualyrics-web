@@ -1,8 +1,8 @@
 import { Song } from "../models";
 import { API, Storage } from "aws-amplify";
 import { createSong as createSongMutation } from "../graphql/mutations";
-import { getSong } from "../graphql/queries";
-import { CreateSongInput, CreateSongMutation, GetSongQuery } from "../API";
+import { getSong, getSongsByArtistId } from "../graphql/queries";
+import { CreateSongInput, CreateSongMutation, GetSongQuery, GetSongsByArtistIdQuery } from "../API";
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 import { mapSongResultToSong, mapGeniusSongToSong } from "../mappers/mappers";
 import { scrapLyrics } from "./lyrics-service";
@@ -13,15 +13,36 @@ import { getGeniusSongById } from './genius-service';
 export async function saveSongToDb(song: Song): Promise<Song> {
   const artistId = await createArtistIfNotExists(song.artist!);
   const albumId = await createAlbumIfNotExists(artistId, song?.album!);
-  return await createSong(artistId, albumId, song);
+  return await createSongIfNotExists(artistId, albumId, song);
+}
+
+async function createSongIfNotExists(artistId: string, albumId: string, song: Song): Promise<Song> {
+  const existing = await getSongByArtistIdAndTitle(artistId, song.title);
+  if(existing){
+    return existing;
+  }
+  return createSong(artistId, albumId, song);
+}
+
+async function getSongByArtistIdAndTitle(artistId: string, title: string): Promise<Song | null>{
+  const result = await API.graphql({
+    query: getSongsByArtistId,
+    variables: {
+      artistId,
+      title: {
+        eq: title
+      }
+    },
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
+  }) as GraphQLResult<GetSongsByArtistIdQuery>;
+
+  return result.data?.getSongsByArtistId?.items?.map(mapSongResultToSong)[0] || null;
 }
 
 export const getGeniusSong = async (geniusId: number): Promise<Song> => {
   const geniusSong = await getGeniusSongById(geniusId);
   const lyricsData = await scrapLyrics(geniusSong.url);
   const song =  mapGeniusSongToSong(geniusSong, lyricsData!.getLyrics!.body);
-  
-  // saving song asynchronously
   return await saveSongToDb(song);
 }
 

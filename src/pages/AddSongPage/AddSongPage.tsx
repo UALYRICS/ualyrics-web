@@ -4,7 +4,7 @@ import { getGeniusSong } from '../../service/song-service';
 import { Song } from '../../models';
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { SongDetails } from "../../componenets/Song/SongDetails";
-import "../SongPage/SongPage.css";
+import { SongLyrics } from "../../componenets/Song/SongLyrics";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -30,9 +30,7 @@ const AddSongPage = () => {
   return (
     <>
       <SongDetails song={song} />
-      <br/>
-      <div><b>Lyrics:</b></div>
-      <p className="lyrics">{song?.lyrics}</p>
+      <SongLyrics song={song}/>
     </>
   );
 }

@@ -1,14 +1,18 @@
 import React from 'react';
+import { Song } from '../../models';
 
-export const SongDetails = ({song}) => {
+export const SongDetails = ({song}: {song?: Song}) => {
+  if(!song){
+    return <></>;
+  }
   return (
     <>
-      <img src={song?.imageUrl} alt="Album cover" />
+      <img src={song.imageUrl} alt="Album cover" />
       <div><b>Title:</b></div>
-      <div>{song?.title}</div>
+      <div>{song.title}</div>
       <br/>
       <div><b>By:</b></div>
-      <div>{song?.artist?.title}</div>
+      <div>{song.artist?.title}</div>
     </>
   );
 }

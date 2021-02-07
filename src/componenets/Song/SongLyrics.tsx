@@ -1,10 +1,15 @@
 import React from 'react';
 import { Song } from "../../models";
+import "./SongLyrics.css";
 
-export const SongLyrics = ({song}: {song: Song}) => {
+export const SongLyrics = ({song}: {song?: Song}) => {
+  if(!song){
+    return <></>;
+  }
+
   return (
-    <div>
-      {song?.lyrics}
-    </div>
+    <p className="lyrics">
+      {song.lyrics}
+    </p>
   );
 }
