@@ -47,20 +47,11 @@ export const searchGeniusSong = /* GraphQL */ `
       header_image_url
       song_art_image_thumbnail_url
       song_art_image_url
-      album {
-        id
-        name
-        cover_art_url
-      }
       primary_artist {
         id
         name
         header_image_url
         image_url
-      }
-      media {
-        provider
-        url
       }
     }
   }

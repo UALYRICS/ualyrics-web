@@ -728,7 +728,7 @@ export const schema = {
                     "type": {
                         "nonModel": "GeniusAlbum"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "primary_artist": {
@@ -748,7 +748,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": true
+                    "isArrayNullable": false
                 }
             }
         },
@@ -830,6 +830,69 @@ export const schema = {
                 }
             }
         },
+        "GeniusSongEntry": {
+            "name": "GeniusSongEntry",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "url": {
+                    "name": "url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "header_image_thumbnail_url": {
+                    "name": "header_image_thumbnail_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "header_image_url": {
+                    "name": "header_image_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "song_art_image_thumbnail_url": {
+                    "name": "song_art_image_thumbnail_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "song_art_image_url": {
+                    "name": "song_art_image_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "primary_artist": {
+                    "name": "primary_artist",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "GeniusArtist"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
         "Referent": {
             "name": "Referent",
             "fields": {
@@ -893,5 +956,5 @@ export const schema = {
             }
         }
     },
-    "version": "87c5cacfe51705b175e7d642a9b47f22"
+    "version": "bc34b458bd94f046dcfa381d2dfaa245"
 };

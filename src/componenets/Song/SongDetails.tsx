@@ -3,7 +3,7 @@ import { Song } from '../../models';
 
 export const SongDetails = ({song}: {song?: Song}) => {
   if(!song){
-    return <></>;
+    return <>Підтягуємо текст пісні...</>;
   }
   return (
     <>

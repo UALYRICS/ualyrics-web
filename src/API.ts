@@ -1114,7 +1114,7 @@ export type SearchGeniusSongQueryVariables = {
 
 export type SearchGeniusSongQuery = {
   searchGeniusSong:  Array< {
-    __typename: "GeniusSong",
+    __typename: "GeniusSongEntry",
     id: number,
     title: string,
     url: string,
@@ -1122,12 +1122,6 @@ export type SearchGeniusSongQuery = {
     header_image_url: string,
     song_art_image_thumbnail_url: string,
     song_art_image_url: string,
-    album:  {
-      __typename: "GeniusAlbum",
-      id: number,
-      name: string,
-      cover_art_url: string,
-    },
     primary_artist:  {
       __typename: "GeniusArtist",
       id: number,
@@ -1135,11 +1129,6 @@ export type SearchGeniusSongQuery = {
       header_image_url: string,
       image_url: string,
     },
-    media:  Array< {
-      __typename: "GeniusMedia",
-      provider: string,
-      url: string,
-    } | null >,
   } | null > | null,
 };
 

@@ -49,9 +49,9 @@ export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Son
     album: {
       id: '',
       artistId: '',
-      externalId: geniusSong!.album!.id.toString(),
-      title: geniusSong!.album!.name,
-      thumbnailUrl: geniusSong!.album!.cover_art_url
+      externalId: geniusSong?.album?.id.toString(),
+      title: geniusSong?.album?.name,
+      thumbnailUrl: geniusSong?.album?.cover_art_url
     }
   }
 }
