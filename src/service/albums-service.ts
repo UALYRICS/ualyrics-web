@@ -26,7 +26,7 @@ const createAlbum = async (artistId: string, album: Album): Promise<string> => {
         thumbnailUrl: album?.thumbnailUrl,
       } as CreateAlbumInput
     },
-    authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<CreateAlbumMutation>;
 
   const id = result.data?.createAlbum?.id;

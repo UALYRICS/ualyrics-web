@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Redirect } from "react-router-dom";
 import { getGeniusSong } from '../../service/song-service';
 import { Song } from '../../models';
-import { withAuthenticator } from "@aws-amplify/ui-react";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -33,4 +32,4 @@ const AddSongPage = () => {
   );
 }
 
-export default withAuthenticator(AddSongPage);
+export default AddSongPage;

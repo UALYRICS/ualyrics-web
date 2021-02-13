@@ -64,7 +64,7 @@ async function createArtist(artist: Artist): Promise<string>{
         thumbnailUrl: artist?.thumbnailUrl,
       } as CreateArtistInput
     },
-    authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<CreateArtistMutation>;
 
   const id = result.data?.createArtist?.id;

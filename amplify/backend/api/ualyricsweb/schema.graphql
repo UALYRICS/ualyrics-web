@@ -6,7 +6,7 @@ type Artist
   @aws_cognito_user_pools
   @auth (
     rules: [
-      { allow: public, operations: [read] },
+      { allow: public, operations: [read, create] },
       { allow: private, operations: [read, create] },
       { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
     ]
@@ -29,7 +29,7 @@ type Album
   @aws_cognito_user_pools
   @auth (
     rules: [
-      { allow: public, operations: [read] },
+      { allow: public, operations: [read, create] },
       { allow: private, operations: [read, create] },
       { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
     ]
@@ -52,7 +52,7 @@ type Song
   @aws_cognito_user_pools
   @auth (
     rules: [
-      { allow: public, operations: [read] },
+      { allow: public, operations: [read, create] },
       { allow: private, operations: [read, create] },
       { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
     ]

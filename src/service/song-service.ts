@@ -64,7 +64,7 @@ export const createSong = async (artistId: string, song: Song, albumId?: string)
         lyrics: song.lyrics
       } as CreateSongInput
     },
-    authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<CreateSongMutation>;
 
   const createdSong = mapSongResultToSong(result.data?.createSong!)
