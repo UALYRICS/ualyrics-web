@@ -6,7 +6,7 @@ export const onCreateArtist = /* GraphQL */ `
   subscription OnCreateArtist {
     onCreateArtist {
       id
-      externalId
+      geniusId
       firstLetter
       title
       description
@@ -17,7 +17,7 @@ export const onCreateArtist = /* GraphQL */ `
         items {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -30,7 +30,7 @@ export const onCreateArtist = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -46,7 +46,7 @@ export const onUpdateArtist = /* GraphQL */ `
   subscription OnUpdateArtist {
     onUpdateArtist {
       id
-      externalId
+      geniusId
       firstLetter
       title
       description
@@ -57,7 +57,7 @@ export const onUpdateArtist = /* GraphQL */ `
         items {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -70,7 +70,7 @@ export const onUpdateArtist = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -86,7 +86,7 @@ export const onDeleteArtist = /* GraphQL */ `
   subscription OnDeleteArtist {
     onDeleteArtist {
       id
-      externalId
+      geniusId
       firstLetter
       title
       description
@@ -97,7 +97,7 @@ export const onDeleteArtist = /* GraphQL */ `
         items {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -110,7 +110,7 @@ export const onDeleteArtist = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -127,7 +127,7 @@ export const onCreateAlbum = /* GraphQL */ `
     onCreateAlbum {
       id
       artistId
-      externalId
+      geniusId
       title
       thumbnailUrl
       createdAt
@@ -137,7 +137,7 @@ export const onCreateAlbum = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -154,7 +154,7 @@ export const onUpdateAlbum = /* GraphQL */ `
     onUpdateAlbum {
       id
       artistId
-      externalId
+      geniusId
       title
       thumbnailUrl
       createdAt
@@ -164,7 +164,7 @@ export const onUpdateAlbum = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -181,7 +181,7 @@ export const onDeleteAlbum = /* GraphQL */ `
     onDeleteAlbum {
       id
       artistId
-      externalId
+      geniusId
       title
       thumbnailUrl
       createdAt
@@ -191,7 +191,7 @@ export const onDeleteAlbum = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -209,15 +209,15 @@ export const onCreateSong = /* GraphQL */ `
       id
       artistId
       albumId
-      externalId
+      geniusId
       title
       imageUrl
       lyrics
       referents {
-        externalId
+        geniusId
         content
         records {
-          externalId
+          geniusId
           text
           author
           authorThumbnailUrl
@@ -227,7 +227,7 @@ export const onCreateSong = /* GraphQL */ `
       updatedAt
       artist {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -244,7 +244,7 @@ export const onCreateSong = /* GraphQL */ `
       album {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -262,15 +262,15 @@ export const onUpdateSong = /* GraphQL */ `
       id
       artistId
       albumId
-      externalId
+      geniusId
       title
       imageUrl
       lyrics
       referents {
-        externalId
+        geniusId
         content
         records {
-          externalId
+          geniusId
           text
           author
           authorThumbnailUrl
@@ -280,7 +280,7 @@ export const onUpdateSong = /* GraphQL */ `
       updatedAt
       artist {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -297,7 +297,7 @@ export const onUpdateSong = /* GraphQL */ `
       album {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -315,15 +315,15 @@ export const onDeleteSong = /* GraphQL */ `
       id
       artistId
       albumId
-      externalId
+      geniusId
       title
       imageUrl
       lyrics
       referents {
-        externalId
+        geniusId
         content
         records {
-          externalId
+          geniusId
           text
           author
           authorThumbnailUrl
@@ -333,7 +333,7 @@ export const onDeleteSong = /* GraphQL */ `
       updatedAt
       artist {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -350,7 +350,7 @@ export const onDeleteSong = /* GraphQL */ `
       album {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -376,19 +376,19 @@ export const onCreateTranslation = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -399,7 +399,7 @@ export const onCreateTranslation = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -423,19 +423,19 @@ export const onUpdateTranslation = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -446,7 +446,7 @@ export const onUpdateTranslation = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -470,19 +470,19 @@ export const onDeleteTranslation = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -493,7 +493,7 @@ export const onDeleteTranslation = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -524,7 +524,7 @@ export const onCreateComment = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -557,7 +557,7 @@ export const onUpdateComment = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -590,7 +590,7 @@ export const onDeleteComment = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics

@@ -4,21 +4,22 @@ import { Artist, GeniusSong, Song } from "../models";
 export function mapSingleArtistResultToArtist(item: GetArtistResult): Artist {
   return {
     id: item?.id,
+    firstLetter: item.title.toUpperCase().charAt(0),
     title: item?.title,
-    externalId: item?.externalId,
+    geniusId: item?.geniusId,
     thumbnailUrl: item?.thumbnailUrl,
     description: item?.description,
-    songs: item.songs?.items?.map(mapSongResultToSong)
+    songs: item?.songs?.items?.map(mapSongResultToSong)
   } as Artist;
 }
 
 export function mapSongResultToSong(song: SongResult | null): Song {
   return {
     id: song?.id!,
-    externalId: song?.externalId!,
+    geniusId: song?.geniusId!,
     title: song?.title!,
     imageUrl: song?.imageUrl!,
-    lyrics: song!.lyrics!
+    lyrics: song?.lyrics!
   };
 }
 
@@ -26,7 +27,7 @@ export function mapResultDataToArtist(item: GetArtistListResult | null): Artist 
   return {
     id: item?.id,
     title: item?.title,
-    externalId: item?.externalId,
+    geniusId: item?.geniusId,
     thumbnailUrl: item?.thumbnailUrl,
     description: item?.description,
   } as Artist;
@@ -35,7 +36,7 @@ export function mapResultDataToArtist(item: GetArtistListResult | null): Artist 
 export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Song {
   return {
     id: '', // this is required but unknown
-    externalId: geniusSong.id.toString(),
+    geniusId: geniusSong.id,
     title: geniusSong.title,
     imageUrl: geniusSong.song_art_image_thumbnail_url,
     lyrics: lyrics,
@@ -44,14 +45,14 @@ export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Son
       title: geniusSong?.primary_artist.name,
       thumbnailUrl: geniusSong?.primary_artist.image_url,
       firstLetter: geniusSong?.primary_artist?.name.charAt(0),
-      externalId: geniusSong?.primary_artist.id.toString(),
+      geniusId: geniusSong?.primary_artist.id,
     },
-    album: {
+    album: geniusSong.album ? {
       id: '',
       artistId: '',
-      externalId: geniusSong?.album?.id.toString(),
+      geniusId: geniusSong?.album?.id,
       title: geniusSong?.album?.name,
       thumbnailUrl: geniusSong?.album?.cover_art_url
-    }
+    }: undefined
   }
 }

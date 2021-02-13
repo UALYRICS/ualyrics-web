@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 import { getGeniusSong } from '../../service/song-service';
 import { Song } from '../../models';
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import { SongDetails } from "../../componenets/Song/SongDetails";
-import { SongLyrics } from "../../componenets/Song/SongLyrics";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -27,11 +25,11 @@ const AddSongPage = () => {
     getData();
   }, [geniusId]);
 
+  if(song){
+    return <Redirect to={`/song/${song.id}`}/>;
+  }
   return (
-    <>
-      <SongDetails song={song} />
-      <SongLyrics song={song}/>
-    </>
+    <h2>Шукаємо текст пісні...</h2>
   );
 }
 

@@ -9,7 +9,7 @@ export const createArtist = /* GraphQL */ `
   ) {
     createArtist(input: $input, condition: $condition) {
       id
-      externalId
+      geniusId
       firstLetter
       title
       description
@@ -20,7 +20,7 @@ export const createArtist = /* GraphQL */ `
         items {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -33,7 +33,7 @@ export const createArtist = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -52,7 +52,7 @@ export const updateArtist = /* GraphQL */ `
   ) {
     updateArtist(input: $input, condition: $condition) {
       id
-      externalId
+      geniusId
       firstLetter
       title
       description
@@ -63,7 +63,7 @@ export const updateArtist = /* GraphQL */ `
         items {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -76,7 +76,7 @@ export const updateArtist = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -95,7 +95,7 @@ export const deleteArtist = /* GraphQL */ `
   ) {
     deleteArtist(input: $input, condition: $condition) {
       id
-      externalId
+      geniusId
       firstLetter
       title
       description
@@ -106,7 +106,7 @@ export const deleteArtist = /* GraphQL */ `
         items {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -119,7 +119,7 @@ export const deleteArtist = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -139,7 +139,7 @@ export const createAlbum = /* GraphQL */ `
     createAlbum(input: $input, condition: $condition) {
       id
       artistId
-      externalId
+      geniusId
       title
       thumbnailUrl
       createdAt
@@ -149,7 +149,7 @@ export const createAlbum = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -169,7 +169,7 @@ export const updateAlbum = /* GraphQL */ `
     updateAlbum(input: $input, condition: $condition) {
       id
       artistId
-      externalId
+      geniusId
       title
       thumbnailUrl
       createdAt
@@ -179,7 +179,7 @@ export const updateAlbum = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -199,7 +199,7 @@ export const deleteAlbum = /* GraphQL */ `
     deleteAlbum(input: $input, condition: $condition) {
       id
       artistId
-      externalId
+      geniusId
       title
       thumbnailUrl
       createdAt
@@ -209,7 +209,7 @@ export const deleteAlbum = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -230,15 +230,15 @@ export const createSong = /* GraphQL */ `
       id
       artistId
       albumId
-      externalId
+      geniusId
       title
       imageUrl
       lyrics
       referents {
-        externalId
+        geniusId
         content
         records {
-          externalId
+          geniusId
           text
           author
           authorThumbnailUrl
@@ -248,7 +248,7 @@ export const createSong = /* GraphQL */ `
       updatedAt
       artist {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -265,7 +265,7 @@ export const createSong = /* GraphQL */ `
       album {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -286,15 +286,15 @@ export const updateSong = /* GraphQL */ `
       id
       artistId
       albumId
-      externalId
+      geniusId
       title
       imageUrl
       lyrics
       referents {
-        externalId
+        geniusId
         content
         records {
-          externalId
+          geniusId
           text
           author
           authorThumbnailUrl
@@ -304,7 +304,7 @@ export const updateSong = /* GraphQL */ `
       updatedAt
       artist {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -321,7 +321,7 @@ export const updateSong = /* GraphQL */ `
       album {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -342,15 +342,15 @@ export const deleteSong = /* GraphQL */ `
       id
       artistId
       albumId
-      externalId
+      geniusId
       title
       imageUrl
       lyrics
       referents {
-        externalId
+        geniusId
         content
         records {
-          externalId
+          geniusId
           text
           author
           authorThumbnailUrl
@@ -360,7 +360,7 @@ export const deleteSong = /* GraphQL */ `
       updatedAt
       artist {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -377,7 +377,7 @@ export const deleteSong = /* GraphQL */ `
       album {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -406,19 +406,19 @@ export const createTranslation = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -429,7 +429,7 @@ export const createTranslation = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -456,19 +456,19 @@ export const updateTranslation = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -479,7 +479,7 @@ export const updateTranslation = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -506,19 +506,19 @@ export const deleteTranslation = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -529,7 +529,7 @@ export const deleteTranslation = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -563,7 +563,7 @@ export const createComment = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -599,7 +599,7 @@ export const updateComment = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -635,7 +635,7 @@ export const deleteComment = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics

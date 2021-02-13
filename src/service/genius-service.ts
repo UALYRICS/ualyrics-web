@@ -23,10 +23,10 @@ export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> =
     song_art_image_url: geniusSong?.song_art_image_url,
     media: geniusSong?.media,
     album: {
-      id: geniusSong?.album.id,
+      id: geniusSong?.album?.id,
       artistId: geniusSong?.primary_artist.id,
-      name: geniusSong?.album.name,
-      cover_art_url: geniusSong?.album.cover_art_url
+      name: geniusSong?.album?.name,
+      cover_art_url: geniusSong?.album?.cover_art_url
     },
     primary_artist: {
       id: geniusSong?.primary_artist.id,

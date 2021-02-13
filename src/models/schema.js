@@ -10,10 +10,10 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "externalId": {
-                    "name": "externalId",
+                "geniusId": {
+                    "name": "geniusId",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -153,10 +153,10 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "externalId": {
-                    "name": "externalId",
+                "geniusId": {
+                    "name": "geniusId",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -261,10 +261,10 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "externalId": {
-                    "name": "externalId",
+                "geniusId": {
+                    "name": "geniusId",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -353,6 +353,16 @@ export const schema = {
                             "title"
                         ],
                         "queryField": "getSongsByAlbumId"
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byGeniuslId",
+                        "fields": [
+                            "geniusId"
+                        ],
+                        "queryField": "getSongByGeniuslId"
                     }
                 },
                 {
@@ -728,7 +738,7 @@ export const schema = {
                     "type": {
                         "nonModel": "GeniusAlbum"
                     },
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "primary_artist": {
@@ -896,8 +906,8 @@ export const schema = {
         "Referent": {
             "name": "Referent",
             "fields": {
-                "externalId": {
-                    "name": "externalId",
+                "geniusId": {
+                    "name": "geniusId",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": true,
@@ -925,8 +935,8 @@ export const schema = {
         "Annotation": {
             "name": "Annotation",
             "fields": {
-                "externalId": {
-                    "name": "externalId",
+                "geniusId": {
+                    "name": "geniusId",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": true,
@@ -956,5 +966,5 @@ export const schema = {
             }
         }
     },
-    "version": "bc34b458bd94f046dcfa381d2dfaa245"
+    "version": "95e060f0007b7cbc41848c2fc7979b4a"
 };

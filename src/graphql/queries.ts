@@ -65,7 +65,7 @@ export const listArtists = /* GraphQL */ `
     listArtists(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -87,7 +87,7 @@ export const getArtist = /* GraphQL */ `
   query GetArtist($id: ID!) {
     getArtist(id: $id) {
       id
-      externalId
+      geniusId
       firstLetter
       title
       description
@@ -98,7 +98,7 @@ export const getArtist = /* GraphQL */ `
         items {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -111,7 +111,7 @@ export const getArtist = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -142,7 +142,7 @@ export const getArtistsByFirstLetter = /* GraphQL */ `
     ) {
       items {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -170,7 +170,7 @@ export const listAlbums = /* GraphQL */ `
       items {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -188,7 +188,7 @@ export const getAlbum = /* GraphQL */ `
     getAlbum(id: $id) {
       id
       artistId
-      externalId
+      geniusId
       title
       thumbnailUrl
       createdAt
@@ -198,7 +198,7 @@ export const getAlbum = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -230,7 +230,7 @@ export const getAlbumsByArtistId = /* GraphQL */ `
       items {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -254,19 +254,19 @@ export const listSongs = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -277,7 +277,7 @@ export const listSongs = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -294,15 +294,15 @@ export const getSong = /* GraphQL */ `
       id
       artistId
       albumId
-      externalId
+      geniusId
       title
       imageUrl
       lyrics
       referents {
-        externalId
+        geniusId
         content
         records {
-          externalId
+          geniusId
           text
           author
           authorThumbnailUrl
@@ -312,7 +312,7 @@ export const getSong = /* GraphQL */ `
       updatedAt
       artist {
         id
-        externalId
+        geniusId
         firstLetter
         title
         description
@@ -329,7 +329,7 @@ export const getSong = /* GraphQL */ `
       album {
         id
         artistId
-        externalId
+        geniusId
         title
         thumbnailUrl
         createdAt
@@ -362,19 +362,19 @@ export const getSongsByArtistId = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -385,7 +385,7 @@ export const getSongsByArtistId = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -417,19 +417,19 @@ export const getSongsByAlbumId = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -440,7 +440,60 @@ export const getSongsByAlbumId = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getSongByGeniuslId = /* GraphQL */ `
+  query GetSongByGeniuslId(
+    $geniusId: Int
+    $sortDirection: ModelSortDirection
+    $filter: ModelSongFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getSongByGeniuslId(
+      geniusId: $geniusId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -470,7 +523,7 @@ export const listTranslations = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -496,19 +549,19 @@ export const getTranslation = /* GraphQL */ `
         id
         artistId
         albumId
-        externalId
+        geniusId
         title
         imageUrl
         lyrics
         referents {
-          externalId
+          geniusId
           content
         }
         createdAt
         updatedAt
         artist {
           id
-          externalId
+          geniusId
           firstLetter
           title
           description
@@ -519,7 +572,7 @@ export const getTranslation = /* GraphQL */ `
         album {
           id
           artistId
-          externalId
+          geniusId
           title
           thumbnailUrl
           createdAt
@@ -558,7 +611,7 @@ export const getTranslationsBySongId = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -599,7 +652,7 @@ export const getTranslationsByOwner = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics
@@ -632,7 +685,7 @@ export const getComment = /* GraphQL */ `
           id
           artistId
           albumId
-          externalId
+          geniusId
           title
           imageUrl
           lyrics

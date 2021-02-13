@@ -59,7 +59,7 @@ async function createArtist(artist: Artist): Promise<string>{
     variables: { 
       input: {
         title: artist?.title,
-        externalId: artist?.externalId.toString(),
+        geniusId: artist?.geniusId,
         firstLetter: artist?.title.toUpperCase().charAt(0),
         thumbnailUrl: artist?.thumbnailUrl,
       } as CreateArtistInput

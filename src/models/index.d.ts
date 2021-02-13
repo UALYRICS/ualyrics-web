@@ -15,7 +15,7 @@ export declare class GeniusSong {
   readonly header_image_url: string;
   readonly song_art_image_thumbnail_url: string;
   readonly song_art_image_url: string;
-  readonly album: GeniusAlbum;
+  readonly album?: GeniusAlbum;
   readonly primary_artist: GeniusArtist;
   readonly media: (GeniusMedia | null)[];
   constructor(init: ModelInit<GeniusSong>);
@@ -55,14 +55,14 @@ export declare class GeniusSongEntry {
 }
 
 export declare class Referent {
-  readonly externalId: number;
+  readonly geniusId: number;
   readonly content: string;
   readonly records?: (Annotation | null)[];
   constructor(init: ModelInit<Referent>);
 }
 
 export declare class Annotation {
-  readonly externalId: number;
+  readonly geniusId: number;
   readonly text: string;
   readonly author: string;
   readonly authorThumbnailUrl: string;
@@ -71,7 +71,7 @@ export declare class Annotation {
 
 export declare class Artist {
   readonly id: string;
-  readonly externalId: string;
+  readonly geniusId: number;
   readonly firstLetter: string;
   readonly title: string;
   readonly description?: string;
@@ -85,7 +85,7 @@ export declare class Artist {
 export declare class Album {
   readonly id: string;
   readonly artistId: string;
-  readonly externalId: string;
+  readonly geniusId: number;
   readonly title: string;
   readonly thumbnailUrl: string;
   readonly songs?: (Song | null)[];
@@ -95,7 +95,7 @@ export declare class Album {
 
 export declare class Song {
   readonly id: string;
-  readonly externalId: string;
+  readonly geniusId: number;
   readonly artist?: Artist;
   readonly album?: Album;
   readonly title: string;

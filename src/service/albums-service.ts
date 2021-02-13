@@ -22,7 +22,7 @@ const createAlbum = async (artistId: string, album: Album): Promise<string> => {
       input: {
         artistId,
         title: album?.title,
-        externalId: album?.externalId.toString(),
+        geniusId: album?.geniusId,
         thumbnailUrl: album?.thumbnailUrl,
       } as CreateAlbumInput
     },
@@ -52,12 +52,12 @@ const getAlbumByArtistIdAndTitle = async (artistId: string, title: string): Prom
   return result.data?.getAlbumsByArtistId?.items?.map(mapResultDataToAlbum)[0];
 }
 
-function mapResultDataToAlbum(item: {id: string, artistId: string, title: string, thumbnailUrl: string, externalId: string} | null): Album {
+function mapResultDataToAlbum(item: {id: string, artistId: string, title: string, thumbnailUrl: string, geniusId: number} | null): Album {
   return {
     id: item?.id,
     artistId: item?.artistId,
     title: item?.title,
     thumbnailUrl: item?.thumbnailUrl,
-    externalId: item?.externalId,
+    geniusId: item?.geniusId,
   } as Album
 }

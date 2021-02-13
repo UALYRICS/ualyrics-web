@@ -1,7 +1,7 @@
 
 export interface GetArtistListResult {
   id: string,
-  externalId: string,
+  geniusId: number,
   firstLetter: string,
   title: string,
   description: string | null,
@@ -14,7 +14,7 @@ export interface SongResult {
   id: string,
   artistId: string,
   albumId: string,
-  externalId: string,
+  geniusId: number,
   title: string,
   imageUrl: string,
   createdAt: string,
