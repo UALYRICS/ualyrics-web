@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "ualyricsweb21abc85621abc856": {}
+      },
+      "function": {
+        "getlyrics": {}
       }
     }
   }
