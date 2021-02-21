@@ -28,7 +28,7 @@ export const SearchPage = () => {
     <div>
       {searchResults.map(song => (
         <div key={song.id}>
-          <div className="row">
+          <div className="myrow">
               <div>
                 <img src={song.song_art_image_thumbnail_url} className='icon' alt="Song thumbnail" />
               </div>	

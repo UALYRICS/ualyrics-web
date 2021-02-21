@@ -3,22 +3,3 @@
   float:left; 
   width:80px;	
  } 
- 
- .row {
-   width:100%;
-   height:auto;
-   padding:1%;
-   height: 80px;
- }
- 
- h4 {
-    margin:0px;
- }
-
- .left-margin {
-  margin-left:100px;
- }
-
- .clear {
-   clear:both;
- }

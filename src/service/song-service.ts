@@ -106,6 +106,9 @@ const updateLatestFile = async (song: Song) => {
   data.Body.text().then(recentAddadData => { 
     const songs = JSON.parse(recentAddadData) as Array<Song>;
     songs.unshift(song);
+    while(songs.length > 6){
+      songs.splice(-1,1);
+    }
     Storage.put(`recentlyadded.json`, JSON.stringify(songs));
   })
 };
