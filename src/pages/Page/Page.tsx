@@ -1,20 +1,23 @@
 import React, { FunctionComponent } from 'react';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import FirstLetterToolbar from '../../componenets/FirstLetterToolbar/FirstLetterToolbar';
-import './Page.css';
 import { Logo } from '../../componenets/Logo/Logo';
-import { Footer } from '../../componenets/Footer/Footer';
 import { SearchBar } from '../../componenets/SearchBar/SearchBar';
 
 export const Page: FunctionComponent<{}> = ({ children }) => (
   <>
-  <Container maxWidth="md" className="content">
-    <Logo />
-    <FirstLetterToolbar/>
-    <SearchBar/>
-    <Box>{ children }</Box>
-  </Container>
-  <Footer/>
+    <div className="container full-width">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Logo />
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <SearchBar />
+        </div>
+      </nav>
+      <FirstLetterToolbar />
+      {children}
+    </div>
   </>
 );
