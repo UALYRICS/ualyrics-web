@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import "./SearchBar.css";
 
 export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
