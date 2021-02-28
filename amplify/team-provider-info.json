@@ -17,7 +17,10 @@
         "userPoolGroups": {}
       },
       "function": {
-        "getlyrics": {}
+        "getlyrics": {
+          "deploymentBucketName": "amplify-ualyricsweb-dev-91648-deployment",
+          "s3Key": "amplify-builds/getlyrics-455a5739504139647338-build.zip"
+        }
       }
     }
   }

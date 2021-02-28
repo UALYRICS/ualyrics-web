@@ -19,7 +19,9 @@ export function mapSongResultToSong(song: SongResult | null): Song {
     geniusId: song?.geniusId!,
     title: song?.title!,
     imageUrl: song?.imageUrl!,
-    lyrics: song?.lyrics!
+    lyrics: song?.lyrics!,
+    artistName: song?.artistName!,
+    albumName: song?.albumName || undefined,
   };
 }
 
@@ -40,6 +42,8 @@ export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Son
     title: geniusSong.title,
     imageUrl: geniusSong.song_art_image_thumbnail_url,
     lyrics: lyrics,
+    artistName: geniusSong.primary_artist.name,
+    albumName: geniusSong.album?.name,
     artist: {
       id: '',
       title: geniusSong?.primary_artist.name,

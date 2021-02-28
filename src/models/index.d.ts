@@ -99,6 +99,8 @@ export declare class Song {
   readonly artist?: Artist;
   readonly album?: Album;
   readonly title: string;
+  readonly artistName: string;
+  readonly albumName?: string;
   readonly imageUrl: string;
   readonly lyrics: string;
   readonly referents?: (Referent | null)[];

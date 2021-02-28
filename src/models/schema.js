@@ -107,7 +107,8 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "read"
+                                    "read",
+                                    "create"
                                 ]
                             },
                             {
@@ -222,7 +223,8 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "read"
+                                    "read",
+                                    "create"
                                 ]
                             },
                             {
@@ -299,6 +301,20 @@ export const schema = {
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "artistName": {
+                    "name": "artistName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "albumName": {
+                    "name": "albumName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "imageUrl": {
@@ -380,7 +396,8 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "read"
+                                    "read",
+                                    "create"
                                 ]
                             },
                             {
@@ -464,7 +481,8 @@ export const schema = {
                     "attributes": [],
                     "association": {
                         "connectionType": "HAS_ONE",
-                        "associatedWith": "id"
+                        "associatedWith": "id",
+                        "targetName": "songId"
                     }
                 }
             },
@@ -594,7 +612,8 @@ export const schema = {
                     "attributes": [],
                     "association": {
                         "connectionType": "HAS_ONE",
-                        "associatedWith": "id"
+                        "associatedWith": "id",
+                        "targetName": "translationId"
                     }
                 }
             },
@@ -966,5 +985,5 @@ export const schema = {
             }
         }
     },
-    "version": "95e060f0007b7cbc41848c2fc7979b4a"
+    "version": "e1fd9e63957d935697fd910bac39bcef"
 };

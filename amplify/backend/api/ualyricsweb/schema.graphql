@@ -65,6 +65,8 @@ type Song
   artist: Artist @connection(fields: ["artistId"])
   album: Album @connection(fields: ["albumId"])
   title: String!
+  artistName: String!
+  albumName: String
   imageUrl: String!
   lyrics: String!
   referents: [Referent]

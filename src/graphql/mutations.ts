@@ -35,6 +35,8 @@ export const createArtist = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -78,6 +80,8 @@ export const updateArtist = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -121,6 +125,8 @@ export const deleteArtist = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -151,6 +157,8 @@ export const createAlbum = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -181,6 +189,8 @@ export const updateAlbum = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -211,6 +221,8 @@ export const deleteAlbum = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -232,6 +244,8 @@ export const createSong = /* GraphQL */ `
       albumId
       geniusId
       title
+      artistName
+      albumName
       imageUrl
       lyrics
       referents {
@@ -288,6 +302,8 @@ export const updateSong = /* GraphQL */ `
       albumId
       geniusId
       title
+      artistName
+      albumName
       imageUrl
       lyrics
       referents {
@@ -344,6 +360,8 @@ export const deleteSong = /* GraphQL */ `
       albumId
       geniusId
       title
+      artistName
+      albumName
       imageUrl
       lyrics
       referents {
@@ -408,6 +426,8 @@ export const createTranslation = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -458,6 +478,8 @@ export const updateTranslation = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -508,6 +530,8 @@ export const deleteTranslation = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -565,6 +589,8 @@ export const createComment = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -601,6 +627,8 @@ export const updateComment = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -637,6 +665,8 @@ export const deleteComment = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt

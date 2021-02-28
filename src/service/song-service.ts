@@ -12,7 +12,6 @@ import { getGeniusSongById } from './genius-service';
 
 export async function saveSongToDb(song: Song): Promise<Song> {
   const artistId = await createArtistIfNotExists(song.artist!);
-  console.log("song.album:", song.album);
   const albumId = song.album ? await createAlbumIfNotExists(artistId, song?.album!) : undefined;
   return await createSongIfNotExists(artistId, song, albumId);
 }
@@ -61,7 +60,9 @@ export const createSong = async (artistId: string, song: Song, albumId?: string)
         title: song?.title,
         geniusId: song?.geniusId,
         imageUrl: song?.imageUrl,
-        lyrics: song.lyrics
+        lyrics: song.lyrics,
+        artistName: song.artistName,
+        albumName: song.albumName,
       } as CreateSongInput
     },
     authMode: GRAPHQL_AUTH_MODE.API_KEY,

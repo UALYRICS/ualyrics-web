@@ -8,11 +8,10 @@ export const SongDetails = ({song}: {song?: Song}) => {
   return (
     <>
       <img src={song.imageUrl} alt="Album cover" />
-      <div><b>Title:</b></div>
-      <div>{song.title}</div>
+      <div><b>Title:</b> {song.title}</div>
+      <div><b>Album:</b> {song.albumName}</div>
+      <div><b>By:</b> {song.artistName}</div>
       <br/>
-      <div><b>By:</b></div>
-      <div>{song.artist?.title}</div>
     </>
   );
 }

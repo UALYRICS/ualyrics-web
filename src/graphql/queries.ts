@@ -113,6 +113,8 @@ export const getArtist = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -200,6 +202,8 @@ export const getAlbum = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -256,6 +260,8 @@ export const listSongs = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -296,6 +302,8 @@ export const getSong = /* GraphQL */ `
       albumId
       geniusId
       title
+      artistName
+      albumName
       imageUrl
       lyrics
       referents {
@@ -364,6 +372,8 @@ export const getSongsByArtistId = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -419,6 +429,8 @@ export const getSongsByAlbumId = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -472,6 +484,8 @@ export const getSongByGeniuslId = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -525,6 +539,8 @@ export const listTranslations = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -551,6 +567,8 @@ export const getTranslation = /* GraphQL */ `
         albumId
         geniusId
         title
+        artistName
+        albumName
         imageUrl
         lyrics
         referents {
@@ -613,6 +631,8 @@ export const getTranslationsBySongId = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -654,6 +674,8 @@ export const getTranslationsByOwner = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
@@ -687,6 +709,8 @@ export const getComment = /* GraphQL */ `
           albumId
           geniusId
           title
+          artistName
+          albumName
           imageUrl
           lyrics
           createdAt
