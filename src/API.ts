@@ -2,13 +2,8 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateArtistInput = {
+export type DeleteArtistInput = {
   id?: string | null,
-  geniusId: number,
-  firstLetter: string,
-  title: string,
-  description?: string | null,
-  thumbnailUrl: string,
 };
 
 export type ModelArtistConditionInput = {
@@ -145,6 +140,15 @@ export type Annotation = {
   authorThumbnailUrl?: string,
 };
 
+export type CreateArtistInput = {
+  id?: string | null,
+  geniusId: number,
+  firstLetter: string,
+  title: string,
+  description?: string | null,
+  thumbnailUrl: string,
+};
+
 export type UpdateArtistInput = {
   id: string,
   geniusId?: number | null,
@@ -152,10 +156,6 @@ export type UpdateArtistInput = {
   title?: string | null,
   description?: string | null,
   thumbnailUrl?: string | null,
-};
-
-export type DeleteArtistInput = {
-  id?: string | null,
 };
 
 export type CreateAlbumInput = {
@@ -503,6 +503,57 @@ export type ModelCommentConnection = {
   nextToken?: string | null,
 };
 
+export type DeleteArtistMutationVariables = {
+  input?: DeleteArtistInput,
+  condition?: ModelArtistConditionInput | null,
+};
+
+export type DeleteArtistMutation = {
+  deleteArtist?:  {
+    __typename: "Artist",
+    id: string,
+    geniusId: number,
+    firstLetter: string,
+    title: string,
+    description?: string | null,
+    thumbnailUrl: string,
+    createdAt: string,
+    updatedAt: string,
+    albums?:  {
+      __typename: "ModelAlbumConnection",
+      items?:  Array< {
+        __typename: "Album",
+        id: string,
+        artistId: string,
+        geniusId: number,
+        title: string,
+        thumbnailUrl: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    songs?:  {
+      __typename: "ModelSongConnection",
+      items?:  Array< {
+        __typename: "Song",
+        id: string,
+        artistId: string,
+        albumId: string,
+        geniusId: number,
+        title: string,
+        artistName: string,
+        albumName?: string | null,
+        imageUrl: string,
+        lyrics: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+  } | null,
+};
+
 export type CreateArtistMutationVariables = {
   input?: CreateArtistInput,
   condition?: ModelArtistConditionInput | null,
@@ -561,57 +612,6 @@ export type UpdateArtistMutationVariables = {
 
 export type UpdateArtistMutation = {
   updateArtist?:  {
-    __typename: "Artist",
-    id: string,
-    geniusId: number,
-    firstLetter: string,
-    title: string,
-    description?: string | null,
-    thumbnailUrl: string,
-    createdAt: string,
-    updatedAt: string,
-    albums?:  {
-      __typename: "ModelAlbumConnection",
-      items?:  Array< {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    songs?:  {
-      __typename: "ModelSongConnection",
-      items?:  Array< {
-        __typename: "Song",
-        id: string,
-        artistId: string,
-        albumId: string,
-        geniusId: number,
-        title: string,
-        artistName: string,
-        albumName?: string | null,
-        imageUrl: string,
-        lyrics: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type DeleteArtistMutationVariables = {
-  input?: DeleteArtistInput,
-  condition?: ModelArtistConditionInput | null,
-};
-
-export type DeleteArtistMutation = {
-  deleteArtist?:  {
     __typename: "Artist",
     id: string,
     geniusId: number,

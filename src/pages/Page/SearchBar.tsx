@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+export const SearchBar: FunctionComponent<{}> = () => {
+  const [searchTerm, setSearchTerm] = useState('');
   const history = useHistory();
 
   const handleTermChange = event => {

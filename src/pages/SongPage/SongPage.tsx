@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, FunctionComponent} from "react";
 import { useParams } from "react-router-dom";
 import { SongDetails } from "../../componenets/Song/SongDetails";
 import { SongLyrics } from "../../componenets/Song/SongLyrics";
 import { Song } from "../../models";
 import { getSongById } from "../../service/song-service"; 
 
-export const SongPage = () => {
+export const SongPage: FunctionComponent<{}> = () => {
   let { songId } = useParams();
   const [song, setSong] = useState<Song>();
 
@@ -20,6 +20,7 @@ export const SongPage = () => {
     }
     getData();
   }, [songId]);
+
   return (
     <>
       <SongDetails song={song}/>

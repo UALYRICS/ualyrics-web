@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Song } from '../../models';
 
-export const SongDetails = ({song}: {song?: Song}) => {
+export const SongDetails: FunctionComponent<{song: Song | undefined}> = ({song}) => {
   if(!song){
-    return <>Підтягуємо текст пісні...</>;
+    return null;
   }
   return (
     <>

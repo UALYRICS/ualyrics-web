@@ -1,29 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Song } from "../../models";
-import { Storage } from 'aws-amplify';
-import { SongsList } from "../../componenets/Song/SongsList";
+import React, { FunctionComponent } from "react";
+import { BrowseTools } from "../Page/BrowseTools";
+import { RecentlyAdded } from "./RecentlyAdded";
 
-
-function Home() {
-
-  const [recentlyAdded, setRecentlyAdded] = useState(new Array<Song>());
-
-  useEffect(() => {
-    async function getData() {
-      const data = await Storage.get(`recentlyadded.json`, { download: true }) as {Body: {text(): Promise<string>}};
-      data.Body.text().then(recentAddadData => { 
-        setRecentlyAdded(JSON.parse(recentAddadData));
-      })
-    }
-    getData();
-  }, []);
-
+export const Home: FunctionComponent<{}> = () => {
   return (
     <>
-      <div><h2>Останні додані переклади</h2></div>
-      <SongsList songs={recentlyAdded}/>
+      <BrowseTools />
+      <RecentlyAdded/>
     </>
-  )
+  );
 }
-
-export default Home;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Artist } from '../../models';
 import { Link } from "react-router-dom";
 
-export const ArtistComponent = ({artist}: {artist: Artist | undefined}) => {
+export const ArtistComponent: FunctionComponent<{artist: Artist | undefined}> = ({artist}) => {
   const songs = artist?.songs?.map(song => (
     <li key={song?.id}><Link to={`/song/${song?.id}`}>{song?.title}</Link></li>
   ));

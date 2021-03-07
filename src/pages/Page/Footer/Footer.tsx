@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+
 import './Footer.css';
 
 export const Footer: FunctionComponent<{}> = () => (

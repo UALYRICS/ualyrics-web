@@ -2,6 +2,51 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const deleteArtist = /* GraphQL */ `
+  mutation DeleteArtist(
+    $input: DeleteArtistInput!
+    $condition: ModelArtistConditionInput
+  ) {
+    deleteArtist(input: $input, condition: $condition) {
+      id
+      geniusId
+      firstLetter
+      title
+      description
+      thumbnailUrl
+      createdAt
+      updatedAt
+      albums {
+        items {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      songs {
+        items {
+          id
+          artistId
+          albumId
+          geniusId
+          title
+          artistName
+          albumName
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
 export const createArtist = /* GraphQL */ `
   mutation CreateArtist(
     $input: CreateArtistInput!
@@ -53,51 +98,6 @@ export const updateArtist = /* GraphQL */ `
     $condition: ModelArtistConditionInput
   ) {
     updateArtist(input: $input, condition: $condition) {
-      id
-      geniusId
-      firstLetter
-      title
-      description
-      thumbnailUrl
-      createdAt
-      updatedAt
-      albums {
-        items {
-          id
-          artistId
-          geniusId
-          title
-          thumbnailUrl
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      songs {
-        items {
-          id
-          artistId
-          albumId
-          geniusId
-          title
-          artistName
-          albumName
-          imageUrl
-          lyrics
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-    }
-  }
-`;
-export const deleteArtist = /* GraphQL */ `
-  mutation DeleteArtist(
-    $input: DeleteArtistInput!
-    $condition: ModelArtistConditionInput
-  ) {
-    deleteArtist(input: $input, condition: $condition) {
       id
       geniusId
       firstLetter

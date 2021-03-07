@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import { searchGeniusSong } from '../../service/genius-service';
-import { useLocation, Link } from "react-router-dom";
-import './SearchPage.css';
+import { useLocation } from "react-router-dom";
 import { GeniusSongEntry } from "../../models";
+import { BrowseTools } from "../Page/BrowseTools";
+import { GeniusSongsList } from "./GeniusSongsList";
 
-export const SearchPage = () => {
+import './SearchPage.css';
+
+export const SearchPage: FunctionComponent<{}> = () => {
   let query = useQuery();
   let searchTerm = query.get("searchTerm") || "";
-  const [searchResults, setSearchResults] = useState(new Array<GeniusSongEntry>());
+  const [searchResults, setSearchResults] = useState<Array<GeniusSongEntry>>([]);
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -20,26 +23,10 @@ export const SearchPage = () => {
     getData();
   }, [searchTerm]);
 
-  if(searchResults.length === 0){
-    return <></>;
-  }
-
   return (
-    <div>
-      {searchResults.map(song => (
-        <div key={song.id}>
-          <div className="myrow">
-              <div>
-                <img src={song.song_art_image_thumbnail_url} className='icon' alt="Song thumbnail" />
-              </div>	
-              <div className="left-margin">
-                <h4><Link to={`/song?geniusId=${song.id}`}>{song.title}</Link></h4>
-                <h4>{song.primary_artist?.name}</h4>
-              </div>
-          </div>
-          <div className="clear"></div>
-        </div>
-      ))}
-    </div>
+    <>
+      <BrowseTools />
+      <GeniusSongsList geniusSongs={ searchResults } />
+    </>
   );
 };

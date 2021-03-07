@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Artist } from '../../models';
-import { ArtistComponent } from '../../componenets/Artist/ArtistComponent';
+import { ArtistComponent } from './ArtistComponent';
 import { getArtistById } from "../../service/artists-service";
 import { useParams } from "react-router-dom";
 
-export const ArtistPage = () => {
+export const ArtistPage : FunctionComponent<{}> = () => {
   let { artistId } = useParams();
   const [artist, setArtist] = useState<Artist>();
 

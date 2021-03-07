@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import { useLocation, Redirect } from "react-router-dom";
 import { getGeniusSong } from '../../service/song-service';
 import { Song } from '../../models';
@@ -7,7 +7,7 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 }
 
-const AddSongPage = () => {
+export const GeniusSongPage: FunctionComponent<{}> = () => {
   const geniusId = parseInt(useQuery().get("geniusId") || '');
 
   const [song, setSong] = useState<Song>();
@@ -28,8 +28,6 @@ const AddSongPage = () => {
     return <Redirect to={`/song/${song.id}`}/>;
   }
   return (
-    <h2>Шукаємо текст пісні...</h2>
+    <h4>Шукаємо текст пісні...</h4>
   );
 }
-
-export default AddSongPage;

@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import Home from '../pages/HomePage/HomePage';
-import { BrowseArtists } from '../pages/BrowseArtistsPage/BrowseArtistsPage';
+import { Home } from '../pages/HomePage/HomePage';
+import { FirstLetterPage } from '../pages/FirstLetterPage/FirstLetterPage';
 import { Page } from '../pages/Page/Page';
 import { SearchPage } from '../pages/SearchPage/SearchPage';
 import { SongPage } from '../pages/SongPage/SongPage';
-import AddSongPage from '../pages/AddSongPage/AddSongPage';
+import { GeniusSongPage} from '../pages/GeniusSongPage/GeniusSongPage';
 import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
 
-function App() {
+export const App: FunctionComponent<{}> = () => {
   return (
     <Router>
       <Switch>
@@ -32,9 +32,9 @@ function App() {
             <SongPage />
           </Page>
         </Route>
-        <Route path="/song">
+        <Route path="/genius-song/:songId">
           <Page>
-            <AddSongPage />
+            <GeniusSongPage />
           </Page>
         </Route>
         <Route path="/artist/:artistId">
@@ -44,12 +44,10 @@ function App() {
         </Route>
         <Route path="/:firstLetter">
           <Page>
-            <BrowseArtists />
+            <FirstLetterPage />
           </Page>
         </Route>
       </Switch>
     </Router>
   );
 }
-
-export default App;
