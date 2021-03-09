@@ -4,6 +4,7 @@ import { SongDetails } from "../../componenets/Song/SongDetails";
 import { SongLyrics } from "../../componenets/Song/SongLyrics";
 import { Song } from "../../models";
 import { getSongById } from "../../service/song-service"; 
+import {Link} from "react-router-dom";
 
 export const SongPage: FunctionComponent<{}> = () => {
   let { songId } = useParams();
@@ -24,6 +25,7 @@ export const SongPage: FunctionComponent<{}> = () => {
   return (
     <>
       <SongDetails song={song}/>
+      <Link to={`/songs/${songId}/add-translation`}>Додати переклад</Link>
       <SongLyrics song={song} />
     </>
   )

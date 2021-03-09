@@ -104,8 +104,13 @@ type Translation
   createdAt: AWSDateTime!
   songId: ID!
   rating: Int!
-  lyrics: String!
+  lyrics: [LyricsLine]!
   song: Song @connection(fields: ["songId"])
+}
+
+type LyricsLine {
+  original: String!
+  translation: String!
 }
 
 type Comment

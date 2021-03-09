@@ -14,7 +14,7 @@ export const SongsList = ({songs}: {songs: Array<Song>}) => {
               <img src={song.imageUrl} className='icon' alt="Song thumbnail" />
             </div>	
             <div className="left-margin">
-              <h6><Link to={`/song/${song.id}`}>{song.title}</Link></h6>
+              <h6><Link to={`/songs/${song.id}`}>{song.title}</Link></h6>
               <h6>by {song.artistName}</h6>
             </div>
           </div>

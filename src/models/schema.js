@@ -466,10 +466,13 @@ export const schema = {
                 },
                 "lyrics": {
                     "name": "lyrics",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "LyricsLine"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": false
                 },
                 "song": {
                     "name": "song",
@@ -983,7 +986,26 @@ export const schema = {
                     "attributes": []
                 }
             }
+        },
+        "LyricsLine": {
+            "name": "LyricsLine",
+            "fields": {
+                "original": {
+                    "name": "original",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "translation": {
+                    "name": "translation",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
         }
     },
-    "version": "e1fd9e63957d935697fd910bac39bcef"
+    "version": "47b50b2a66ff74114bc2fda189f5d389"
 };

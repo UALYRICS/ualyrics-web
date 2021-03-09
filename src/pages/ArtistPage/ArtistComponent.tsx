@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const ArtistComponent: FunctionComponent<{artist: Artist | undefined}> = ({artist}) => {
   const songs = artist?.songs?.map(song => (
-    <li key={song?.id}><Link to={`/song/${song?.id}`}>{song?.title}</Link></li>
+    <li key={song?.id}><Link to={`/songs/${song?.id}`}>{song?.title}</Link></li>
   ));
 
   if(!artist) {

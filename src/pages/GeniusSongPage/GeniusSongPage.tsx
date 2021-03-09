@@ -25,7 +25,7 @@ export const GeniusSongPage: FunctionComponent<{}> = () => {
   }, [geniusId]);
 
   if(song){
-    return <Redirect to={`/song/${song.id}`}/>;
+    return <Redirect to={`/songs/${song.id}`}/>;
   }
   return (
     <h4>Шукаємо текст пісні...</h4>

@@ -12,7 +12,7 @@ export const ArtistsList: FunctionComponent<{artists: Array<Artist>}> = ({artist
                 <img src={artist.thumbnailUrl} className='icon' alt="Song thumbnail" />
               </div>	
               <div className="left-margin">
-                <h4><Link to={`/artist/${artist.id}`}>{artist.title}</Link></h4>
+                <h4><Link to={`/artists/${artist.id}`}>{artist.title}</Link></h4>
               </div>
           </div>
           <div className="clear"></div>

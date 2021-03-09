@@ -1,7 +1,49 @@
-import React, { FunctionComponent } from "react";
+import React, {useState, useEffect, FunctionComponent} from "react";
+import { useParams } from "react-router-dom";
+import { SongDetails } from "../../componenets/Song/SongDetails";
+import { LyricsLine, Song } from '../../models';
+import { getSongById } from "../../service/song-service";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { SongLyricsForm } from "./SongLyricsForm";
 
-export const AddTranslationPage: FunctionComponent<{}> = () => {
+const AddTranslationPage: FunctionComponent<{}> = () => {
+  let { songId } = useParams();
+  const [song, setSong] = useState<Song>();
+  const [lyrics, setLyrics] = useState<Array<LyricsLine>>([]);
+
+  useEffect(() => {
+    async function getData() {
+      const songData = await getSongById(songId);
+      setSong(songData);
+      setLyrics(songData.lyrics.split('\n').map((line) => ({original: line, translation: ''} as LyricsLine)));
+    }
+    getData();
+  }, [songId]);
+
+  const handleSave = () => {
+    console.log(lyrics);
+  }
+
+  const handleChange = (lineIndex: number, newValue: string) => {
+    setLyrics(lyrics.map((line, i) => {
+      if(i === lineIndex){
+        return {
+          original: line.original, 
+          translation: newValue,
+        };
+      } else {
+        return line;
+      }
+    }));
+  }
+
   return (
-    <h2>Add translation page</h2>
-  );
+    <>
+      <SongDetails song={song}/>
+      <SongLyricsForm lyrics={lyrics} handleChange={handleChange} />
+      <div><button onClick={handleSave}>Save</button></div>
+    </>
+  )
 }
+
+export default withAuthenticator(AddTranslationPage);

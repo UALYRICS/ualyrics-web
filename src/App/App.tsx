@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +11,9 @@ import { SearchPage } from '../pages/SearchPage/SearchPage';
 import { SongPage } from '../pages/SongPage/SongPage';
 import { GeniusSongPage} from '../pages/GeniusSongPage/GeniusSongPage';
 import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
+import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
+
+import './App.css';
 
 export const App: FunctionComponent<{}> = () => {
   return (
@@ -27,17 +29,22 @@ export const App: FunctionComponent<{}> = () => {
             <SearchPage />
           </Page>
         </Route>
-        <Route path="/song/:songId">
+        <Route path="/songs/:songId/add-translation">
+          <Page>
+            <AddTranslationPage />
+          </Page>
+        </Route>
+        <Route path="/songs/:songId">
           <Page>
             <SongPage />
           </Page>
         </Route>
-        <Route path="/genius-song/:songId">
+        <Route path="/genius-songs/:songId">
           <Page>
             <GeniusSongPage />
           </Page>
         </Route>
-        <Route path="/artist/:artistId">
+        <Route path="/artists/:artistId">
           <Page>
             <ArtistPage />
           </Page>

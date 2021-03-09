@@ -69,6 +69,12 @@ export declare class Annotation {
   constructor(init: ModelInit<Annotation>);
 }
 
+export declare class LyricsLine {
+  readonly original: string;
+  readonly translation: string;
+  constructor(init: ModelInit<LyricsLine>);
+}
+
 export declare class Artist {
   readonly id: string;
   readonly geniusId: number;
@@ -114,7 +120,7 @@ export declare class Translation {
   readonly createdAt: string;
   readonly songId: string;
   readonly rating: number;
-  readonly lyrics: string;
+  readonly lyrics: (LyricsLine | null)[];
   readonly song?: Song;
   constructor(init: ModelInit<Translation>);
   static copyOf(source: Translation, mutator: (draft: MutableModel<Translation>) => MutableModel<Translation> | void): Translation;
