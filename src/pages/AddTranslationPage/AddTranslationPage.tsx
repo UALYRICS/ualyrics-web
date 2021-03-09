@@ -5,6 +5,8 @@ import { LyricsLine, Song } from '../../models';
 import { getSongById } from "../../service/song-service";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { SongLyricsForm } from "./SongLyricsForm";
+import { createTranslation } from "../../service/translations-service";
+import { Auth } from "aws-amplify";
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams();
@@ -20,8 +22,15 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     getData();
   }, [songId]);
 
-  const handleSave = () => {
-    console.log(lyrics);
+  const handleSave = async () => {
+    const currentUser = await Auth.currentUserInfo();
+
+    createTranslation({
+      songId: song?.id || '',
+      rating: 0,
+      owner: currentUser.username,
+      lyrics,
+    });
   }
 
   const handleChange = (lineIndex: number, newValue: string) => {

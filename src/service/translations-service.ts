@@ -1,22 +1,13 @@
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 import { CreateTranslationInput, CreateTranslationMutation } from "../API";
 import { createTranslation as createTranslationMutation } from "../graphql/mutations";
-import { Translation } from "../models";
-import { API, Auth } from "aws-amplify";
+import { API } from "aws-amplify";
 
 
-export const createTranslation = async (translation: Translation): Promise<string> => {
-  const currentUser = await Auth.currentUserInfo();
+export const createTranslation = async (input: CreateTranslationInput): Promise<string> => {
   const result = await API.graphql({
     query: createTranslationMutation,
-    variables: { 
-      input: {
-        owner: currentUser.username,
-        songId: translation.song!.id,
-        rating: translation.rating,
-        lyrics: 'translation.lyrics',// TODO: Fix
-      } as CreateTranslationInput
-    },
+    variables: { input },
     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
   }) as GraphQLResult<CreateTranslationMutation>;
 

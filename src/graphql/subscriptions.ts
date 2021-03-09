@@ -388,7 +388,10 @@ export const onCreateTranslation = /* GraphQL */ `
       createdAt
       songId
       rating
-      lyrics
+      lyrics {
+        original
+        translation
+      }
       updatedAt
       song {
         id
@@ -437,7 +440,10 @@ export const onUpdateTranslation = /* GraphQL */ `
       createdAt
       songId
       rating
-      lyrics
+      lyrics {
+        original
+        translation
+      }
       updatedAt
       song {
         id
@@ -486,7 +492,10 @@ export const onDeleteTranslation = /* GraphQL */ `
       createdAt
       songId
       rating
-      lyrics
+      lyrics {
+        original
+        translation
+      }
       updatedAt
       song {
         id
@@ -542,7 +551,10 @@ export const onCreateComment = /* GraphQL */ `
         createdAt
         songId
         rating
-        lyrics
+        lyrics {
+          original
+          translation
+        }
         updatedAt
         song {
           id
@@ -577,7 +589,10 @@ export const onUpdateComment = /* GraphQL */ `
         createdAt
         songId
         rating
-        lyrics
+        lyrics {
+          original
+          translation
+        }
         updatedAt
         song {
           id
@@ -612,7 +627,10 @@ export const onDeleteComment = /* GraphQL */ `
         createdAt
         songId
         rating
-        lyrics
+        lyrics {
+          original
+          translation
+        }
         updatedAt
         song {
           id

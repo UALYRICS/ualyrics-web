@@ -531,7 +531,10 @@ export const listTranslations = /* GraphQL */ `
         createdAt
         songId
         rating
-        lyrics
+        lyrics {
+          original
+          translation
+        }
         updatedAt
         song {
           id
@@ -559,7 +562,10 @@ export const getTranslation = /* GraphQL */ `
       createdAt
       songId
       rating
-      lyrics
+      lyrics {
+        original
+        translation
+      }
       updatedAt
       song {
         id
@@ -623,7 +629,10 @@ export const getTranslationsBySongId = /* GraphQL */ `
         createdAt
         songId
         rating
-        lyrics
+        lyrics {
+          original
+          translation
+        }
         updatedAt
         song {
           id
@@ -666,7 +675,10 @@ export const getTranslationsByOwner = /* GraphQL */ `
         createdAt
         songId
         rating
-        lyrics
+        lyrics {
+          original
+          translation
+        }
         updatedAt
         song {
           id
@@ -701,7 +713,10 @@ export const getComment = /* GraphQL */ `
         createdAt
         songId
         rating
-        lyrics
+        lyrics {
+          original
+          translation
+        }
         updatedAt
         song {
           id
@@ -741,7 +756,6 @@ export const listComments = /* GraphQL */ `
           createdAt
           songId
           rating
-          lyrics
           updatedAt
         }
         owner
@@ -780,7 +794,6 @@ export const getCommentsByTranslationId = /* GraphQL */ `
           createdAt
           songId
           rating
-          lyrics
           updatedAt
         }
         owner
