@@ -87,7 +87,7 @@ export const getSongById = async (id: string): Promise<Song> => {
   return mapSongResultToSong(result.data!.getSong!);
 }
 
-export const getSongByGeniusId = async (geniusId: number): Promise<Song | null> => {
+const getSongByGeniusId = async (geniusId: number): Promise<Song | null> => {
   const result = await API.graphql({
     query: getSongByGeniuslId,
     variables: {

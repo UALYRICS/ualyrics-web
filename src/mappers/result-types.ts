@@ -10,6 +10,22 @@ export interface GetArtistListResult {
   updatedAt: string,
 }
 
+interface LyricsLine {
+  original: string,
+  translation: string,
+}
+
+interface TranslationResult {
+  id: string,
+  owner: string,
+  createdAt: string,
+  rating: number,
+}
+
+interface TranslationResultWithLyrics extends TranslationResult {
+  lyrics: Array<LyricsLine>,
+}
+
 export interface SongResult {
   id: string,
   artistId: string,
@@ -17,16 +33,20 @@ export interface SongResult {
   geniusId: number,
   title: string,
   artistName: string,
-  albumName?: string | null | undefined,
+  albumName?: string | null,
   imageUrl: string,
   createdAt: string,
   updatedAt: string,
   owner?: string | null,
-  lyrics?: string
+  lyrics?: string,
+  translations?: {
+    nextToken?: string | null | undefined,
+    items?: Array<TranslationResult | null> | null,
+  } | null
 }
 
 export interface GetArtistResult extends GetArtistListResult{
   songs?: {
-    items?: Array<SongResult | null> | null
+    items?: Array<SongResult | null> | null,
   } | null
 }

@@ -296,6 +296,20 @@ export const schema = {
                         "targetName": "albumId"
                     }
                 },
+                "translations": {
+                    "name": "translations",
+                    "isArray": true,
+                    "type": {
+                        "model": "Translation"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "song"
+                    }
+                },
                 "title": {
                     "name": "title",
                     "isArray": false,
@@ -450,13 +464,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "songId": {
-                    "name": "songId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "rating": {
                     "name": "rating",
                     "isArray": false,
@@ -483,8 +490,7 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
+                        "connectionType": "BELONGS_TO",
                         "targetName": "songId"
                     }
                 }
@@ -925,6 +931,25 @@ export const schema = {
                 }
             }
         },
+        "LyricsLine": {
+            "name": "LyricsLine",
+            "fields": {
+                "original": {
+                    "name": "original",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "translation": {
+                    "name": "translation",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
         "Referent": {
             "name": "Referent",
             "fields": {
@@ -986,26 +1011,7 @@ export const schema = {
                     "attributes": []
                 }
             }
-        },
-        "LyricsLine": {
-            "name": "LyricsLine",
-            "fields": {
-                "original": {
-                    "name": "original",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "translation": {
-                    "name": "translation",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                }
-            }
         }
     },
-    "version": "47b50b2a66ff74114bc2fda189f5d389"
+    "version": "398a91fdd3ba909282bb1f4eefd0d1ef"
 };

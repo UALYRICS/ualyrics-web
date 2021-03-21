@@ -5,19 +5,31 @@ import { LyricsLine, Song } from '../../models';
 import { getSongById } from "../../service/song-service";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { SongLyricsForm } from "./SongLyricsForm";
-import { createTranslation } from "../../service/translations-service";
+import { createTranslation, getTranslationById } from "../../service/translations-service";
+import { useHistory } from "react-router"
+
 import { Auth } from "aws-amplify";
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams();
+  let history = useHistory();
+
   const [song, setSong] = useState<Song>();
   const [lyrics, setLyrics] = useState<Array<LyricsLine>>([]);
 
   useEffect(() => {
     async function getData() {
+      const currentUser = await Auth.currentUserInfo();
       const songData = await getSongById(songId);
       setSong(songData);
-      setLyrics(songData.lyrics.split('\n').map((line) => ({original: line, translation: ''} as LyricsLine)));
+
+      const existingTranslation = songData.translations?.find(t => t?.owner === currentUser.username);
+      if(existingTranslation){
+        const existingLyrics = (await getTranslationById(existingTranslation.id)).lyrics as Array<LyricsLine>;
+        setLyrics(existingLyrics);
+      } else {
+        setLyrics(songData.lyrics.split('\n').map((line) => ({original: line, translation: ''} as LyricsLine)));
+      }
     }
     getData();
   }, [songId]);
@@ -31,6 +43,8 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
       owner: currentUser.username,
       lyrics,
     });
+
+    history.push(`/songs/${songId}`);
   }
 
   const handleChange = (lineIndex: number, newValue: string) => {
@@ -50,7 +64,8 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     <>
       <SongDetails song={song}/>
       <SongLyricsForm lyrics={lyrics} handleChange={handleChange} />
-      <div><button onClick={handleSave}>Save</button></div>
+      <br/>
+      <div><button onClick={handleSave}>Опублікувати переклад</button></div>
     </>
   )
 }

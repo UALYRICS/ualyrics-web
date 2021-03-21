@@ -22,7 +22,8 @@ export function mapSongResultToSong(song: SongResult | null): Song {
     lyrics: song?.lyrics!,
     artistName: song?.artistName!,
     albumName: song?.albumName || undefined,
-  };
+    translations: song?.translations?.items,
+  } as Song;
 }
 
 export function mapResultDataToArtist(item: GetArtistListResult | null): Artist {

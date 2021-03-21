@@ -288,6 +288,17 @@ export const createSong = /* GraphQL */ `
           nextToken
         }
       }
+      translations {
+        items {
+          id
+          owner
+          createdAt
+          songId
+          rating
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -345,6 +356,17 @@ export const updateSong = /* GraphQL */ `
         songs {
           nextToken
         }
+      }
+      translations {
+        items {
+          id
+          owner
+          createdAt
+          songId
+          rating
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -404,6 +426,17 @@ export const deleteSong = /* GraphQL */ `
           nextToken
         }
       }
+      translations {
+        items {
+          id
+          owner
+          createdAt
+          songId
+          rating
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -457,6 +490,9 @@ export const createTranslation = /* GraphQL */ `
           thumbnailUrl
           createdAt
           updatedAt
+        }
+        translations {
+          nextToken
         }
       }
     }
@@ -513,6 +549,9 @@ export const updateTranslation = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        translations {
+          nextToken
+        }
       }
     }
   }
@@ -567,6 +606,9 @@ export const deleteTranslation = /* GraphQL */ `
           thumbnailUrl
           createdAt
           updatedAt
+        }
+        translations {
+          nextToken
         }
       }
     }

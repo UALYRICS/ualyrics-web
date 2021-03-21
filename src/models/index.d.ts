@@ -54,6 +54,12 @@ export declare class GeniusSongEntry {
   constructor(init: ModelInit<GeniusSongEntry>);
 }
 
+export declare class LyricsLine {
+  readonly original: string;
+  readonly translation: string;
+  constructor(init: ModelInit<LyricsLine>);
+}
+
 export declare class Referent {
   readonly geniusId: number;
   readonly content: string;
@@ -67,12 +73,6 @@ export declare class Annotation {
   readonly author: string;
   readonly authorThumbnailUrl: string;
   constructor(init: ModelInit<Annotation>);
-}
-
-export declare class LyricsLine {
-  readonly original: string;
-  readonly translation: string;
-  constructor(init: ModelInit<LyricsLine>);
 }
 
 export declare class Artist {
@@ -104,6 +104,7 @@ export declare class Song {
   readonly geniusId: number;
   readonly artist?: Artist;
   readonly album?: Album;
+  readonly translations?: (Translation | null)[];
   readonly title: string;
   readonly artistName: string;
   readonly albumName?: string;
@@ -118,7 +119,6 @@ export declare class Translation {
   readonly id: string;
   readonly owner: string;
   readonly createdAt: string;
-  readonly songId: string;
   readonly rating: number;
   readonly lyrics: (LyricsLine | null)[];
   readonly song?: Song;

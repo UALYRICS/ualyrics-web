@@ -29,7 +29,7 @@ export const App: FunctionComponent<{}> = () => {
             <SearchPage />
           </Page>
         </Route>
-        <Route path="/songs/:songId/add-translation">
+        <Route path="/songs/:songId/translate">
           <Page>
             <AddTranslationPage />
           </Page>

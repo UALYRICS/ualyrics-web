@@ -289,6 +289,9 @@ export const listSongs = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        translations {
+          nextToken
+        }
       }
       nextToken
     }
@@ -346,6 +349,17 @@ export const getSong = /* GraphQL */ `
           nextToken
         }
       }
+      translations {
+        items {
+          id
+          owner
+          createdAt
+          songId
+          rating
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -400,6 +414,9 @@ export const getSongsByArtistId = /* GraphQL */ `
           thumbnailUrl
           createdAt
           updatedAt
+        }
+        translations {
+          nextToken
         }
       }
       nextToken
@@ -458,6 +475,9 @@ export const getSongsByAlbumId = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        translations {
+          nextToken
+        }
       }
       nextToken
     }
@@ -512,6 +532,9 @@ export const getSongByGeniuslId = /* GraphQL */ `
           thumbnailUrl
           createdAt
           updatedAt
+        }
+        translations {
+          nextToken
         }
       }
       nextToken
@@ -601,6 +624,9 @@ export const getTranslation = /* GraphQL */ `
           thumbnailUrl
           createdAt
           updatedAt
+        }
+        translations {
+          nextToken
         }
       }
     }

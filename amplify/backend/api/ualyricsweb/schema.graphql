@@ -64,6 +64,7 @@ type Song
   geniusId: Int!
   artist: Artist @connection(fields: ["artistId"])
   album: Album @connection(fields: ["albumId"])
+  translations: [Translation] @connection(keyName: "bySong", fields: ["id"])
   title: String!
   artistName: String!
   albumName: String

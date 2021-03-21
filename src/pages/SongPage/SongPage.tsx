@@ -25,7 +25,7 @@ export const SongPage: FunctionComponent<{}> = () => {
   return (
     <>
       <SongDetails song={song}/>
-      <Link to={`/songs/${songId}/add-translation`}>Додати переклад</Link>
+      <Link to={`/songs/${songId}/translate`}>Додати переклад</Link>
       <SongLyrics song={song} />
     </>
   )

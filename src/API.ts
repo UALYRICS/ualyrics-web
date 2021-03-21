@@ -128,6 +128,7 @@ export type Song = {
   updatedAt?: string,
   artist?: Artist,
   album?: Album,
+  translations?: ModelTranslationConnection,
 };
 
 export type Referent = {
@@ -143,6 +144,30 @@ export type Annotation = {
   text?: string,
   author?: string,
   authorThumbnailUrl?: string,
+};
+
+export type ModelTranslationConnection = {
+  __typename: "ModelTranslationConnection",
+  items?:  Array<Translation | null > | null,
+  nextToken?: string | null,
+};
+
+export type Translation = {
+  __typename: "Translation",
+  id?: string,
+  owner?: string,
+  createdAt?: string,
+  songId?: string,
+  rating?: number,
+  lyrics?:  Array<LyricsLine | null >,
+  updatedAt?: string,
+  song?: Song,
+};
+
+export type LyricsLine = {
+  __typename: "LyricsLine",
+  original?: string,
+  translation?: string,
 };
 
 export type UpdateArtistInput = {
@@ -282,24 +307,6 @@ export type ModelTranslationConditionInput = {
   and?: Array< ModelTranslationConditionInput | null > | null,
   or?: Array< ModelTranslationConditionInput | null > | null,
   not?: ModelTranslationConditionInput | null,
-};
-
-export type Translation = {
-  __typename: "Translation",
-  id?: string,
-  owner?: string,
-  createdAt?: string,
-  songId?: string,
-  rating?: number,
-  lyrics?:  Array<LyricsLine | null >,
-  updatedAt?: string,
-  song?: Song,
-};
-
-export type LyricsLine = {
-  __typename: "LyricsLine",
-  original?: string,
-  translation?: string,
 };
 
 export type UpdateTranslationInput = {
@@ -478,12 +485,6 @@ export type ModelTranslationFilterInput = {
   and?: Array< ModelTranslationFilterInput | null > | null,
   or?: Array< ModelTranslationFilterInput | null > | null,
   not?: ModelTranslationFilterInput | null,
-};
-
-export type ModelTranslationConnection = {
-  __typename: "ModelTranslationConnection",
-  items?:  Array<Translation | null > | null,
-  nextToken?: string | null,
 };
 
 export type ModelIntKeyConditionInput = {
@@ -837,6 +838,19 @@ export type CreateSongMutation = {
         nextToken?: string | null,
       } | null,
     } | null,
+    translations?:  {
+      __typename: "ModelTranslationConnection",
+      items?:  Array< {
+        __typename: "Translation",
+        id: string,
+        owner: string,
+        createdAt: string,
+        songId: string,
+        rating: number,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -903,6 +917,19 @@ export type UpdateSongMutation = {
         __typename: "ModelSongConnection",
         nextToken?: string | null,
       } | null,
+    } | null,
+    translations?:  {
+      __typename: "ModelTranslationConnection",
+      items?:  Array< {
+        __typename: "Translation",
+        id: string,
+        owner: string,
+        createdAt: string,
+        songId: string,
+        rating: number,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
     } | null,
   } | null,
 };
@@ -971,6 +998,19 @@ export type DeleteSongMutation = {
         nextToken?: string | null,
       } | null,
     } | null,
+    translations?:  {
+      __typename: "ModelTranslationConnection",
+      items?:  Array< {
+        __typename: "Translation",
+        id: string,
+        owner: string,
+        createdAt: string,
+        songId: string,
+        rating: number,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -1031,6 +1071,10 @@ export type CreateTranslationMutation = {
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
       } | null,
     } | null,
   } | null,
@@ -1094,6 +1138,10 @@ export type UpdateTranslationMutation = {
         createdAt: string,
         updatedAt: string,
       } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null,
   } | null,
 };
@@ -1155,6 +1203,10 @@ export type DeleteTranslationMutation = {
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
       } | null,
     } | null,
   } | null,
@@ -1625,6 +1677,10 @@ export type ListSongsQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1693,6 +1749,19 @@ export type GetSongQuery = {
         nextToken?: string | null,
       } | null,
     } | null,
+    translations?:  {
+      __typename: "ModelTranslationConnection",
+      items?:  Array< {
+        __typename: "Translation",
+        id: string,
+        owner: string,
+        createdAt: string,
+        songId: string,
+        rating: number,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -1746,6 +1815,10 @@ export type GetSongsByArtistIdQuery = {
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
       } | null,
     } | null > | null,
     nextToken?: string | null,
@@ -1803,6 +1876,10 @@ export type GetSongsByAlbumIdQuery = {
         createdAt: string,
         updatedAt: string,
       } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1857,6 +1934,10 @@ export type GetSongByGeniuslIdQuery = {
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
       } | null,
     } | null > | null,
     nextToken?: string | null,
@@ -1960,6 +2041,10 @@ export type GetTranslationQuery = {
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
       } | null,
     } | null,
   } | null,
@@ -2455,6 +2540,19 @@ export type OnCreateSongSubscription = {
         nextToken?: string | null,
       } | null,
     } | null,
+    translations?:  {
+      __typename: "ModelTranslationConnection",
+      items?:  Array< {
+        __typename: "Translation",
+        id: string,
+        owner: string,
+        createdAt: string,
+        songId: string,
+        rating: number,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -2516,6 +2614,19 @@ export type OnUpdateSongSubscription = {
         __typename: "ModelSongConnection",
         nextToken?: string | null,
       } | null,
+    } | null,
+    translations?:  {
+      __typename: "ModelTranslationConnection",
+      items?:  Array< {
+        __typename: "Translation",
+        id: string,
+        owner: string,
+        createdAt: string,
+        songId: string,
+        rating: number,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
     } | null,
   } | null,
 };
@@ -2579,6 +2690,19 @@ export type OnDeleteSongSubscription = {
         nextToken?: string | null,
       } | null,
     } | null,
+    translations?:  {
+      __typename: "ModelTranslationConnection",
+      items?:  Array< {
+        __typename: "Translation",
+        id: string,
+        owner: string,
+        createdAt: string,
+        songId: string,
+        rating: number,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
   } | null,
 };
 
@@ -2638,6 +2762,10 @@ export type OnCreateTranslationSubscription = {
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
       } | null,
     } | null,
   } | null,
@@ -2700,6 +2828,10 @@ export type OnUpdateTranslationSubscription = {
         createdAt: string,
         updatedAt: string,
       } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
+      } | null,
     } | null,
   } | null,
 };
@@ -2760,6 +2892,10 @@ export type OnDeleteTranslationSubscription = {
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
       } | null,
     } | null,
   } | null,
