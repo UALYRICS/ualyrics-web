@@ -1,5 +1,5 @@
-import { GetArtistListResult, GetArtistResult, SongResult } from "./result-types";
-import { Artist, GeniusSong, Song } from "../models";
+import { GetArtistListResult, GetArtistResult, SongResult, TranslationResultWithLyrics } from "./result-types";
+import { Artist, GeniusSong, Song, Translation } from "../models";
 
 export function mapSingleArtistResultToArtist(item: GetArtistResult): Artist {
   return {

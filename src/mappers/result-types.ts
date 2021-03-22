@@ -20,10 +20,11 @@ interface TranslationResult {
   owner: string,
   createdAt: string,
   rating: number,
+  song?: SongResult | null,
 }
 
-interface TranslationResultWithLyrics extends TranslationResult {
-  lyrics: Array<LyricsLine>,
+export interface TranslationResultWithLyrics extends TranslationResult {
+  lyrics: Array<LyricsLine | null>,
 }
 
 export interface SongResult {

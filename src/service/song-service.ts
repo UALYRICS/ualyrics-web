@@ -1,5 +1,5 @@
 import { Song } from "../models";
-import { API, Storage } from "aws-amplify";
+import { API } from "aws-amplify";
 import { createSong as createSongMutation } from "../graphql/mutations";
 import { getSong, getSongsByArtistId, getSongByGeniuslId } from "../graphql/queries";
 import { CreateSongInput, CreateSongMutation, GetSongQuery, GetSongsByArtistIdQuery, GetSongByGeniuslIdQuery } from "../API";
@@ -67,12 +67,8 @@ export const createSong = async (artistId: string, song: Song, albumId?: string)
     },
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<CreateSongMutation>;
-
-  const createdSong = mapSongResultToSong(result.data?.createSong!)
-
-  updateLatestFile(createdSong);
-
-  return createdSong;
+  
+  return mapSongResultToSong(result.data?.createSong!);
 };
 
 export const getSongById = async (id: string): Promise<Song> => {
@@ -101,15 +97,3 @@ const getSongByGeniusId = async (geniusId: number): Promise<Song | null> => {
   }
   return null;
 }
-
-const updateLatestFile = async (song: Song) => {
-  const data = await Storage.get(`recentlyadded.json`, { download: true }) as {Body: {text(): Promise<string>}};
-  data.Body.text().then(recentAddadData => { 
-    const songs = JSON.parse(recentAddadData) as Array<Song>;
-    songs.unshift(song);
-    while(songs.length > 6){
-      songs.splice(-1,1);
-    }
-    Storage.put(`recentlyadded.json`, JSON.stringify(songs));
-  })
-};

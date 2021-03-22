@@ -25,8 +25,8 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
 
       const existingTranslation = songData.translations?.find(t => t?.owner === currentUser.username);
       if(existingTranslation){
-        const existingLyrics = (await getTranslationById(existingTranslation.id)).lyrics as Array<LyricsLine>;
-        setLyrics(existingLyrics);
+        const translation = await getTranslationById(existingTranslation.id);
+        setLyrics(translation.lyrics as Array<LyricsLine>);
       } else {
         setLyrics(songData.lyrics.split('\n').map((line) => ({original: line, translation: ''} as LyricsLine)));
       }
@@ -43,6 +43,8 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
       owner: currentUser.username,
       lyrics,
     });
+
+    
 
     history.push(`/songs/${songId}`);
   }

@@ -1,24 +1,37 @@
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 import { CreateTranslationInput, CreateTranslationMutation, GetTranslationQuery } from "../API";
 import { createTranslation as createTranslationMutation } from "../graphql/mutations";
-import { API } from "aws-amplify";
+import { API, Storage } from "aws-amplify";
 import { getTranslation } from "../graphql/queries";
 import { Translation } from "../models";
 
-
-export const createTranslation = async (input: CreateTranslationInput): Promise<string> => {
+export const createTranslation = async (input: CreateTranslationInput): Promise<Translation> => {
   const result = await API.graphql({
     query: createTranslationMutation,
     variables: { input },
     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
   }) as GraphQLResult<CreateTranslationMutation>;
 
-  const id = result.data?.createTranslation?.id;
-  if(id){
-    return id;
-  } else {
-    throw new Error('Translation could not be created.');
-  }
+  const translationResult = result.data?.createTranslation;
+
+  const translation = {
+    id: translationResult?.id,
+    createdAt: translationResult?.createdAt,
+    owner: translationResult?.owner,
+    rating: translationResult?.rating,
+    lyrics: translationResult?.lyrics,
+    song: {
+      id: translationResult?.song?.id,
+      artistName: translationResult?.song?.artistName,
+      title: translationResult?.song?.title,
+      albumName: translationResult?.song?.albumName,
+      imageUrl: translationResult?.song?.imageUrl,
+    }
+  } as Translation;
+
+  updateLatestFile(translation);
+
+  return translation;
 }
 
 export const getTranslationById = async (id: string): Promise<Translation> => {
@@ -39,3 +52,25 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
     lyrics: translation.lyrics,
   }
 }
+
+const updateLatestFile = async (translation: Translation) => {
+  const data = await Storage.get(`recentlyadded.json`, { download: true }) as {Body: {text(): Promise<string>}};
+  const recentAddadData = await data.Body.text();
+  const translations = JSON.parse(recentAddadData) as Array<Translation>;
+
+  // Remove translation from the list if already existing
+  const mutatedTranslations = translations.filter(function(item) {
+      return item.id !== translation.id
+  });
+
+  // Add translation to the front of the list
+  mutatedTranslations.unshift(translation);
+
+  // Trim array of translations to 10
+  while(mutatedTranslations.length > 10){
+    mutatedTranslations.splice(-1,1);
+  }
+
+  // Save recent translations to S3
+  Storage.put(`recentlyadded.json`, JSON.stringify(mutatedTranslations));
+};
