@@ -2,7 +2,6 @@ import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 import { CreateTranslationInput, CreateTranslationMutation, GetTranslationQuery } from "../API";
 import { createTranslation as createTranslationMutation } from "../graphql/mutations";
 import { API, Storage } from "aws-amplify";
-import { getTranslation } from "../graphql/queries";
 import { Translation } from "../models";
 
 export const createTranslation = async (input: CreateTranslationInput): Promise<Translation> => {
@@ -35,6 +34,34 @@ export const createTranslation = async (input: CreateTranslationInput): Promise<
 }
 
 export const getTranslationById = async (id: string): Promise<Translation> => {
+
+  const getTranslation = `
+    query GetTranslation($id: ID!) {
+      getTranslation(id: $id) {
+        id
+        owner
+        createdAt
+        rating
+        lyrics {
+          original
+          translation
+        }
+        song {
+          id
+          artistId
+          albumId
+          geniusId
+          title
+          artistName
+          albumName
+          imageUrl
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  `;
+
   const result = await API.graphql({
     query: getTranslation,
     variables: {
@@ -50,6 +77,15 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
     createdAt: translation.createdAt,
     rating: translation.rating,
     lyrics: translation.lyrics,
+    song: {
+      artistName: translation.song!.artistName,
+      albumName: translation.song!.albumName || '',
+      id: translation.song!.id,
+      geniusId: translation.song!.geniusId,
+      imageUrl: translation.song!.imageUrl,
+      title: translation.song!.title,
+      lyrics: '', // We do not need song lyrics, they are in translation lyrics
+    }
   }
 }
 

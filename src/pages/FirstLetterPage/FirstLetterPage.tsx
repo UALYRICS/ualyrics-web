@@ -5,7 +5,6 @@ import { Char } from "../../models/char";
 import { useParams } from "react-router-dom";
 import { BrowseTools } from "../Page/BrowseTools";
 
-import "./FirstLetterPage.css";
 import { ArtistsList } from "./ArtistsList";
 
 export const FirstLetterPage: FunctionComponent<{}> = () => {

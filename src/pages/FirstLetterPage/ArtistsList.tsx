@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import { Artist } from "../../models";
 import { Link } from "react-router-dom";
+import "./ArtistsList.css";
 
 export const ArtistsList: FunctionComponent<{artists: Array<Artist>}> = ({artists}) => {
   return (
     <>
       {artists.map((artist) => (
         <div key={artist.id}>
-          <div className="row">
+          <div className="artists-row">
               <div>
                 <img src={artist.thumbnailUrl} className='icon' alt="Song thumbnail" />
               </div>	

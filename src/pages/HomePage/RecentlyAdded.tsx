@@ -30,7 +30,7 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
               <img src={translation?.song?.imageUrl} className='icon' alt="Song thumbnail" />
             </div>	
             <div className="left-margin">
-              <h6><Link to={`/songs/${translation?.song?.id}`}>{translation?.song?.title}</Link></h6>
+              <h6><Link to={`/translations/${translation?.id}`}>{translation?.song?.title}</Link></h6>
               <h6>{translation?.song?.artistName}</h6>
               <h6>Перекладено: <b>{translation?.owner}</b></h6>
             </div>

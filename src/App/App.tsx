@@ -14,6 +14,7 @@ import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
 import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 
 import './App.css';
+import { TranslationPage } from '../pages/TranslationPage/TranslationPage';
 
 export const App: FunctionComponent<{}> = () => {
   return (
@@ -34,6 +35,11 @@ export const App: FunctionComponent<{}> = () => {
             <AddTranslationPage />
           </Page>
         </Route>
+        <Route path="/translations/:translationId">
+          <Page>
+            <TranslationPage />
+          </Page>
+        </Route>        
         <Route path="/songs/:songId">
           <Page>
             <SongPage />

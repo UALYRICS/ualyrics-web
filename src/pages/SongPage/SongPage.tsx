@@ -12,12 +12,8 @@ export const SongPage: FunctionComponent<{}> = () => {
 
   useEffect(() => {
     async function getData() {
-      try {
-        const songData = await getSongById(songId);
-        setSong(songData);
-      } catch (error) {
-        console.error("Error fetching song", error);
-      }
+      const songData = await getSongById(songId);
+      setSong(songData);
     }
     getData();
   }, [songId]);
