@@ -56,6 +56,25 @@ export const searchGeniusSong = /* GraphQL */ `
     }
   }
 `;
+export const getGeniusSongsByArtistId = /* GraphQL */ `
+  query GetGeniusSongsByArtistId($id: Int) {
+    getGeniusSongsByArtistId(id: $id) {
+      id
+      title
+      url
+      header_image_thumbnail_url
+      header_image_url
+      song_art_image_thumbnail_url
+      song_art_image_url
+      primary_artist {
+        id
+        name
+        header_image_url
+        image_url
+      }
+    }
+  }
+`;
 export const listArtists = /* GraphQL */ `
   query ListArtists(
     $filter: ModelArtistFilterInput

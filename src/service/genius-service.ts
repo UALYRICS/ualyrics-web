@@ -1,8 +1,8 @@
 import { GeniusSong, GeniusSongEntry } from "../models";
 import { API } from "aws-amplify";
-import { getGeniusSong, searchGeniusSong as searchGeniusSongQuery } from "../graphql/queries";
+import { getGeniusSong, getGeniusSongsByArtistId, searchGeniusSong as searchGeniusSongQuery } from "../graphql/queries";
 import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
-import { GetGeniusSongQuery, SearchGeniusSongQuery } from "../API";
+import { GetGeniusSongQuery, GetGeniusSongsByArtistIdQuery, SearchGeniusSongQuery } from "../API";
 
 export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> => {
   const results = await API.graphql({
@@ -55,3 +55,22 @@ export const searchGeniusSong = async (term: string): Promise<Array<GeniusSongEn
     } as GeniusSongEntry
   } ) || [];
 }
+
+export const getGeniusSongsForArtist = async (id: number): Promise<Array<GeniusSongEntry>> => {
+  const results = await API.graphql({
+    query: getGeniusSongsByArtistId,
+    variables: {id},
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
+  }) as GraphQLResult<GetGeniusSongsByArtistIdQuery>;
+
+  return results.data?.getGeniusSongsByArtistId?.map(geniusSong => {
+    return {
+      id: geniusSong?.id,
+      title: geniusSong?.title,
+      song_art_image_thumbnail_url: geniusSong?.song_art_image_thumbnail_url,
+      url: geniusSong?.url,
+      header_image_url: geniusSong?.header_image_url,
+      header_image_thumbnail_url: geniusSong?.header_image_url,
+    } as GeniusSongEntry
+  } ) || [];
+};

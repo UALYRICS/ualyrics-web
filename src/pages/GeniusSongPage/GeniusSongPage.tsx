@@ -1,11 +1,7 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
-import { useLocation, Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { getGeniusSong } from '../../service/song-service';
 import { Song } from '../../models';
-
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-}
 
 export const GeniusSongPage: FunctionComponent<{}> = () => {
   let { songId } = useParams();
@@ -13,12 +9,8 @@ export const GeniusSongPage: FunctionComponent<{}> = () => {
 
   useEffect(() => {
     async function getData() {
-      try {
-        const songData = await getGeniusSong(songId);
-        setSong(songData);
-      } catch (error) {
-        console.error("Error fetching lyrics or song", error);
-      }
+      const songData = await getGeniusSong(songId);
+      setSong(songData);
     }
     getData();
   }, [songId]);

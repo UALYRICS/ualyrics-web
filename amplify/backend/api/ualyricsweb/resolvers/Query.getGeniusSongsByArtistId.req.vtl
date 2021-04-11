@@ -1,0 +1,16 @@
+#set( $input = $ctx.args)
+#set( $key = "i6skCYqy5w6sNOHpW32r436jn9NoQPzBikS3mAXeMQnfbJh1hg-i8y7nIPhF4oe7")
+{
+  "version": "2018-05-29",
+  "method": "GET",
+  "resourcePath": "/artists/${input.id}/songs",
+  "params": {
+    "headers" : {
+      "Authorization":"Bearer $key"
+    },
+    "query": {
+      "per_page" : "50",
+      "sort" : "popularity"
+    }
+  }
+}

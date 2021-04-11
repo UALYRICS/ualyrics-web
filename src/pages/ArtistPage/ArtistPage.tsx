@@ -19,7 +19,12 @@ export const ArtistPage : FunctionComponent<{}> = () => {
     }
     getData();
   }, [artistId]);
+
+  if(!artist) {
+    return <></>;
+  }
+
   return (
-    <ArtistComponent artist={artist}/>
+    <ArtistComponent artist={artist!}/>
   )
 };

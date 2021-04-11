@@ -142,6 +142,8 @@ type Query {
   getGeniusSong(id: Int): GeniusSong
   # Queries Genius API for songs matching song term
   searchGeniusSong(term: String): [GeniusSongEntry]
+  # Queries Genius API for all songs that belong to artist
+  getGeniusSongsByArtistId(id: Int): [GeniusSongEntry]
 }
 
 type SongLyricsResponse {
