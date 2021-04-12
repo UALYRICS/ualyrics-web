@@ -7,7 +7,10 @@ import { GetGeniusSongQuery, GetGeniusSongsByArtistIdQuery, SearchGeniusSongQuer
 export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> => {
   const results = await API.graphql({
     query: getGeniusSong,
-    variables: {id: geniusId},
+    variables: {
+      id: geniusId,
+      geniusApiKey: process.env.REACT_APP_GENIUS_API_KEY,
+    },
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<GetGeniusSongQuery>;
 
@@ -40,7 +43,10 @@ export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> =
 export const searchGeniusSong = async (term: string): Promise<Array<GeniusSongEntry>> => {
   const results = await API.graphql({
     query: searchGeniusSongQuery,
-    variables: {term},
+    variables: {
+      term,
+      geniusApiKey: process.env.REACT_APP_GENIUS_API_KEY,
+    },
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<SearchGeniusSongQuery>;
 
@@ -59,7 +65,10 @@ export const searchGeniusSong = async (term: string): Promise<Array<GeniusSongEn
 export const getGeniusSongsForArtist = async (id: number): Promise<Array<GeniusSongEntry>> => {
   const results = await API.graphql({
     query: getGeniusSongsByArtistId,
-    variables: {id},
+    variables: {
+      id,
+      geniusApiKey: process.env.REACT_APP_GENIUS_API_KEY,
+    },
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<GetGeniusSongsByArtistIdQuery>;
 

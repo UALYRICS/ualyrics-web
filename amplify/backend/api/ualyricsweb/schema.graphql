@@ -139,11 +139,11 @@ type Query {
   # Triggers getlyrics Lambda that scrapes song lyrics from genius.com
   getLyrics(url: String): SongLyricsResponse @function(name: "getlyrics-${env}")
   # Queries Genius API for song details
-  getGeniusSong(id: Int): GeniusSong
+  getGeniusSong(id: Int, geniusApiKey: String): GeniusSong
   # Queries Genius API for songs matching song term
-  searchGeniusSong(term: String): [GeniusSongEntry]
+  searchGeniusSong(term: String, geniusApiKey: String): [GeniusSongEntry]
   # Queries Genius API for all songs that belong to artist
-  getGeniusSongsByArtistId(id: Int): [GeniusSongEntry]
+  getGeniusSongsByArtistId(id: Int, geniusApiKey: String): [GeniusSongEntry]
 }
 
 type SongLyricsResponse {

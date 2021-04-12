@@ -10,8 +10,8 @@ export const getLyrics = /* GraphQL */ `
   }
 `;
 export const getGeniusSong = /* GraphQL */ `
-  query GetGeniusSong($id: Int) {
-    getGeniusSong(id: $id) {
+  query GetGeniusSong($id: Int, $geniusApiKey: String) {
+    getGeniusSong(id: $id, geniusApiKey: $geniusApiKey) {
       id
       title
       url
@@ -38,8 +38,8 @@ export const getGeniusSong = /* GraphQL */ `
   }
 `;
 export const searchGeniusSong = /* GraphQL */ `
-  query SearchGeniusSong($term: String) {
-    searchGeniusSong(term: $term) {
+  query SearchGeniusSong($term: String, $geniusApiKey: String) {
+    searchGeniusSong(term: $term, geniusApiKey: $geniusApiKey) {
       id
       title
       url
@@ -57,8 +57,8 @@ export const searchGeniusSong = /* GraphQL */ `
   }
 `;
 export const getGeniusSongsByArtistId = /* GraphQL */ `
-  query GetGeniusSongsByArtistId($id: Int) {
-    getGeniusSongsByArtistId(id: $id) {
+  query GetGeniusSongsByArtistId($id: Int, $geniusApiKey: String) {
+    getGeniusSongsByArtistId(id: $id, geniusApiKey: $geniusApiKey) {
       id
       title
       url

@@ -1363,6 +1363,7 @@ export type GetLyricsQuery = {
 
 export type GetGeniusSongQueryVariables = {
   id?: number | null,
+  geniusApiKey?: string | null,
 };
 
 export type GetGeniusSongQuery = {
@@ -1398,6 +1399,7 @@ export type GetGeniusSongQuery = {
 
 export type SearchGeniusSongQueryVariables = {
   term?: string | null,
+  geniusApiKey?: string | null,
 };
 
 export type SearchGeniusSongQuery = {
@@ -1422,6 +1424,7 @@ export type SearchGeniusSongQuery = {
 
 export type GetGeniusSongsByArtistIdQueryVariables = {
   id?: number | null,
+  geniusApiKey?: string | null,
 };
 
 export type GetGeniusSongsByArtistIdQuery = {
