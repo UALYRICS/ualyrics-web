@@ -1,6 +1,6 @@
 {
     "identityPoolName": "ualyricsweb21abc856_identitypool_21abc856",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "ualyri21abc856",
     "userPoolName": "ualyricsweb21abc856_userpool_21abc856",
     "autoVerifiedAttributes": [
@@ -45,12 +45,11 @@
             "Arn"
         ]
     },
-    "useDefault": "manual",
-    "thirdPartyAuth": false,
+    "useDefault": "defaultSocial",
     "userPoolGroups": true,
     "adminQueries": false,
     "triggers": "{}",
-    "hostedUI": false,
+    "hostedUI": true,
     "userPoolGroupList": [
         "Admin"
     ],
@@ -60,5 +59,13 @@
         "Ref": "AWS::StackId"
     },
     "permissions": [],
-    "dependsOn": []
+    "dependsOn": [],
+    "hostedUIDomainName": "ualyrics-derv-domain-prefix",
+    "authProvidersUserPool": [
+        "Facebook",
+        "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.dev.ualyrics.com/signin/\"],\"LogoutURLs\":[\"https://www.dev.ualyrics.com/signout/\"]}",
+    "authProviders": []
 }
