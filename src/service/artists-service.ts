@@ -2,7 +2,7 @@ import { Char } from "../models/char";
 import { Artist } from "../models";
 import { API } from "aws-amplify";
 import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
-import { getArtistsByFirstLetter, getArtist } from "../graphql/queries";
+import { getArtistsByFirstLetter } from "../graphql/queries";
 import { createArtist as createArtistMutation } from "../graphql/mutations";
 import { CreateArtistInput, CreateArtistMutation, GetArtistsByFirstLetterQuery, GetArtistQuery } from "../API";
 import { mapResultDataToArtist, mapSingleArtistResultToArtist } from "../mappers/mappers";
@@ -27,6 +27,45 @@ export async function createArtistIfNotExists(artist: Artist): Promise<string>{
 }
 
 export async function getArtistById(artistId: string): Promise<Artist> {
+  const getArtist = /* GraphQL */ `
+    query GetArtist($id: ID!) {
+      getArtist(id: $id) {
+        id
+        geniusId
+        title
+        description
+        thumbnailUrl
+        albums {
+          items {
+            id
+            geniusId
+            title
+            thumbnailUrl
+          }
+          nextToken
+        }
+        songs {
+          items {
+            id
+            artistId
+            albumId
+            geniusId
+            title
+            artistName
+            albumName
+            imageUrl
+            translations {
+              items {
+                id
+              }
+            }
+          }
+          nextToken
+        }
+      }
+    }
+  `;
+
   const result = await API.graphql({
     query: getArtist,
     variables: {
