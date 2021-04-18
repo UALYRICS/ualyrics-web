@@ -6,7 +6,7 @@ export const SocialToolbar: FunctionComponent<{}> = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light rounded mb-2">
       <div className="mr-auto"></div>
-      <div className="mr-auto">Слідкуйте за нами у вашій улюбленій соціальній мережі!</div>
+      <div className="mr-auto"><small>Слідкуйте за нами у соціальних мережах!</small></div>
       <div className="float-right">
         <a className="btn btn-light" href="https://web.facebook.com/ualyrics" target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faFacebook}/>

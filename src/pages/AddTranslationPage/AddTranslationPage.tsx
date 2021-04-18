@@ -62,6 +62,10 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     }));
   }
 
+  if(!song || !lyrics){
+    return <></>;
+  }
+
   return (
     <>
       <SongDetails song={song}/>
