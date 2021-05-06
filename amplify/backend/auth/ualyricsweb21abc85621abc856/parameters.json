@@ -1,6 +1,6 @@
 {
     "identityPoolName": "ualyricsweb21abc856_identitypool_21abc856",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "ualyri21abc856",
     "userPoolName": "ualyricsweb21abc856_userpool_21abc856",
     "autoVerifiedAttributes": [
