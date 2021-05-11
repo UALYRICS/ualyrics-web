@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Auth } from 'aws-amplify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 // To federated sign in from Facebook
 
 declare global {
@@ -86,6 +88,6 @@ export const SignInWithFacebook = () => {
     }
 
     return (
-        <button onClick={signIn} className="btn btn-primary">Facebook login</button>
+        <button onClick={signIn} className="btn btn-light form-control"><FontAwesomeIcon icon={faFacebook} style={{marginRight: '5px'}}/>Продовжити з Facebook</button>
     );
 }

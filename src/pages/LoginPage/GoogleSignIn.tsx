@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Auth } from 'aws-amplify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 
 declare global {
   interface Window {
@@ -67,6 +69,6 @@ export const SignInWithGoogle = () => {
     }
 
     return (
-        <button onClick={signIn} className="btn btn-primary">Google login</button>
+        <button onClick={signIn} className="btn btn-light form-control"><FontAwesomeIcon icon={faGoogle} style={{marginRight: '5px'}}/>Продовжити з Google</button>
     );
 }

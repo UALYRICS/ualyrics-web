@@ -1,0 +1,71 @@
+.social-button {
+  margin-bottom: 15px;
+}
+
+.card {
+  margin-top: 30px;
+}
+
+.card-body {
+  padding: 6rem;
+}
+
+.fat-line {
+  width: 95px;
+  border: 1px solid #000000;
+}
+
+.slim-line {
+  border-color: #333333;
+}
+
+.card-title {
+  margin-right: -50px;
+}
+
+.card-title-text {
+  margin-left: 25px;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.left-block-title {
+  margin-bottom: 30px;
+}
+
+.left-block-text {
+  font-size: 20px;
+}
+
+.or-block{
+  padding: 20px 0 60px;
+}
+
+.horizontal-line {
+  display:inline-block;
+  width: 83px;
+  vertical-align: middle;
+}
+
+.card-title {
+  margin-bottom: 30px;
+}
+
+.alignleft {
+  float: left;
+  width:33.33333%;
+  text-align:left;
+}
+
+.aligncenter {
+  float: left;
+  width:33.33333%;
+  text-align:center;
+}
+
+.alignright {
+ float:right;
+ width: 33.33333%;
+ text-align: right;
+}

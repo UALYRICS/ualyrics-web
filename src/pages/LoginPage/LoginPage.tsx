@@ -1,55 +1,37 @@
-import React, { FunctionComponent, useState } from 'react';
-import { Auth } from "aws-amplify";
+import React, { FunctionComponent } from 'react';
+
+
 import { SignInWithFacebook } from './FacebookSignIn';
 import { SignInWithGoogle } from './GoogleSignIn';
+import { UaLyricsSignIn } from './UaLyricsSignIn';
+import './LoginPage.css';
 
 export const LoginPage : FunctionComponent<{}> = () => {
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  function handleSignIn(event) {
-    event.preventDefault();
-    Auth.signIn({ username, password })
-      .then(user => console.log(user))
-      .catch(err => console.log(err));
-  };
-
   return (
-    <>
-      
-      <form className="authentication__form">
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Імя користувача</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            placeholder="Username"
-            onChange={(event) => setUsername(event.target.value)}
-            className="form-control"
-          />
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Пароль</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password"
-            onChange={(event) => setPassword(event.target.value)}
-            className="form-control"
-          />
-        </div>
-        <button type="submit" onClick={handleSignIn} className="btn btn-primary">Увійти</button>
-      </form>
-      <div>
-        <SignInWithFacebook />
+    <div className="row">
+      <div className="col-6 my-auto">
+        <h3 className="left-block-title">UALYRICS</h3>
+        <p className="left-block-text">Найамбітніший проект з перекладу текстів пісень українською!</p>
       </div>
-      <div>
-        <SignInWithGoogle />
+      <div className="col-6">
+        <div className="card">
+          <div className="card-body">
+            <div className="card-title float-right">
+              <hr className="horizontal-line fat-line" />
+              <h5 className="card-title-text">Увійти</h5>
+            </div>
+            <div className="social-button"><SignInWithGoogle /></div>
+            <div className="social-button"><SignInWithFacebook /></div>
+            <div className="or-block">
+              <span className="alignleft"><hr className="horizontal-line slim-line"/></span>
+              <span className="aligncenter"><h6>або</h6></span>
+              <span className="alignright"><hr className="horizontal-line slim-line"/></span>
+            </div>
+            <UaLyricsSignIn/>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
