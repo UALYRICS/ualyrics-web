@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { SongDetails } from "../../componenets/Song/SongDetails";
 import { LyricsLine, Song } from '../../models';
 import { getSongById } from "../../service/song-service";
-import { withAuthenticator } from "@aws-amplify/ui-react";
+import { ConfirmSignIn, ConfirmSignUp, ForgotPassword, RequireNewPassword, SignUp, VerifyContact, withAuthenticator } from 'aws-amplify-react';
 import { SongLyricsForm } from "./SongLyricsForm";
 import { createTranslation, getTranslationById } from "../../service/translations-service";
 import { useHistory } from "react-router"
-
 import { Auth } from "aws-amplify";
+import { LoginPage } from "../LoginPage/LoginPage";
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams();
@@ -76,4 +76,14 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
   )
 }
 
-export default withAuthenticator(AddTranslationPage);
+//export default withAuthenticator(AddTranslationPage);
+
+export default withAuthenticator(AddTranslationPage, false, [
+  <LoginPage/>,
+  <ConfirmSignIn/>,
+  <VerifyContact/>,
+  <SignUp/>,
+  <ConfirmSignUp/>,
+  <ForgotPassword/>,
+  <RequireNewPassword />
+]);

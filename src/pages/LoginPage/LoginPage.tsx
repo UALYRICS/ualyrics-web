@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 
-
 import { SignInWithFacebook } from './FacebookSignIn';
 import { SignInWithGoogle } from './GoogleSignIn';
 import { UaLyricsSignIn } from './UaLyricsSignIn';

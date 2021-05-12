@@ -35,7 +35,7 @@ export const UaLyricsSignIn: FunctionComponent<{}> = () => {
           onChange={(event) => setPassword(event.target.value)}
           className="form-control"
         />
-        <div className="text-center"><a href="/"><small style={{color: 'black'}}>Я забув пароль</small></a></div>
+        <div className="text-center"><small style={{color: 'black'}}>Я забув пароль</small></div>
       </div>
       <button type="submit" onClick={handleSignIn} className="btn btn-light form-control">Увійти</button>
     </form>
