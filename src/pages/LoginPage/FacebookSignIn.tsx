@@ -56,7 +56,8 @@ export const SignInWithFacebook = () => {
 
                 Auth.federatedSignIn('facebook', { token: accessToken, expires_at }, user)
                 .then(credentials => {
-                    console.log(credentials);
+                    //TODO: Remove after this fix is out: https://github.com/aws-amplify/amplify-js/issues/6928
+                    window.location.reload();
                 });
             });
         }

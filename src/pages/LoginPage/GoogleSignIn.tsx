@@ -43,8 +43,10 @@ export const SignInWithGoogle = () => {
             'google',
             { token: id_token, expires_at },
             user
-        );
-        console.log('credentials', credentials);
+        ).then(credentials => {
+            //TODO: Remove after this fix is out: https://github.com/aws-amplify/amplify-js/issues/6928
+            window.location.reload();
+        });
     }
 
     const createScript = () => {
