@@ -1,12 +1,18 @@
 {
   "auth": {
+    "ualyricswebd8c7b1d8": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    },
     "userPoolGroups": {
       "service": "Cognito-UserPool-Groups",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "ualyricsweb21abc85621abc856",
+          "resourceName": "ualyricswebd8c7b1d8",
           "attributes": [
             "UserPoolId",
             "AppClientIDWeb",
@@ -15,12 +21,6 @@
           ]
         }
       ]
-    },
-    "ualyricsweb21abc85621abc856": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
     }
   },
   "api": {
@@ -40,7 +40,7 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authualyricsweb21abc85621abc856"
+                "userPoolId": "ualyricswebd8c7b1d8"
               }
             }
           ]
@@ -62,7 +62,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "ualyricsweb21abc85621abc856",
+          "resourceName": "ualyricswebd8c7b1d8",
           "attributes": [
             "UserPoolId"
           ]

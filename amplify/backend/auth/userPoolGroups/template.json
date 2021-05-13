@@ -1,23 +1,23 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {
-        "authualyricsweb21abc85621abc856UserPoolId": {
+        "authualyricswebd8c7b1d8UserPoolId": {
             "Type": "String",
-            "Default": "authualyricsweb21abc85621abc856UserPoolId"
+            "Default": "authualyricswebd8c7b1d8UserPoolId"
         },
         
-        "authualyricsweb21abc85621abc856IdentityPoolId": {
+        "authualyricswebd8c7b1d8IdentityPoolId": {
             "Type": "String",
-            "Default": "authualyricsweb21abc85621abc856IdentityPoolId"
+            "Default": "authualyricswebd8c7b1d8IdentityPoolId"
         },
         
-        "authualyricsweb21abc85621abc856AppClientID": {
+        "authualyricswebd8c7b1d8AppClientID": {
             "Type": "String",
-            "Default": "authualyricsweb21abc85621abc856AppClientID"
+            "Default": "authualyricswebd8c7b1d8AppClientID"
         },
-        "authualyricsweb21abc85621abc856AppClientIDWeb": {
+        "authualyricswebd8c7b1d8AppClientIDWeb": {
             "Type": "String",
-            "Default": "authualyricsweb21abc85621abc856AppClientIDWeb"
+            "Default": "authualyricswebd8c7b1d8AppClientIDWeb"
         },
         "AuthRoleArn": {
             "Type": "String"
@@ -55,7 +55,7 @@
               },
               
               "UserPoolId" : {
-                "Ref": "authualyricsweb21abc85621abc856UserPoolId"
+                "Ref": "authualyricswebd8c7b1d8UserPoolId"
               } 
             }
         },
@@ -68,7 +68,7 @@
                         "",
                         [
                           {
-                            "Ref": "authualyricsweb21abc85621abc856UserPoolId"
+                            "Ref": "authualyricswebd8c7b1d8UserPoolId"
                           },
                           "-AdminGroupRole"
                         ]
@@ -85,7 +85,7 @@
                             },
                             "Action": "sts:AssumeRoleWithWebIdentity",
                             "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authualyricsweb21abc85621abc856IdentityPoolId"}},
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authualyricswebd8c7b1d8IdentityPoolId"}},
                               "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
                             }
                         }
@@ -111,7 +111,7 @@
                                 "",
                                 [
                                   
-                                  "ualyricsweb21abc85621abc856",
+                                  "ualyricswebd8c7b1d8",
                                   "-ExecutionRole-",
                                   {
                                     "Ref": "env"
@@ -270,16 +270,16 @@
                     "Ref": "UnauthRoleArn"
                 },
                 "identityPoolId": {
-                    "Ref": "authualyricsweb21abc85621abc856IdentityPoolId"
+                    "Ref": "authualyricswebd8c7b1d8IdentityPoolId"
                 },
                 "userPoolId": {
-                    "Ref": "authualyricsweb21abc85621abc856UserPoolId"
+                    "Ref": "authualyricswebd8c7b1d8UserPoolId"
                 },
                 "appClientIDWeb": {
-                    "Ref": "authualyricsweb21abc85621abc856AppClientIDWeb"
+                    "Ref": "authualyricswebd8c7b1d8AppClientIDWeb"
                 },
                 "appClientID": {
-                    "Ref": "authualyricsweb21abc85621abc856AppClientID"
+                    "Ref": "authualyricswebd8c7b1d8AppClientID"
                 },
                 "region": {
                     "Ref": "AWS::Region"

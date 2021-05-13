@@ -7,7 +7,7 @@
   "CreateAPIKey": 1,
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
-      "authualyricsweb21abc85621abc856",
+      "authualyricswebd8c7b1d8",
       "Outputs.UserPoolId"
     ]
   },

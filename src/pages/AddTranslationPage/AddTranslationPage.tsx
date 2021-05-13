@@ -76,8 +76,6 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
   )
 }
 
-//export default withAuthenticator(AddTranslationPage);
-
 export default withAuthenticator(AddTranslationPage, false, [
   <LoginPage/>,
   <ConfirmSignIn/>,
