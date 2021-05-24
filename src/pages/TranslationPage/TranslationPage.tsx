@@ -6,7 +6,7 @@ import { getTranslationById } from "../../service/translations-service";
 import { TranslatedLyrics } from "./TranslatedLyrics";
 
 export const TranslationPage: FunctionComponent<{}> = () => {
-  let { translationId } = useParams();
+  let { translationId } = useParams<{translationId: string}>();
   const [translation, setTranslation] = useState<Translation>();
 
   useEffect(() => {

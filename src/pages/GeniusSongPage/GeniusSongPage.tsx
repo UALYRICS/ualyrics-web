@@ -4,12 +4,12 @@ import { getGeniusSong } from '../../service/song-service';
 import { Song } from '../../models';
 
 export const GeniusSongPage: FunctionComponent<{}> = () => {
-  let { songId } = useParams();
+  let { songId } = useParams<{songId: string}>();
   const [song, setSong] = useState<Song>();
 
   useEffect(() => {
     async function getData() {
-      const songData = await getGeniusSong(songId);
+      const songData = await getGeniusSong(parseInt(songId));
       setSong(songData);
     }
     getData();

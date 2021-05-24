@@ -8,7 +8,7 @@ import { SongTranslationsList } from "./SongTranslationsList";
 import {Link} from "react-router-dom";
 
 export const SongPage: FunctionComponent<{}> = () => {
-  let { songId } = useParams();
+  let { songId } = useParams<{songId: string}>();
   const [song, setSong] = useState<Song>();
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { getArtistById } from "../../service/artists-service";
 import { useParams } from "react-router-dom";
 
 export const ArtistPage : FunctionComponent<{}> = () => {
-  let { artistId } = useParams();
+  let { artistId } = useParams<{artistId: string}>();
   const [artist, setArtist] = useState<Artist>();
 
   useEffect(() => {

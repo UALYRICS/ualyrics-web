@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {AmplifyAuthenticator, AmplifySignUp, AmplifySignIn, AmplifyConfirmSignUp} from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { I18n } from 'aws-amplify';
+import {SignInWithFacebook} from '../../pages/LoginPage/FacebookSignIn';
+import {SignInWithGoogle} from '../../pages/LoginPage/GoogleSignIn';
 
 const authScreenLabels = {
     en: {
@@ -18,7 +20,7 @@ const authScreenLabels = {
 I18n.setLanguage('en');
 I18n.putVocabularies(authScreenLabels);
 
-export const AuthWrapper = ({children, refresh}) => {
+export const AuthWrapper = ({children}) => {
 
   const [authState, setAuthState] = useState<AuthState>();
   const [user, setUser] = useState<object | undefined>();
@@ -27,7 +29,6 @@ export const AuthWrapper = ({children, refresh}) => {
     return onAuthUIStateChange((nextAuthState, authData) => {
         setAuthState(nextAuthState);
         setUser(authData);
-        refresh();
     });
 }, []);
 
@@ -54,7 +55,12 @@ return authState === AuthState.SignedIn && user ? (
             }
           ]}
           submitButtonText="Увійти"
-        ></AmplifySignIn>
+        >
+          <div slot="federated-buttons">
+            <SignInWithFacebook/>
+            <SignInWithGoogle/>
+            </div>
+        </AmplifySignIn>
       <AmplifySignUp
         usernameAlias="email"
         slot="sign-up"

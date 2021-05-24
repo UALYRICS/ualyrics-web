@@ -8,7 +8,7 @@ import { BrowseTools } from "../Page/BrowseTools";
 import { ArtistsList } from "./ArtistsList";
 
 export const FirstLetterPage: FunctionComponent<{}> = () => {
-  let { firstLetter } = useParams();
+  let { firstLetter } = useParams<{firstLetter: string}>();
   const [artists, setArtists] = useState<Array<Artist>>([]);
 
   useEffect(() => {
