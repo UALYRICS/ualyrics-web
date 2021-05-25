@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {AmplifyAuthenticator, AmplifySignUp, AmplifySignIn, AmplifyConfirmSignUp} from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { I18n } from 'aws-amplify';
-import {SignInWithFacebook} from '../../pages/LoginPage/FacebookSignIn';
-import {SignInWithGoogle} from '../../pages/LoginPage/GoogleSignIn';
 
 const authScreenLabels = {
     en: {
@@ -14,6 +12,7 @@ const authScreenLabels = {
         'Have an account?': 'Зареєстровані?',
         'Sign in':'Увійти',
         'Back to Sign In':'Назад на сторінку входу',
+        'Sign in with AWS':'Увійти з Facebook або Google'
     }
 };
 
@@ -56,10 +55,6 @@ return authState === AuthState.SignedIn && user ? (
           ]}
           submitButtonText="Увійти"
         >
-          <div slot="federated-buttons">
-            <SignInWithFacebook/>
-            <SignInWithGoogle/>
-            </div>
         </AmplifySignIn>
       <AmplifySignUp
         usernameAlias="email"

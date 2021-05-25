@@ -18,14 +18,14 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
 
   useEffect(() => {
     async function getData() {
-      const currentUser = await Auth.currentUserCredentials();
+      const currentUser = await Auth.currentUserInfo();
       if(!currentUser){
         return;
       }
       const songData = await getSongById(songId);
       setSong(songData);
   
-      const existingTranslation = songData.translations?.find(t => t?.owner === "currentUser.username");
+      const existingTranslation = songData.translations?.find(t => t?.owner === currentUser.username);
       if(existingTranslation){
         const translation = await getTranslationById(existingTranslation.id);
         setLyrics(translation.lyrics as Array<LyricsLine>);
