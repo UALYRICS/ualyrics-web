@@ -16,6 +16,7 @@ import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 
 import './App.css';
 import { TranslationPage } from '../pages/TranslationPage/TranslationPage';
+import { AuthWrapper } from '../componenets/Auth/AuthWrapper';
 
 export const App: FunctionComponent<{}> = () => {
   return (
@@ -38,7 +39,9 @@ export const App: FunctionComponent<{}> = () => {
         </Route>
         <Route path="/songs/:songId/translate">
           <Page>
-            <AddTranslationPage />
+            <AuthWrapper>
+              <AddTranslationPage />
+            </AuthWrapper>
           </Page>
         </Route>
         <Route path="/translations/:translationId">

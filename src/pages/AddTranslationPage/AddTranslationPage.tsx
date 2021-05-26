@@ -7,7 +7,6 @@ import { SongLyricsForm } from "./SongLyricsForm";
 import { createTranslation, getTranslationById } from "../../service/translations-service";
 import { useHistory } from "react-router"
 import { Auth } from "aws-amplify";
-import { AuthWrapper } from "../../componenets/Auth/AuthWrapper";
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
@@ -64,12 +63,12 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
   }
 
   return (
-    <AuthWrapper>
+    <>
       <SongDetails song={song}/>
       <SongLyricsForm lyrics={lyrics} handleChange={handleChange} />
       <br/>
       <div><button onClick={handleSave}>Опублікувати переклад</button></div>
-    </AuthWrapper>
+    </>
   )
 }
 
