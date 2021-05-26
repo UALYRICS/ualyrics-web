@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "ualyricswebd8c7b1d8": {}
+        "ualyricswebd8c7b1d8": {},
+        "userPoolGroups": {}
       },
       "function": {
         "getlyrics": {

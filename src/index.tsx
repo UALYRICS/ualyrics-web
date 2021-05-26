@@ -6,7 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
 
-Amplify.configure(config)
+config.oauth.redirectSignIn = `${window.location.origin}/`;
+config.oauth.redirectSignOut = `${window.location.origin}/`;
+
+Amplify.configure(config);
 
 ReactDOM.render(
   <React.StrictMode>
