@@ -3,13 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './App/App';
 import reportWebVitals from './reportWebVitals';
-import Amplify from 'aws-amplify'
+import Amplify, { Hub } from 'aws-amplify'
 import config from './aws-exports'
 
 config.oauth.redirectSignIn = `${window.location.origin}/`;
 config.oauth.redirectSignOut = `${window.location.origin}/`;
 
 Amplify.configure(config);
+
+// Workaround for: https://github.com/aws-amplify/amplify-js/issues/7081
+Hub.listen('auth', ({ payload: { event } }) => {
+  if(event === 'cognitoHostedUI'){
+    console.log('Applying redirect from hosted ui patch.');
+    localStorage.setItem('amplify-redirected-from-hosted-ui','false');
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
