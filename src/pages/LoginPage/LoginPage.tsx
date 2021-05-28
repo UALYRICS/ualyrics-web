@@ -9,10 +9,6 @@ import { IAuthPieceProps, IAuthPieceState } from 'aws-amplify-react/lib-esm/Auth
 
 export class LoginPage extends AuthPiece<IAuthPieceProps, IAuthPieceState> {
 
-  constructor(props: IAuthPieceProps) {
-		super(props);
-	}
-
   render() {
     if (!['signIn', 'signedOut', 'signedUp'].includes(this.props.authState!)) {
       return <></>;

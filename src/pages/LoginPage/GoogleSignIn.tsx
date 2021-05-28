@@ -17,7 +17,7 @@ export const SignInWithGoogle = () => {
             null;
 
         if (!ga) createScript();
-    }, [])
+    })
 
     const signIn = () => {
         const ga = window.gapi.auth2.getAuthInstance();
@@ -39,7 +39,7 @@ export const SignInWithGoogle = () => {
             name: profile.getName()
         };
 
-        const credentials = await Auth.federatedSignIn(
+        await Auth.federatedSignIn(
             'google',
             { token: id_token, expires_at },
             user

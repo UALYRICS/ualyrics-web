@@ -15,7 +15,7 @@ export const SignInWithFacebook = () => {
 
     useEffect(() => {
         if (!window.FB) createScript();
-    }, [])
+    })
 
     const signIn = () => {
         const fb = window.FB;
@@ -69,7 +69,6 @@ export const SignInWithFacebook = () => {
     }
 
     const initFB = () => {
-        const fb = window.FB;
         console.log('FB SDK initialized');
     }
 

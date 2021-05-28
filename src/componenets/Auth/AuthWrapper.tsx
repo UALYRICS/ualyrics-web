@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {AmplifyAuthenticator, AmplifySignUp, AmplifySignIn, AmplifyConfirmSignUp} from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { Hub, I18n } from 'aws-amplify';
+import { I18n } from 'aws-amplify';
 
 const authScreenLabels = {
     en: {
