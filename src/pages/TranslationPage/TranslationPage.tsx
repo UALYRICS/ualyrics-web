@@ -21,8 +21,6 @@ export const TranslationPage: FunctionComponent<{}> = () => {
     return <></>;
   }
 
-  console.log(translation.lyrics);
-
   return (
     <>
       <SongDetails song={translation?.song}/>

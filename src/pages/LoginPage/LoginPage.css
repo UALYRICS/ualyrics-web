@@ -1,13 +1,15 @@
+amplify-authenticator {
+  --container-height: 0px;
+  --amplify-primary-contrast: #000;
+  --footer-color: #000;
+}
+
 .social-button {
   margin-bottom: 15px;
 }
 
 .card {
   margin-top: 30px;
-}
-
-.card-body {
-  padding: 6rem;
 }
 
 .fat-line {

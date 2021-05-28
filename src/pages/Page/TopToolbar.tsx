@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { AuthStatus } from '../../componenets/Auth/AuthStatus';
 import { Logo } from './Logo/Logo';
 import { SearchBar } from './SearchBar';
 
@@ -12,6 +13,7 @@ export const TopToolbar: FunctionComponent<{}> = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <SearchBar />
+        <AuthStatus/>
       </div>
     </nav>
   );

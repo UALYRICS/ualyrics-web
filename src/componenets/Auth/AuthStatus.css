@@ -1,0 +1,18 @@
+.circle {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #000;
+  text-align: center;
+  background: #F1F1F1;
+}
+
+.auth-button {
+  color: #000;
+}
+
+.auth-button:hover {
+  color: #000;
+}
