@@ -17,6 +17,7 @@ export const createTranslation = async (input: CreateTranslationInput): Promise<
     id: translationResult?.id,
     createdAt: translationResult?.createdAt,
     owner: translationResult?.owner,
+    ownerName: translationResult?.ownerName,
     rating: translationResult?.rating,
     lyrics: translationResult?.lyrics,
     song: {
