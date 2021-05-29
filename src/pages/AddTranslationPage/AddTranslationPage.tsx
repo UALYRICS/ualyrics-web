@@ -7,6 +7,7 @@ import { SongLyricsForm } from "./SongLyricsForm";
 import { createTranslation, getTranslationById } from "../../service/translations-service";
 import { useHistory } from "react-router"
 import useAuth from "../../componenets/Auth/UseAuth";
+import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
@@ -67,6 +68,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
 
   return (
     <>
+      <LeftTitleSection title="Додати переклад"/>
       <SongDetails song={song}/>
       <SongLyricsForm lyrics={lyrics} handleChange={handleChange} />
       <br/>

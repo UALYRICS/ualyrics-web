@@ -1,5 +1,6 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
 import { useParams } from "react-router-dom";
+import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
 import { SongDetails } from "../../componenets/Song/SongDetails";
 import { LyricsLine, Translation } from "../../models";
 import { getTranslationById } from "../../service/translations-service";
@@ -23,6 +24,7 @@ export const TranslationPage: FunctionComponent<{}> = () => {
 
   return (
     <>
+      <LeftTitleSection title="Переклад"/>
       <SongDetails song={translation?.song}/>
       <TranslatedLyrics lyrics={translation?.lyrics as Array<LyricsLine>} />
     </>

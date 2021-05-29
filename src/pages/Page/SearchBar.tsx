@@ -17,7 +17,7 @@ export const SearchBar: FunctionComponent<{}> = () => {
   return (
     <form onSubmit={handleSubmit} className="input-group my-2 my-lg-0">
       <input className="form-control mr-sm-2 ml-sm-2" placeholder="Назва чи слова пісні" value={searchTerm} onChange={handleTermChange} aria-label="Пошук" />
-      <button className="btn btn-outline-success my-sm-0" type="submit">Пошук</button>
+      <button className="btn btn-outline-dark btn-light my-sm-0" type="submit">Пошук</button>
     </form>
   );
 };

@@ -1,0 +1,20 @@
+.section-title {
+  margin: 60px 0px;
+}
+
+.section-title-text {
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.horizontal-line {
+  display:inline-block;
+  width: 83px;
+  vertical-align: middle;
+}
+
+.fat-line {
+  width: 95px;
+  border: 1px solid #000000;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect, FunctionComponent } from "react";
 import { Translation } from "../../models";
 import { Storage } from 'aws-amplify';
 import {Link} from "react-router-dom";
+import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
 
 export const RecentlyAdded: FunctionComponent<{}> = () => {
   const [recentlyAdded, setRecentlyAdded] = useState(new Array<Translation>());
@@ -22,7 +23,7 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
 
   return (
     <>
-      <div><h2>Останні додані переклади</h2></div>
+      <RightTitleSection title="Останні додані переклади"/>
       {recentlyAdded.map((translation, idx) => (
         <div key={idx} className="row mt-3 ">
           <div className="col-sm-5 bg-light">

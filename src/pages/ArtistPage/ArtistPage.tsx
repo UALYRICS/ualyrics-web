@@ -3,6 +3,7 @@ import { Artist } from '../../models';
 import { ArtistComponent } from './ArtistComponent';
 import { getArtistById } from "../../service/artists-service";
 import { useParams } from "react-router-dom";
+import { LeftTitleSection } from '../../componenets/Decor/LeftTitleSection';
 
 export const ArtistPage : FunctionComponent<{}> = () => {
   let { artistId } = useParams<{artistId: string}>();
@@ -25,6 +26,9 @@ export const ArtistPage : FunctionComponent<{}> = () => {
   }
 
   return (
-    <ArtistComponent artist={artist!}/>
+    <>
+      <LeftTitleSection title="Виконавець"/>
+      <ArtistComponent artist={artist!}/>
+    </>
   )
 };

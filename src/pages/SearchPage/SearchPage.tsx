@@ -6,6 +6,7 @@ import { BrowseTools } from "../Page/BrowseTools";
 import { GeniusSongsList } from "./GeniusSongsList";
 
 import './SearchPage.css';
+import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
 
 export const SearchPage: FunctionComponent<{}> = () => {
   let query = useQuery();
@@ -26,6 +27,7 @@ export const SearchPage: FunctionComponent<{}> = () => {
   return (
     <>
       <BrowseTools />
+      <RightTitleSection title="Пісні"/>
       <GeniusSongsList geniusSongs={ searchResults } />
     </>
   );

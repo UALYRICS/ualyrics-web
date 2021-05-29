@@ -12,24 +12,8 @@ amplify-authenticator {
   margin-top: 30px;
 }
 
-.fat-line {
-  width: 95px;
-  border: 1px solid #000000;
-}
-
 .slim-line {
   border-color: #333333;
-}
-
-.card-title {
-  margin-right: -50px;
-}
-
-.card-title-text {
-  margin-left: 25px;
-  display: inline-block;
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
 .left-block-title {
@@ -42,12 +26,6 @@ amplify-authenticator {
 
 .or-block{
   padding: 20px 0 60px;
-}
-
-.horizontal-line {
-  display:inline-block;
-  width: 83px;
-  vertical-align: middle;
 }
 
 .card-title {

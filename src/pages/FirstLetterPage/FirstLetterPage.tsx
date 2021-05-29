@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { BrowseTools } from "../Page/BrowseTools";
 
 import { ArtistsList } from "./ArtistsList";
+import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
 
 export const FirstLetterPage: FunctionComponent<{}> = () => {
   let { firstLetter } = useParams<{firstLetter: string}>();
@@ -26,6 +27,7 @@ export const FirstLetterPage: FunctionComponent<{}> = () => {
   return (
     <>
       <BrowseTools />
+      <RightTitleSection title="Виконавці"/>
       <ArtistsList artists={ artists } />
     </>
   );
