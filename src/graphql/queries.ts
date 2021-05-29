@@ -75,33 +75,6 @@ export const getGeniusSongsByArtistId = /* GraphQL */ `
     }
   }
 `;
-export const listArtists = /* GraphQL */ `
-  query ListArtists(
-    $filter: ModelArtistFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listArtists(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        geniusId
-        firstLetter
-        title
-        description
-        thumbnailUrl
-        createdAt
-        updatedAt
-        albums {
-          nextToken
-        }
-        songs {
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
 export const getArtist = /* GraphQL */ `
   query GetArtist($id: ID!) {
     getArtist(id: $id) {
@@ -144,6 +117,33 @@ export const getArtist = /* GraphQL */ `
     }
   }
 `;
+export const listArtists = /* GraphQL */ `
+  query ListArtists(
+    $filter: ModelArtistFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listArtists(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        geniusId
+        firstLetter
+        title
+        description
+        thumbnailUrl
+        createdAt
+        updatedAt
+        albums {
+          nextToken
+        }
+        songs {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getArtistsByFirstLetter = /* GraphQL */ `
   query GetArtistsByFirstLetter(
     $firstLetter: String
@@ -181,29 +181,6 @@ export const getArtistsByFirstLetter = /* GraphQL */ `
     }
   }
 `;
-export const listAlbums = /* GraphQL */ `
-  query ListAlbums(
-    $filter: ModelAlbumFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listAlbums(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        artistId
-        geniusId
-        title
-        thumbnailUrl
-        createdAt
-        updatedAt
-        songs {
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
 export const getAlbum = /* GraphQL */ `
   query GetAlbum($id: ID!) {
     getAlbum(id: $id) {
@@ -233,6 +210,29 @@ export const getAlbum = /* GraphQL */ `
     }
   }
 `;
+export const listAlbums = /* GraphQL */ `
+  query ListAlbums(
+    $filter: ModelAlbumFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAlbums(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        artistId
+        geniusId
+        title
+        thumbnailUrl
+        createdAt
+        updatedAt
+        songs {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getAlbumsByArtistId = /* GraphQL */ `
   query GetAlbumsByArtistId(
     $artistId: ID
@@ -259,56 +259,6 @@ export const getAlbumsByArtistId = /* GraphQL */ `
         createdAt
         updatedAt
         songs {
-          nextToken
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const listSongs = /* GraphQL */ `
-  query ListSongs(
-    $filter: ModelSongFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listSongs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        artistId
-        albumId
-        geniusId
-        title
-        artistName
-        albumName
-        imageUrl
-        lyrics
-        referents {
-          geniusId
-          content
-        }
-        createdAt
-        updatedAt
-        artist {
-          id
-          geniusId
-          firstLetter
-          title
-          description
-          thumbnailUrl
-          createdAt
-          updatedAt
-        }
-        album {
-          id
-          artistId
-          geniusId
-          title
-          thumbnailUrl
-          createdAt
-          updatedAt
-        }
-        translations {
           nextToken
         }
       }
@@ -372,6 +322,7 @@ export const getSong = /* GraphQL */ `
         items {
           id
           owner
+          ownerName
           createdAt
           songId
           rating
@@ -379,6 +330,56 @@ export const getSong = /* GraphQL */ `
         }
         nextToken
       }
+    }
+  }
+`;
+export const listSongs = /* GraphQL */ `
+  query ListSongs(
+    $filter: ModelSongFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSongs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        artistName
+        albumName
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        translations {
+          nextToken
+        }
+      }
+      nextToken
     }
   }
 `;
@@ -560,47 +561,12 @@ export const getSongByGeniuslId = /* GraphQL */ `
     }
   }
 `;
-export const listTranslations = /* GraphQL */ `
-  query ListTranslations(
-    $filter: ModelTranslationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTranslations(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        owner
-        createdAt
-        songId
-        rating
-        lyrics {
-          original
-          translation
-        }
-        updatedAt
-        song {
-          id
-          artistId
-          albumId
-          geniusId
-          title
-          artistName
-          albumName
-          imageUrl
-          lyrics
-          createdAt
-          updatedAt
-        }
-      }
-      nextToken
-    }
-  }
-`;
 export const getTranslation = /* GraphQL */ `
   query GetTranslation($id: ID!) {
     getTranslation(id: $id) {
       id
       owner
+      ownerName
       createdAt
       songId
       rating
@@ -651,6 +617,43 @@ export const getTranslation = /* GraphQL */ `
     }
   }
 `;
+export const listTranslations = /* GraphQL */ `
+  query ListTranslations(
+    $filter: ModelTranslationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTranslations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        owner
+        ownerName
+        createdAt
+        songId
+        rating
+        lyrics {
+          original
+          translation
+        }
+        updatedAt
+        song {
+          id
+          artistId
+          albumId
+          geniusId
+          title
+          artistName
+          albumName
+          imageUrl
+          lyrics
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getTranslationsBySongId = /* GraphQL */ `
   query GetTranslationsBySongId(
     $songId: ID
@@ -671,6 +674,7 @@ export const getTranslationsBySongId = /* GraphQL */ `
       items {
         id
         owner
+        ownerName
         createdAt
         songId
         rating
@@ -717,6 +721,7 @@ export const getTranslationsByOwner = /* GraphQL */ `
       items {
         id
         owner
+        ownerName
         createdAt
         songId
         rating
@@ -755,6 +760,7 @@ export const getComment = /* GraphQL */ `
       translation {
         id
         owner
+        ownerName
         createdAt
         songId
         rating
@@ -798,6 +804,7 @@ export const listComments = /* GraphQL */ `
         translation {
           id
           owner
+          ownerName
           createdAt
           songId
           rating
@@ -836,6 +843,7 @@ export const getCommentsByTranslationId = /* GraphQL */ `
         translation {
           id
           owner
+          ownerName
           createdAt
           songId
           rating

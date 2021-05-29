@@ -2,10 +2,11 @@ import Auth from "@aws-amplify/auth";
 import { Hub } from "@aws-amplify/core";
 import { useEffect, useState } from "react";
 
-interface CognitoUser {
+export interface CognitoUser {
   attributes: {
-    name: string
-  }
+    name: string,
+  },
+  username: string,
 }
 
 export interface UseAuthHookResponse {

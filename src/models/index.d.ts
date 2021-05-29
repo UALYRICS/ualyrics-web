@@ -118,6 +118,7 @@ export declare class Song {
 export declare class Translation {
   readonly id: string;
   readonly owner: string;
+  readonly ownerName: string;
   readonly createdAt: string;
   readonly rating: number;
   readonly lyrics: (LyricsLine | null)[];

@@ -74,6 +74,7 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
   return {
     id: translation.id,
     owner: translation.owner,
+    ownerName: translation.ownerName,
     createdAt: translation.createdAt,
     rating: translation.rating,
     lyrics: translation.lyrics,

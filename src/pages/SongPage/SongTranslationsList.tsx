@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 export const SongTranslationsList: FunctionComponent<{translations: Array<Translation | null>}> = ({translations}) => {
 
   const translationOwners = translations.map(translation => (
-    <li key={translation?.id}><Link to={`/translations/${translation?.id}`}>{translation?.owner}</Link></li>
+    <li key={translation?.id}><Link to={`/translations/${translation?.id}`}>{translation?.ownerName}</Link></li>
   ));
 
   return translationOwners.length === 0 ? (<></>) : (

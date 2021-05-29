@@ -6,7 +6,7 @@ import { getSongById } from "../../service/song-service";
 import { SongLyricsForm } from "./SongLyricsForm";
 import { createTranslation, getTranslationById } from "../../service/translations-service";
 import { useHistory } from "react-router"
-import { Auth } from "aws-amplify";
+import useAuth from "../../componenets/Auth/UseAuth";
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
@@ -14,10 +14,10 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
 
   const [song, setSong] = useState<Song>();
   const [lyrics, setLyrics] = useState<Array<LyricsLine>>([]);
+  const {currentUser} = useAuth();
 
   useEffect(() => {
     async function getData() {
-      const currentUser = await Auth.currentUserInfo();
       if(!currentUser){
         return;
       }
@@ -34,15 +34,14 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     }
 
     getData();
-  }, [songId]);
+  }, [songId, currentUser]);
 
   const handleSave = async () => {
-    const currentUser = await Auth.currentUserInfo();
-
     createTranslation({
-      songId: song?.id || '',
+      songId: song!.id,
       rating: 0,
-      owner: currentUser.username,
+      owner: currentUser!.username,
+      ownerName: currentUser!.attributes.name,
       lyrics,
     });
 

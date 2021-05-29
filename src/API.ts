@@ -156,6 +156,7 @@ export type Translation = {
   __typename: "Translation",
   id?: string,
   owner?: string,
+  ownerName?: string,
   createdAt?: string,
   songId?: string,
   rating?: number,
@@ -180,7 +181,7 @@ export type UpdateArtistInput = {
 };
 
 export type DeleteArtistInput = {
-  id?: string | null,
+  id: string,
 };
 
 export type CreateAlbumInput = {
@@ -226,7 +227,7 @@ export type UpdateAlbumInput = {
 };
 
 export type DeleteAlbumInput = {
-  id?: string | null,
+  id: string,
 };
 
 export type CreateSongInput = {
@@ -283,12 +284,13 @@ export type UpdateSongInput = {
 };
 
 export type DeleteSongInput = {
-  id?: string | null,
+  id: string,
 };
 
 export type CreateTranslationInput = {
   id?: string | null,
   owner: string,
+  ownerName: string,
   createdAt?: string | null,
   songId: string,
   rating: number,
@@ -301,6 +303,7 @@ export type LyricsLineInput = {
 };
 
 export type ModelTranslationConditionInput = {
+  ownerName?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   songId?: ModelIDInput | null,
   rating?: ModelIntInput | null,
@@ -312,6 +315,7 @@ export type ModelTranslationConditionInput = {
 export type UpdateTranslationInput = {
   id: string,
   owner?: string | null,
+  ownerName?: string | null,
   createdAt?: string | null,
   songId?: string | null,
   rating?: number | null,
@@ -319,7 +323,7 @@ export type UpdateTranslationInput = {
 };
 
 export type DeleteTranslationInput = {
-  id?: string | null,
+  id: string,
 };
 
 export type CreateCommentInput = {
@@ -361,7 +365,7 @@ export type UpdateCommentInput = {
 };
 
 export type DeleteCommentInput = {
-  id?: string | null,
+  id: string,
 };
 
 export type SongLyricsResponse = {
@@ -479,6 +483,7 @@ export type ModelSongFilterInput = {
 export type ModelTranslationFilterInput = {
   id?: ModelIDInput | null,
   owner?: ModelStringInput | null,
+  ownerName?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   songId?: ModelIDInput | null,
   rating?: ModelIntInput | null,
@@ -844,6 +849,7 @@ export type CreateSongMutation = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -924,6 +930,7 @@ export type UpdateSongMutation = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -1004,6 +1011,7 @@ export type DeleteSongMutation = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -1024,6 +1032,7 @@ export type CreateTranslationMutation = {
     __typename: "Translation",
     id: string,
     owner: string,
+    ownerName: string,
     createdAt: string,
     songId: string,
     rating: number,
@@ -1090,6 +1099,7 @@ export type UpdateTranslationMutation = {
     __typename: "Translation",
     id: string,
     owner: string,
+    ownerName: string,
     createdAt: string,
     songId: string,
     rating: number,
@@ -1156,6 +1166,7 @@ export type DeleteTranslationMutation = {
     __typename: "Translation",
     id: string,
     owner: string,
+    ownerName: string,
     createdAt: string,
     songId: string,
     rating: number,
@@ -1230,6 +1241,7 @@ export type CreateCommentMutation = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -1276,6 +1288,7 @@ export type UpdateCommentMutation = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -1322,6 +1335,7 @@ export type DeleteCommentMutation = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -1447,38 +1461,6 @@ export type GetGeniusSongsByArtistIdQuery = {
   } | null > | null,
 };
 
-export type ListArtistsQueryVariables = {
-  filter?: ModelArtistFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListArtistsQuery = {
-  listArtists?:  {
-    __typename: "ModelArtistConnection",
-    items?:  Array< {
-      __typename: "Artist",
-      id: string,
-      geniusId: number,
-      firstLetter: string,
-      title: string,
-      description?: string | null,
-      thumbnailUrl: string,
-      createdAt: string,
-      updatedAt: string,
-      albums?:  {
-        __typename: "ModelAlbumConnection",
-        nextToken?: string | null,
-      } | null,
-      songs?:  {
-        __typename: "ModelSongConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null > | null,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetArtistQueryVariables = {
   id?: string,
 };
@@ -1529,6 +1511,38 @@ export type GetArtistQuery = {
   } | null,
 };
 
+export type ListArtistsQueryVariables = {
+  filter?: ModelArtistFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListArtistsQuery = {
+  listArtists?:  {
+    __typename: "ModelArtistConnection",
+    items?:  Array< {
+      __typename: "Artist",
+      id: string,
+      geniusId: number,
+      firstLetter: string,
+      title: string,
+      description?: string | null,
+      thumbnailUrl: string,
+      createdAt: string,
+      updatedAt: string,
+      albums?:  {
+        __typename: "ModelAlbumConnection",
+        nextToken?: string | null,
+      } | null,
+      songs?:  {
+        __typename: "ModelSongConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetArtistsByFirstLetterQueryVariables = {
   firstLetter?: string | null,
   title?: ModelStringKeyConditionInput | null,
@@ -1555,33 +1569,6 @@ export type GetArtistsByFirstLetterQuery = {
         __typename: "ModelAlbumConnection",
         nextToken?: string | null,
       } | null,
-      songs?:  {
-        __typename: "ModelSongConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null > | null,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ListAlbumsQueryVariables = {
-  filter?: ModelAlbumFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListAlbumsQuery = {
-  listAlbums?:  {
-    __typename: "ModelAlbumConnection",
-    items?:  Array< {
-      __typename: "Album",
-      id: string,
-      artistId: string,
-      geniusId: number,
-      title: string,
-      thumbnailUrl: string,
-      createdAt: string,
-      updatedAt: string,
       songs?:  {
         __typename: "ModelSongConnection",
         nextToken?: string | null,
@@ -1626,6 +1613,33 @@ export type GetAlbumQuery = {
   } | null,
 };
 
+export type ListAlbumsQueryVariables = {
+  filter?: ModelAlbumFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListAlbumsQuery = {
+  listAlbums?:  {
+    __typename: "ModelAlbumConnection",
+    items?:  Array< {
+      __typename: "Album",
+      id: string,
+      artistId: string,
+      geniusId: number,
+      title: string,
+      thumbnailUrl: string,
+      createdAt: string,
+      updatedAt: string,
+      songs?:  {
+        __typename: "ModelSongConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetAlbumsByArtistIdQueryVariables = {
   artistId?: string | null,
   title?: ModelStringKeyConditionInput | null,
@@ -1649,63 +1663,6 @@ export type GetAlbumsByArtistIdQuery = {
       updatedAt: string,
       songs?:  {
         __typename: "ModelSongConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null > | null,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ListSongsQueryVariables = {
-  filter?: ModelSongFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListSongsQuery = {
-  listSongs?:  {
-    __typename: "ModelSongConnection",
-    items?:  Array< {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId: string,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
         nextToken?: string | null,
       } | null,
     } | null > | null,
@@ -1782,6 +1739,7 @@ export type GetSongQuery = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -1789,6 +1747,63 @@ export type GetSongQuery = {
       } | null > | null,
       nextToken?: string | null,
     } | null,
+  } | null,
+};
+
+export type ListSongsQueryVariables = {
+  filter?: ModelSongFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListSongsQuery = {
+  listSongs?:  {
+    __typename: "ModelSongConnection",
+    items?:  Array< {
+      __typename: "Song",
+      id: string,
+      artistId: string,
+      albumId: string,
+      geniusId: number,
+      title: string,
+      artistName: string,
+      albumName?: string | null,
+      imageUrl: string,
+      lyrics: string,
+      referents?:  Array< {
+        __typename: "Referent",
+        geniusId: number,
+        content: string,
+      } | null > | null,
+      createdAt: string,
+      updatedAt: string,
+      artist?:  {
+        __typename: "Artist",
+        id: string,
+        geniusId: number,
+        firstLetter: string,
+        title: string,
+        description?: string | null,
+        thumbnailUrl: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      album?:  {
+        __typename: "Album",
+        id: string,
+        artistId: string,
+        geniusId: number,
+        title: string,
+        thumbnailUrl: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      translations?:  {
+        __typename: "ModelTranslationConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null > | null,
+    nextToken?: string | null,
   } | null,
 };
 
@@ -1971,47 +1986,6 @@ export type GetSongByGeniuslIdQuery = {
   } | null,
 };
 
-export type ListTranslationsQueryVariables = {
-  filter?: ModelTranslationFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListTranslationsQuery = {
-  listTranslations?:  {
-    __typename: "ModelTranslationConnection",
-    items?:  Array< {
-      __typename: "Translation",
-      id: string,
-      owner: string,
-      createdAt: string,
-      songId: string,
-      rating: number,
-      lyrics:  Array< {
-        __typename: "LyricsLine",
-        original: string,
-        translation: string,
-      } | null >,
-      updatedAt: string,
-      song?:  {
-        __typename: "Song",
-        id: string,
-        artistId: string,
-        albumId: string,
-        geniusId: number,
-        title: string,
-        artistName: string,
-        albumName?: string | null,
-        imageUrl: string,
-        lyrics: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-    } | null > | null,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetTranslationQueryVariables = {
   id?: string,
 };
@@ -2021,6 +1995,7 @@ export type GetTranslationQuery = {
     __typename: "Translation",
     id: string,
     owner: string,
+    ownerName: string,
     createdAt: string,
     songId: string,
     rating: number,
@@ -2077,6 +2052,48 @@ export type GetTranslationQuery = {
   } | null,
 };
 
+export type ListTranslationsQueryVariables = {
+  filter?: ModelTranslationFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListTranslationsQuery = {
+  listTranslations?:  {
+    __typename: "ModelTranslationConnection",
+    items?:  Array< {
+      __typename: "Translation",
+      id: string,
+      owner: string,
+      ownerName: string,
+      createdAt: string,
+      songId: string,
+      rating: number,
+      lyrics:  Array< {
+        __typename: "LyricsLine",
+        original: string,
+        translation: string,
+      } | null >,
+      updatedAt: string,
+      song?:  {
+        __typename: "Song",
+        id: string,
+        artistId: string,
+        albumId: string,
+        geniusId: number,
+        title: string,
+        artistName: string,
+        albumName?: string | null,
+        imageUrl: string,
+        lyrics: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetTranslationsBySongIdQueryVariables = {
   songId?: string | null,
   rating?: ModelIntKeyConditionInput | null,
@@ -2093,6 +2110,7 @@ export type GetTranslationsBySongIdQuery = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -2137,6 +2155,7 @@ export type GetTranslationsByOwnerQuery = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -2182,6 +2201,7 @@ export type GetCommentQuery = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -2231,6 +2251,7 @@ export type ListCommentsQuery = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -2266,6 +2287,7 @@ export type GetCommentsByTranslationIdQuery = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -2573,6 +2595,7 @@ export type OnCreateSongSubscription = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -2648,6 +2671,7 @@ export type OnUpdateSongSubscription = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -2723,6 +2747,7 @@ export type OnDeleteSongSubscription = {
         __typename: "Translation",
         id: string,
         owner: string,
+        ownerName: string,
         createdAt: string,
         songId: string,
         rating: number,
@@ -2742,6 +2767,7 @@ export type OnCreateTranslationSubscription = {
     __typename: "Translation",
     id: string,
     owner: string,
+    ownerName: string,
     createdAt: string,
     songId: string,
     rating: number,
@@ -2807,6 +2833,7 @@ export type OnUpdateTranslationSubscription = {
     __typename: "Translation",
     id: string,
     owner: string,
+    ownerName: string,
     createdAt: string,
     songId: string,
     rating: number,
@@ -2872,6 +2899,7 @@ export type OnDeleteTranslationSubscription = {
     __typename: "Translation",
     id: string,
     owner: string,
+    ownerName: string,
     createdAt: string,
     songId: string,
     rating: number,
@@ -2945,6 +2973,7 @@ export type OnCreateCommentSubscription = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -2990,6 +3019,7 @@ export type OnUpdateCommentSubscription = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,
@@ -3035,6 +3065,7 @@ export type OnDeleteCommentSubscription = {
       __typename: "Translation",
       id: string,
       owner: string,
+      ownerName: string,
       createdAt: string,
       songId: string,
       rating: number,

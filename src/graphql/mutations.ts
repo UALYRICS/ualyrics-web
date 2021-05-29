@@ -292,6 +292,7 @@ export const createSong = /* GraphQL */ `
         items {
           id
           owner
+          ownerName
           createdAt
           songId
           rating
@@ -361,6 +362,7 @@ export const updateSong = /* GraphQL */ `
         items {
           id
           owner
+          ownerName
           createdAt
           songId
           rating
@@ -430,6 +432,7 @@ export const deleteSong = /* GraphQL */ `
         items {
           id
           owner
+          ownerName
           createdAt
           songId
           rating
@@ -448,6 +451,7 @@ export const createTranslation = /* GraphQL */ `
     createTranslation(input: $input, condition: $condition) {
       id
       owner
+      ownerName
       createdAt
       songId
       rating
@@ -506,6 +510,7 @@ export const updateTranslation = /* GraphQL */ `
     updateTranslation(input: $input, condition: $condition) {
       id
       owner
+      ownerName
       createdAt
       songId
       rating
@@ -564,6 +569,7 @@ export const deleteTranslation = /* GraphQL */ `
     deleteTranslation(input: $input, condition: $condition) {
       id
       owner
+      ownerName
       createdAt
       songId
       rating
@@ -629,6 +635,7 @@ export const createComment = /* GraphQL */ `
       translation {
         id
         owner
+        ownerName
         createdAt
         songId
         rating
@@ -670,6 +677,7 @@ export const updateComment = /* GraphQL */ `
       translation {
         id
         owner
+        ownerName
         createdAt
         songId
         rating
@@ -711,6 +719,7 @@ export const deleteComment = /* GraphQL */ `
       translation {
         id
         owner
+        ownerName
         createdAt
         songId
         rating

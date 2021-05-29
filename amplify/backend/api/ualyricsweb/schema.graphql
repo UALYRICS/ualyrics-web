@@ -102,6 +102,7 @@ type Translation
 {
   id: ID!
   owner: String!
+  ownerName: String!
   createdAt: AWSDateTime!
   songId: ID!
   rating: Int!
