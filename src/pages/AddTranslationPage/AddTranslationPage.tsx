@@ -1,10 +1,10 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
 import { useParams } from "react-router-dom";
 import { SongDetails } from "../../componenets/Song/SongDetails";
-import { LyricsLine, Song } from '../../models';
+import { LyricsLine, Song, Translation } from '../../models';
 import { getSongById } from "../../service/song-service";
 import { SongLyricsForm } from "./SongLyricsForm";
-import { createTranslation, getTranslationById } from "../../service/translations-service";
+import { createTranslation, getTranslationById, updateTranslation } from "../../service/translations-service";
 import { useHistory } from "react-router"
 import useAuth from "../../componenets/Auth/UseAuth";
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
@@ -15,6 +15,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
 
   const [song, setSong] = useState<Song>();
   const [lyrics, setLyrics] = useState<Array<LyricsLine>>([]);
+  const [existing, setExisting] = useState<Translation | null>();
   const {currentUser} = useAuth();
 
   useEffect(() => {
@@ -26,6 +27,8 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
       setSong(songData);
   
       const existingTranslation = songData.translations?.find(t => t?.owner === currentUser.username);
+      setExisting(existingTranslation);
+
       if(existingTranslation){
         const translation = await getTranslationById(existingTranslation.id);
         setLyrics(translation.lyrics as Array<LyricsLine>);
@@ -38,13 +41,20 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
   }, [songId, currentUser]);
 
   const handleSave = async () => {
-    createTranslation({
-      songId: song!.id,
-      rating: 0,
-      owner: currentUser!.username,
-      ownerName: currentUser!.attributes.name,
-      lyrics,
-    });
+    if(existing){
+      updateTranslation({
+        id: existing.id,
+        lyrics,
+      });
+    } else {
+      createTranslation({
+        songId: song!.id,
+        rating: 0,
+        owner: currentUser!.username,
+        ownerName: currentUser!.attributes.name,
+        lyrics,
+      });
+    }
 
     history.push(`/songs/${songId}`);
   }

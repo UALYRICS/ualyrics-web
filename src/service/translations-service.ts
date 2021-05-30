@@ -1,6 +1,6 @@
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
-import { CreateTranslationInput, CreateTranslationMutation, GetTranslationQuery } from "../API";
-import { createTranslation as createTranslationMutation } from "../graphql/mutations";
+import { CreateTranslationInput, CreateTranslationMutation, GetTranslationQuery, UpdateTranslationInput, UpdateTranslationMutation } from "../API";
+import { createTranslation as createTranslationMutation, updateTranslation as updateTranslationMutation } from "../graphql/mutations";
 import { API, Storage } from "aws-amplify";
 import { Translation } from "../models";
 
@@ -32,6 +32,14 @@ export const createTranslation = async (input: CreateTranslationInput): Promise<
 
   return translation;
 }
+
+export const updateTranslation = async (input: UpdateTranslationInput): Promise<void> => {
+  await API.graphql({
+    query: updateTranslationMutation,
+    variables: { input },
+    authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+  }) as GraphQLResult<UpdateTranslationMutation>;
+} 
 
 export const getTranslationById = async (id: string): Promise<Translation> => {
 
