@@ -6,6 +6,7 @@ import { getArtistsByFirstLetter } from "../graphql/queries";
 import { createArtist as createArtistMutation } from "../graphql/mutations";
 import { CreateArtistInput, CreateArtistMutation, GetArtistsByFirstLetterQuery, GetArtistQuery } from "../API";
 import { mapResultDataToArtist, mapSingleArtistResultToArtist } from "../mappers/mappers";
+import { LETTERS, NON_LETTER_SYMBOL_ARTISTS_URL } from "../utils/constants";
 
 export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Artist[]> {
   const results = await API.graphql({
@@ -99,7 +100,7 @@ async function createArtist(artist: Artist): Promise<string>{
       input: {
         title: artist?.title,
         geniusId: artist?.geniusId,
-        firstLetter: artist?.title.toUpperCase().charAt(0),
+        firstLetter: getFirstLetter(artist),
         thumbnailUrl: artist?.thumbnailUrl,
       } as CreateArtistInput
     },
@@ -112,4 +113,9 @@ async function createArtist(artist: Artist): Promise<string>{
   } else {
     throw new Error('Artist could not be created.');
   }
+}
+
+function getFirstLetter(artist: Artist): string{
+  const firstChar = artist?.title.toUpperCase().charAt(0);
+  return LETTERS.includes(firstChar) ? firstChar : NON_LETTER_SYMBOL_ARTISTS_URL;
 }

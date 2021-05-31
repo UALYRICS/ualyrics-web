@@ -1,0 +1,3 @@
+export const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+export const NON_LETTER_SYMBOL = "#";
+export const NON_LETTER_SYMBOL_ARTISTS_URL = "1";
