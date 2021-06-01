@@ -1,7 +1,7 @@
 .first-letter-toolbar {
   padding: 40px;
   text-align: center;
-  width: 566px;
+  max-width: 566px;
   background: #FAFAFA;
   box-shadow: 3px 5px 4px rgba(201, 201, 201, 0.35);
 }
