@@ -8,16 +8,6 @@ import { CreateArtistInput, CreateArtistMutation, GetArtistsByFirstLetterQuery, 
 import { mapResultDataToArtist, mapSingleArtistResultToArtist } from "../mappers/mappers";
 import { LETTERS, NON_LETTER_SYMBOL_ARTISTS_URL } from "../utils/constants";
 
-export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Artist[]> {
-  const results = await API.graphql({
-    query: getArtistsByFirstLetter,
-    variables: {firstLetter: firstLetter.getValue},
-    authMode: GRAPHQL_AUTH_MODE.API_KEY,
-  }) as GraphQLResult<GetArtistsByFirstLetterQuery>;
-
-  return results.data!.getArtistsByFirstLetter!.items!.map(mapResultDataToArtist) || [];
-}
-
 export async function createArtistIfNotExists(artist: Artist): Promise<string>{
   const existing = await fetchArtistsByFirstLetterAndTitle(new Char(artist.title), artist.title);
   if(existing){

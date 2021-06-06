@@ -8,7 +8,7 @@ export const FirstLetterToolbar: FunctionComponent<{}> = () => {
   const lettersAndSymbols = LETTERS + NON_LETTER_SYMBOL;
 
   return (
-    <div className="first-letter-toolbar">
+    <div className="first-letter-toolbar mx-2 my-2">
       <div className="first-letter-toolbar-header">Оберіть виконавця за першою літерою</div>
       <div className="first-letter-toolbar-body">
         {[...lettersAndSymbols].map(ch => (

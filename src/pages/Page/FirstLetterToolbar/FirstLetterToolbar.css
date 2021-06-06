@@ -1,4 +1,5 @@
 .first-letter-toolbar {
+  display: inline-block;
   padding: 40px;
   text-align: center;
   max-width: 566px;

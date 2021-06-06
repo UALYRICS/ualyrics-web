@@ -1,0 +1,8 @@
+.translation-selector {
+  max-width: 400px;
+  padding: 40px;
+  background: #FAFAFA;
+  box-shadow: 3px 5px 4px rgba(201, 201, 201, 0.35);
+  display: inline-block;
+  vertical-align: top;
+}

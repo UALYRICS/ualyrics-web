@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { LeftTitleSection } from '../../componenets/Decor/LeftTitleSection';
 import { FirstLetterToolbar } from './FirstLetterToolbar/FirstLetterToolbar';
-import { TranslationSelector } from './TranslationSelector';
+import { TranslationSelector } from './TranslationSelector/TranslationSelector';
 
 export const BrowseTools: FunctionComponent<{}> = () => {
   return (
