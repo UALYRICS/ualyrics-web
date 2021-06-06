@@ -59,7 +59,8 @@ export const TranslationSelector: FunctionComponent<{}> = () => {
   }
 
   return (
-    <div className="translation-selector mx-2 my-2">
+    <div className="translation-selector my-2">
+      <div className="translation-selector-header">Перейти до перекладу</div>
       <form>
         <select className="form-control my-2" onChange={firstLetterSelecter}>
           <option key={"-"}>Оберіть першу літеру імені виконавця</option>
@@ -73,7 +74,7 @@ export const TranslationSelector: FunctionComponent<{}> = () => {
           <option key={"-"}>Оберіть пісню</option>
           {songs.map(song => <option value={song!.id} key={song!.id}>{song!.title}</option>)}
         </select>
-        <button type="submit" className="btn btn-block btn-outline-dark my-4" disabled={!songId} onClick={goToSongPage}>Перейти</button>
+        <button type="submit" className="btn btn-block btn-outline-dark mt-4" disabled={!songId} onClick={goToSongPage}>Перейти</button>
       </form>
     </div>
   );
