@@ -1,0 +1,19 @@
+.recent-translation {
+  width: 362px;
+  vertical-align: top;
+  display: inline-block;
+  background: #FAFAFA;
+  box-shadow: 3px 5px 4px rgba(201, 201, 201, 0.35);
+}
+
+@media (max-width: 991px) {
+  .recent-translation {
+    width: 100%;
+  }
+}
+  
+@media (min-width: 992px) and (max-width: 1199px){
+  .recent-translation {
+    width: 455px;
+  }
+}

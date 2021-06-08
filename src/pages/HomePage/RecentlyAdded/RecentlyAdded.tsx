@@ -1,8 +1,9 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
-import { Translation } from "../../models";
+import { Translation } from "../../../models";
 import { Storage } from 'aws-amplify';
 import {Link} from "react-router-dom";
-import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
+import { RightTitleSection } from "../../../componenets/Decor/RightTitleSection";
+import "./RecentlyAdded.css";
 
 export const RecentlyAdded: FunctionComponent<{}> = () => {
   const [recentlyAdded, setRecentlyAdded] = useState(new Array<Translation>());
@@ -25,16 +26,14 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
     <>
       <RightTitleSection title="Останні додані переклади"/>
       {recentlyAdded.map((translation, idx) => (
-        <div key={idx} className="row mt-3 ">
-          <div className="col-sm-5 bg-light">
-            <div>
-              <img src={translation?.song?.imageUrl} className='icon' alt="Song thumbnail" />
-            </div>	
-            <div className="left-margin">
-              <h6><Link to={`/translations/${translation?.id}`}>{translation?.song?.title}</Link></h6>
-              <h6>{translation?.song?.artistName}</h6>
-              <h6>Перекладено: <b>{translation?.ownerName}</b></h6>
-            </div>
+        <div key={idx} className="recent-translation my-2 mr-2">
+          <div>
+            <img src={translation?.song?.imageUrl} className='icon' alt="Song thumbnail" />
+          </div>	
+          <div className="left-margin">
+            <h6><Link to={`/translations/${translation?.id}`}>{translation?.song?.title}</Link></h6>
+            <h6>{translation?.song?.artistName}</h6>
+            <h6>Перекладено: <b>{translation?.ownerName}</b></h6>
           </div>
         </div>
       ))}
