@@ -296,6 +296,7 @@ export const createSong = /* GraphQL */ `
           createdAt
           songId
           rating
+          title
           updatedAt
         }
         nextToken
@@ -366,6 +367,7 @@ export const updateSong = /* GraphQL */ `
           createdAt
           songId
           rating
+          title
           updatedAt
         }
         nextToken
@@ -436,6 +438,7 @@ export const deleteSong = /* GraphQL */ `
           createdAt
           songId
           rating
+          title
           updatedAt
         }
         nextToken
@@ -459,6 +462,7 @@ export const createTranslation = /* GraphQL */ `
         original
         translation
       }
+      title
       updatedAt
       song {
         id
@@ -518,6 +522,7 @@ export const updateTranslation = /* GraphQL */ `
         original
         translation
       }
+      title
       updatedAt
       song {
         id
@@ -577,6 +582,7 @@ export const deleteTranslation = /* GraphQL */ `
         original
         translation
       }
+      title
       updatedAt
       song {
         id
@@ -643,6 +649,7 @@ export const createComment = /* GraphQL */ `
           original
           translation
         }
+        title
         updatedAt
         song {
           id
@@ -685,6 +692,7 @@ export const updateComment = /* GraphQL */ `
           original
           translation
         }
+        title
         updatedAt
         song {
           id
@@ -727,6 +735,7 @@ export const deleteComment = /* GraphQL */ `
           original
           translation
         }
+        title
         updatedAt
         song {
           id

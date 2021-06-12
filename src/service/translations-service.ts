@@ -81,6 +81,7 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
   const translation = result.data?.getTranslation!;
   return {
     id: translation.id,
+    title: translation.title,
     owner: translation.owner,
     ownerName: translation.ownerName,
     createdAt: translation.createdAt,

@@ -107,6 +107,7 @@ type Translation
   songId: ID!
   rating: Int!
   lyrics: [LyricsLine]!
+  title: String!
   song: Song @connection(fields: ["songId"])
 }
 

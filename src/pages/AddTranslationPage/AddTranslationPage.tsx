@@ -1,9 +1,8 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
 import { useParams } from "react-router-dom";
-import { SongDetails } from "../../componenets/Song/SongDetails";
 import { LyricsLine, Song, Translation } from '../../models';
 import { getSongById } from "../../service/song-service";
-import { SongLyricsForm } from "./SongLyricsForm";
+import { SongTranslationForm } from "./SongLyricsForm";
 import { createTranslation, getTranslationById, updateTranslation } from "../../service/translations-service";
 import { useHistory } from "react-router"
 import useAuth from "../../componenets/Auth/UseAuth";
@@ -15,6 +14,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
 
   const [song, setSong] = useState<Song>();
   const [lyrics, setLyrics] = useState<Array<LyricsLine>>([]);
+  const [titleTranslation, setTitleTranslation] = useState<string>('');
   const [existing, setExisting] = useState<Translation | null>();
   const {currentUser} = useAuth();
 
@@ -44,11 +44,13 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     if(existing){
       updateTranslation({
         id: existing.id,
+        title: titleTranslation,
         lyrics,
       });
     } else {
       createTranslation({
         songId: song!.id,
+        title: titleTranslation,
         rating: 0,
         owner: currentUser!.username,
         ownerName: currentUser!.attributes.name,
@@ -72,17 +74,30 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     }));
   }
 
+  const handleTitleChange = (value: string) => {
+    setTitleTranslation(value);
+  }
+
   if(!song || ! lyrics){
     return <></>;
   }
 
+  const disabled = lyrics
+    .filter(l => l.original.length > 0)
+    .map(l => l.translation)
+    .filter(t => t.length === 0)
+    .length !== 0
+    ||
+    titleTranslation.length === 0;
+
   return (
     <>
       <LeftTitleSection title="Додати переклад"/>
-      <SongDetails song={song}/>
-      <SongLyricsForm lyrics={lyrics} handleChange={handleChange} />
+      <SongTranslationForm lyrics={lyrics} titleTranslation={titleTranslation} song={song} handleChange={handleChange} handleTitleChange={handleTitleChange}  />
       <br/>
-      <div><button onClick={handleSave}>Опублікувати переклад</button></div>
+      <div>
+        <button className="btn btn-outline-dark btn-light btn-lg btn-block" onClick={handleSave} disabled={disabled}>Опублікувати переклад</button>
+      </div>
     </>
   )
 }

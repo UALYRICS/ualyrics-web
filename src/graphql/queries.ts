@@ -326,6 +326,7 @@ export const getSong = /* GraphQL */ `
           createdAt
           songId
           rating
+          title
           updatedAt
         }
         nextToken
@@ -574,6 +575,7 @@ export const getTranslation = /* GraphQL */ `
         original
         translation
       }
+      title
       updatedAt
       song {
         id
@@ -635,6 +637,7 @@ export const listTranslations = /* GraphQL */ `
           original
           translation
         }
+        title
         updatedAt
         song {
           id
@@ -682,6 +685,7 @@ export const getTranslationsBySongId = /* GraphQL */ `
           original
           translation
         }
+        title
         updatedAt
         song {
           id
@@ -729,6 +733,7 @@ export const getTranslationsByOwner = /* GraphQL */ `
           original
           translation
         }
+        title
         updatedAt
         song {
           id
@@ -768,6 +773,7 @@ export const getComment = /* GraphQL */ `
           original
           translation
         }
+        title
         updatedAt
         song {
           id
@@ -808,6 +814,7 @@ export const listComments = /* GraphQL */ `
           createdAt
           songId
           rating
+          title
           updatedAt
         }
         owner
@@ -847,6 +854,7 @@ export const getCommentsByTranslationId = /* GraphQL */ `
           createdAt
           songId
           rating
+          title
           updatedAt
         }
         owner

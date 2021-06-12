@@ -161,6 +161,7 @@ export type Translation = {
   songId?: string,
   rating?: number,
   lyrics?:  Array<LyricsLine | null >,
+  title?: string,
   updatedAt?: string,
   song?: Song,
 };
@@ -295,6 +296,7 @@ export type CreateTranslationInput = {
   songId: string,
   rating: number,
   lyrics: Array< LyricsLineInput | null >,
+  title: string,
 };
 
 export type LyricsLineInput = {
@@ -307,6 +309,7 @@ export type ModelTranslationConditionInput = {
   createdAt?: ModelStringInput | null,
   songId?: ModelIDInput | null,
   rating?: ModelIntInput | null,
+  title?: ModelStringInput | null,
   and?: Array< ModelTranslationConditionInput | null > | null,
   or?: Array< ModelTranslationConditionInput | null > | null,
   not?: ModelTranslationConditionInput | null,
@@ -320,6 +323,7 @@ export type UpdateTranslationInput = {
   songId?: string | null,
   rating?: number | null,
   lyrics?: Array< LyricsLineInput | null > | null,
+  title?: string | null,
 };
 
 export type DeleteTranslationInput = {
@@ -487,6 +491,7 @@ export type ModelTranslationFilterInput = {
   createdAt?: ModelStringInput | null,
   songId?: ModelIDInput | null,
   rating?: ModelIntInput | null,
+  title?: ModelStringInput | null,
   and?: Array< ModelTranslationFilterInput | null > | null,
   or?: Array< ModelTranslationFilterInput | null > | null,
   not?: ModelTranslationFilterInput | null,
@@ -853,6 +858,7 @@ export type CreateSongMutation = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null > | null,
       nextToken?: string | null,
@@ -934,6 +940,7 @@ export type UpdateSongMutation = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null > | null,
       nextToken?: string | null,
@@ -1015,6 +1022,7 @@ export type DeleteSongMutation = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null > | null,
       nextToken?: string | null,
@@ -1041,6 +1049,7 @@ export type CreateTranslationMutation = {
       original: string,
       translation: string,
     } | null >,
+    title: string,
     updatedAt: string,
     song?:  {
       __typename: "Song",
@@ -1108,6 +1117,7 @@ export type UpdateTranslationMutation = {
       original: string,
       translation: string,
     } | null >,
+    title: string,
     updatedAt: string,
     song?:  {
       __typename: "Song",
@@ -1175,6 +1185,7 @@ export type DeleteTranslationMutation = {
       original: string,
       translation: string,
     } | null >,
+    title: string,
     updatedAt: string,
     song?:  {
       __typename: "Song",
@@ -1250,6 +1261,7 @@ export type CreateCommentMutation = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -1297,6 +1309,7 @@ export type UpdateCommentMutation = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -1344,6 +1357,7 @@ export type DeleteCommentMutation = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -1743,6 +1757,7 @@ export type GetSongQuery = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null > | null,
       nextToken?: string | null,
@@ -2004,6 +2019,7 @@ export type GetTranslationQuery = {
       original: string,
       translation: string,
     } | null >,
+    title: string,
     updatedAt: string,
     song?:  {
       __typename: "Song",
@@ -2074,6 +2090,7 @@ export type ListTranslationsQuery = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -2119,6 +2136,7 @@ export type GetTranslationsBySongIdQuery = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -2164,6 +2182,7 @@ export type GetTranslationsByOwnerQuery = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -2210,6 +2229,7 @@ export type GetCommentQuery = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -2255,6 +2275,7 @@ export type ListCommentsQuery = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null,
       owner?: string | null,
@@ -2291,6 +2312,7 @@ export type GetCommentsByTranslationIdQuery = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null,
       owner?: string | null,
@@ -2599,6 +2621,7 @@ export type OnCreateSongSubscription = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null > | null,
       nextToken?: string | null,
@@ -2675,6 +2698,7 @@ export type OnUpdateSongSubscription = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null > | null,
       nextToken?: string | null,
@@ -2751,6 +2775,7 @@ export type OnDeleteSongSubscription = {
         createdAt: string,
         songId: string,
         rating: number,
+        title: string,
         updatedAt: string,
       } | null > | null,
       nextToken?: string | null,
@@ -2776,6 +2801,7 @@ export type OnCreateTranslationSubscription = {
       original: string,
       translation: string,
     } | null >,
+    title: string,
     updatedAt: string,
     song?:  {
       __typename: "Song",
@@ -2842,6 +2868,7 @@ export type OnUpdateTranslationSubscription = {
       original: string,
       translation: string,
     } | null >,
+    title: string,
     updatedAt: string,
     song?:  {
       __typename: "Song",
@@ -2908,6 +2935,7 @@ export type OnDeleteTranslationSubscription = {
       original: string,
       translation: string,
     } | null >,
+    title: string,
     updatedAt: string,
     song?:  {
       __typename: "Song",
@@ -2982,6 +3010,7 @@ export type OnCreateCommentSubscription = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -3028,6 +3057,7 @@ export type OnUpdateCommentSubscription = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",
@@ -3074,6 +3104,7 @@ export type OnDeleteCommentSubscription = {
         original: string,
         translation: string,
       } | null >,
+      title: string,
       updatedAt: string,
       song?:  {
         __typename: "Song",

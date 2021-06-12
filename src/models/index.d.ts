@@ -122,6 +122,7 @@ export declare class Translation {
   readonly createdAt: string;
   readonly rating: number;
   readonly lyrics: (LyricsLine | null)[];
+  readonly title: string;
   readonly song?: Song;
   constructor(init: ModelInit<Translation>);
   static copyOf(source: Translation, mutator: (draft: MutableModel<Translation>) => MutableModel<Translation> | void): Translation;

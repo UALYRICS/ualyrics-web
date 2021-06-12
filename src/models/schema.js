@@ -488,6 +488,13 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": false
                 },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "song": {
                     "name": "song",
                     "isArray": false,
@@ -1020,5 +1027,5 @@ export const schema = {
             }
         }
     },
-    "version": "440d103769c03fe69b6818c3234b3d54"
+    "version": "31a9268412a60d037f5be43864dccebb"
 };
