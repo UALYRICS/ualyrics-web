@@ -2,11 +2,10 @@ import React, { useState, useEffect, FunctionComponent } from "react";
 import { searchGeniusSong } from '../../service/genius-service';
 import { useLocation } from "react-router-dom";
 import { GeniusSongEntry } from "../../models";
-import { BrowseTools } from "../Page/BrowseTools";
 import { GeniusSongsList } from "./GeniusSongsList";
 
 import './SearchPage.css';
-import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
+import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
 
 export const SearchPage: FunctionComponent<{}> = () => {
   let query = useQuery();
@@ -26,8 +25,7 @@ export const SearchPage: FunctionComponent<{}> = () => {
 
   return (
     <>
-      <BrowseTools />
-      <RightTitleSection title="Пісні"/>
+      <LeftTitleSection title="Пісні"/>
       <GeniusSongsList geniusSongs={ searchResults } />
     </>
   );
