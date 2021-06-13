@@ -48,6 +48,7 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
       getTranslation(id: $id) {
         id
         owner
+        title
         createdAt
         rating
         lyrics {

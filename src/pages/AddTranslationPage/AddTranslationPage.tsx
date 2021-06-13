@@ -32,6 +32,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
       if(existingTranslation){
         const translation = await getTranslationById(existingTranslation.id);
         setLyrics(translation.lyrics as Array<LyricsLine>);
+        setTitleTranslation(translation.title);
       } else {
         setLyrics(songData.lyrics.split('\n').map((line) => ({original: line, translation: ''} as LyricsLine)));
       }
