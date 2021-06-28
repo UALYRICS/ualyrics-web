@@ -27,6 +27,20 @@ export const ArtistComponent: FunctionComponent<{artist: Artist}> = ({artist}) =
     <li key={song?.id}><Link to={`/genius-songs/${song.id}`}>{song?.title}</Link></li>
   ));
 
+  const notTranslatedSongsBlock = notTranslatedSongs.length == 0 ?
+  <></> :
+  (
+    <>
+      <div>Неперекладені пісні:</div>
+      <div>
+        <ul>
+          {notTranslatedSongs}
+        </ul>
+      </div>
+    </>
+  )
+
+
   return (
     <>
       <img src={artist.thumbnailUrl} alt="Artist" width="200px"/>
@@ -37,12 +51,7 @@ export const ArtistComponent: FunctionComponent<{artist: Artist}> = ({artist}) =
           {translatedSongs}
         </ul>
       </div>
-      <div>Неперекладені пісні:</div>
-      <div>
-        <ul>
-          {notTranslatedSongs}
-        </ul>
-      </div>
+      {notTranslatedSongsBlock}
     </>
   )
 };

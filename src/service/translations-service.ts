@@ -96,6 +96,13 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
       imageUrl: translation.song!.imageUrl,
       title: translation.song!.title,
       lyrics: '', // We do not need song lyrics, they are in translation lyrics
+      artist: {
+        id: translation.song?.artistId!,
+        title: translation.song?.artistName!,
+        geniusId: translation.song?.artist?.geniusId || -1,
+        firstLetter: translation.song?.artist?.firstLetter || '',
+        thumbnailUrl: translation.song?.artist?.thumbnailUrl || '',
+      }
     }
   }
 }

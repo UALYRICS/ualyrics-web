@@ -23,6 +23,10 @@ export function mapSongResultToSong(song: SongResult | null): Song {
     artistName: song?.artistName!,
     albumName: song?.albumName || undefined,
     translations: song?.translations?.items,
+    artist: {
+      id: song?.artistId,
+      title: song?.artistName,
+    }
   } as Song;
 }
 

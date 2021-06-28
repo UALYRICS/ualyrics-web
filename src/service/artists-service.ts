@@ -105,7 +105,7 @@ async function createArtist(artist: Artist): Promise<string>{
   }
 }
 
-function getFirstLetter(artist: Artist): string{
+export function getFirstLetter(artist: Artist): string{
   const firstChar = artist?.title.toUpperCase().charAt(0);
   return LETTERS.includes(firstChar) ? firstChar : NON_LETTER_SYMBOL_ARTISTS_URL;
 }
