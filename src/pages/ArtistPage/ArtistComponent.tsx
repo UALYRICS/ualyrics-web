@@ -27,7 +27,7 @@ export const ArtistComponent: FunctionComponent<{artist: Artist}> = ({artist}) =
     <li key={song?.id}><Link to={`/genius-songs/${song.id}`}>{song?.title}</Link></li>
   ));
 
-  const notTranslatedSongsBlock = notTranslatedSongs.length == 0 ?
+  const notTranslatedSongsBlock = notTranslatedSongs.length === 0 ?
   <></> :
   (
     <>

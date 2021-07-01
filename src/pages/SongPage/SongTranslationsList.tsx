@@ -5,13 +5,12 @@ import {Link} from "react-router-dom";
 export const SongTranslationsList: FunctionComponent<{translations: Array<Translation | null>}> = ({translations}) => {
 
   const translationOwners = translations.map(translation => (
-    <li key={translation?.id}><Link to={`/translations/${translation?.id}`}>{translation?.ownerName}</Link></li>
+    <div key={translation?.id}><Link to={`/translations/${translation?.id}`}>"{translation?.title}" від {translation?.ownerName}</Link></div>
   ));
 
   return translationOwners.length === 0 ? (<></>) : (
     <>
-      <div>Перекладено:</div>
-      <ul>{translationOwners}</ul>
+      <div>{translationOwners}</div>
     </>
   );
 };

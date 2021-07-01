@@ -7,6 +7,7 @@ import { getSongById } from "../../service/song-service";
 import { SongTranslationsList } from "./SongTranslationsList";
 import {Link} from "react-router-dom";
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
+import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
 
 export const SongPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
@@ -24,14 +25,24 @@ export const SongPage: FunctionComponent<{}> = () => {
     return <></>;
   }
 
+  const translationsBlock = song?.translations?.length === 0 ? <></> : (
+    <>
+      <LeftTitleSection title="Переклади"/>
+      <SongTranslationsList translations={song?.translations || []} />
+    </>
+  );
+
 
   return (
     <>
       <LeftTitleSection title="Пісня"/>
-      <SongDetails song={song}/>
-      <SongTranslationsList translations={song?.translations || []} />
-      <Link to={`/songs/${songId}/translate`}>Додати переклад</Link>
+      <SongDetails song={song}/>      
+      <RightTitleSection title="Текст"/>
       <SongLyrics song={song} />
+      {translationsBlock}
+      <div className="text-center"> 
+        <Link className="btn btn-outline-dark mt-4 center" to={`/songs/${songId}/translate`}>Додати переклад</Link>
+      </div>
     </>
   )
 }
