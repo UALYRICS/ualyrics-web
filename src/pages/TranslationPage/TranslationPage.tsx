@@ -25,7 +25,7 @@ export const TranslationPage: FunctionComponent<{}> = () => {
   return (
     <>
       <LeftTitleSection title="Переклад"/>
-      <SongDetails song={translation?.song}/>
+      <SongDetails song={translation?.song!}/>
       <TranslatedLyrics lyrics={translation?.lyrics as Array<LyricsLine>} />
     </>
   )

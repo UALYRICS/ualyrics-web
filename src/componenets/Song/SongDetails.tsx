@@ -3,7 +3,7 @@ import { Song } from '../../models';
 import {Link} from "react-router-dom";
 import "./SongDetails.css";
 
-export const SongDetails: FunctionComponent<{song: Song | undefined}> = ({song}) => {
+export const SongDetails: FunctionComponent<{song: Song }> = ({song}) => {
   if(!song){
     return null;
   }

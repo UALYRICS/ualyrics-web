@@ -58,6 +58,12 @@ export const searchGeniusSong = async (term: string): Promise<Array<GeniusSongEn
       url: geniusSong?.url,
       header_image_url: geniusSong?.header_image_url,
       header_image_thumbnail_url: geniusSong?.header_image_url,
+      primary_artist: {
+        id: geniusSong?.primary_artist.id,
+        name: geniusSong?.primary_artist.name,
+        image_url: geniusSong?.primary_artist.image_url,
+        header_image_url: geniusSong?.primary_artist.header_image_url,
+      }
     } as GeniusSongEntry
   } ) || [];
 }
@@ -80,6 +86,9 @@ export const getGeniusSongsForArtist = async (id: number): Promise<Array<GeniusS
       url: geniusSong?.url,
       header_image_url: geniusSong?.header_image_url,
       header_image_thumbnail_url: geniusSong?.header_image_url,
+      primary_artist: {
+        name: geniusSong?.primary_artist.name,
+      }
     } as GeniusSongEntry
   } ) || [];
 };

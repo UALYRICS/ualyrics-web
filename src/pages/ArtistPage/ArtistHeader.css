@@ -1,0 +1,61 @@
+.details-block {
+  height: 250px;
+  background-color: #C4C4C4;
+  position: relative;
+}
+
+.image {
+  float:right;
+  margin-top: 50px;
+  margin-right: 100px;
+  width: 250px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.title a {
+  text-decoration: none; 
+  color: #000;
+}
+
+.details {
+  position: absolute;
+  bottom: 20px;
+  left: 100px;
+}
+
+.artist-title {
+  font-size: 18px;
+}
+
+.artist-title a {
+  text-decoration: none; 
+  color: #575757;
+}
+
+@media (max-width: 991px) {
+  .image {
+    margin-top: 20px;
+    width: 150px;
+    margin-right: 20px;
+  }
+
+  .details-block {
+    height: 150px;
+  }
+
+  .details {
+    left: 20px;
+  }
+}
+  
+@media (min-width: 992px) and (max-width: 1199px){
+  .recent-translation {
+    width: 455px;
+  }
+}

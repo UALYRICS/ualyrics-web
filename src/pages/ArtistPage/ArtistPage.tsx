@@ -1,9 +1,10 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Artist } from '../../models';
-import { ArtistComponent } from './ArtistComponent';
+import { ArtistSongs } from './ArtistSongs';
 import { getArtistById } from "../../service/artists-service";
 import { useParams } from "react-router-dom";
 import { LeftTitleSection } from '../../componenets/Decor/LeftTitleSection';
+import { ArtistHeader } from './ArtistHeader';
 
 export const ArtistPage : FunctionComponent<{}> = () => {
   let { artistId } = useParams<{artistId: string}>();
@@ -28,7 +29,8 @@ export const ArtistPage : FunctionComponent<{}> = () => {
   return (
     <>
       <LeftTitleSection title="Виконавець"/>
-      <ArtistComponent artist={artist!}/>
+      <ArtistHeader artist={artist} />
+      <ArtistSongs artist={artist!}/>
     </>
   )
 };
