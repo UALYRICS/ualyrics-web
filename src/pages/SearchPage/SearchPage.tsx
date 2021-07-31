@@ -20,7 +20,7 @@ export const SearchPage: FunctionComponent<{}> = () => {
       .then(results => results.map(result => {
           return {
             title: result.title,
-            icon: result.header_image_thumbnail_url,
+            icon: result.song_art_image_thumbnail_url,
             pageUrl: `/genius-songs/${result.id}`,
             artistTitle: result.primary_artist.name,
           } as SongCard

@@ -64,7 +64,7 @@ const mapSongToCart = (song: Song | null) => {
 const mapGeniusSongToCart = (song: GeniusSongEntry) => {
   return {
     title: song?.title,
-    icon: song.header_image_thumbnail_url,
+    icon: song.song_art_image_thumbnail_url,
     pageUrl: `/genius-songs/${song.id}`,
     artistTitle: song.primary_artist.name,
   } as SongCard
