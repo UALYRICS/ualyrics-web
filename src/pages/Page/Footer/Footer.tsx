@@ -2,10 +2,11 @@
 import React, { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
+import "./Footer.css";
 
 export const Footer: FunctionComponent<{}> = () => {
   return (
-    <div className="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+    <div className="footer navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
       <div className="container full-width">
         <div className="mr-auto"></div>
         <div className="float-right">

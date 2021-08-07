@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { TopToolbar } from './TopToolbar';
 import { SocialToolbar } from './SocialToolbar';
-import { Footer } from './Footer';
+import { Footer } from './Footer/Footer';
 
 export const Page: FunctionComponent<{}> = ({ children }) => (
   <>
