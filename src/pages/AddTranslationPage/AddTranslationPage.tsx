@@ -95,10 +95,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     <>
       <LeftTitleSection title="Додати переклад"/>
       <SongTranslationForm lyrics={lyrics} titleTranslation={titleTranslation} song={song} handleChange={handleChange} handleTitleChange={handleTitleChange}  />
-      <br/>
-      <div>
-        <button className="btn btn-outline-dark btn-light btn-lg btn-block" onClick={handleSave} disabled={disabled}>Опублікувати переклад</button>
-      </div>
+      <button className="btn btn-outline-dark btn-light btn-lg btn-block my-3" onClick={handleSave} disabled={disabled}>Опублікувати переклад</button>
     </>
   )
 }

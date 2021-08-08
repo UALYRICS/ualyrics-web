@@ -120,8 +120,8 @@ const updateLatestFile = async (translation: Translation) => {
   // Add translation to the front of the list
   mutatedTranslations.unshift(translation);
 
-  // Trim array of translations to 10
-  while(mutatedTranslations.length > 10){
+  // Trim array of translations to 100
+  while(mutatedTranslations.length > 100){
     mutatedTranslations.splice(-1,1);
   }
 

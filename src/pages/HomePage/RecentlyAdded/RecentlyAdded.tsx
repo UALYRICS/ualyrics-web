@@ -6,7 +6,10 @@ import { RightTitleSection } from "../../../componenets/Decor/RightTitleSection"
 import "./RecentlyAdded.css";
 
 export const RecentlyAdded: FunctionComponent<{}> = () => {
+  const ITEMS_PER_PAGE = 10;
+
   const [recentlyAdded, setRecentlyAdded] = useState(new Array<Translation>());
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     async function getData() {
@@ -18,6 +21,12 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
     getData();
   }, []);
 
+  let loadMoreButton;
+  if(recentlyAdded.length > page * ITEMS_PER_PAGE)
+  {
+    loadMoreButton = (<button className="btn btn-outline-dark btn-light my-3" onClick={() => setPage(page + 1)}>Показати більше</button>);
+  }
+
   if(recentlyAdded.length === 0){
     return <></>;
   }
@@ -25,7 +34,7 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
   return (
     <>
       <RightTitleSection title="Останні додані переклади"/>
-      {recentlyAdded.map((translation, idx) => (
+      {recentlyAdded.slice(0, page * ITEMS_PER_PAGE).map((translation, idx) => (
         <div key={idx} className="recent-translation my-2 mr-2">
           <div>
             <img src={translation?.song?.imageUrl} className='icon' alt="Song thumbnail" />
@@ -37,6 +46,9 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
           </div>
         </div>
       ))}
+      <div className="text-center">
+        {loadMoreButton}
+      </div>
     </>
   )
 
