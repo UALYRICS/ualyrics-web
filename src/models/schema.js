@@ -354,6 +354,27 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true
+                },
+                "youtubeLink": {
+                    "name": "youtubeLink",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "spotifyLink": {
+                    "name": "spotifyLink",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "soundcloudLink": {
+                    "name": "soundcloudLink",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1027,5 +1048,5 @@ export const schema = {
             }
         }
     },
-    "version": "31a9268412a60d037f5be43864dccebb"
+    "version": "8431a4f8f44dbdb73250cab348e8e0f9"
 };

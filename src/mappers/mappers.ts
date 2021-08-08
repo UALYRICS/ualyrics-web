@@ -26,7 +26,10 @@ export function mapSongResultToSong(song: SongResult | null): Song {
     artist: {
       id: song?.artistId,
       title: song?.artistName,
-    }
+    },
+    youtubeLink: song?.youtubeLink,
+    spotifyLink: song?.spotifyLink,
+    soundcloudLink: song?.soundcloudLink,
   } as Song;
 }
 
@@ -62,6 +65,9 @@ export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Son
       geniusId: geniusSong?.album?.id,
       title: geniusSong?.album?.name,
       thumbnailUrl: geniusSong?.album?.cover_art_url
-    }: undefined
+    }: undefined,
+    youtubeLink: geniusSong.media.find(media => media?.provider === 'youtube')?.url,
+    spotifyLink: geniusSong.media.find(media => media?.provider === 'spotify')?.url,
+    soundcloudLink: geniusSong.media.find(media => media?.provider === 'soundcloud')?.url,
   }
 }

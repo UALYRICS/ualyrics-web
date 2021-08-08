@@ -43,7 +43,10 @@ export interface SongResult {
   translations?: {
     nextToken?: string | null | undefined,
     items?: Array<TranslationResult | null> | null,
-  } | null
+  } | null,
+  youtubeLink?: string | null,
+  spotifyLink?: string | null,
+  soundcloudLink?: string | null,
 }
 
 export interface GetArtistResult extends GetArtistListResult{

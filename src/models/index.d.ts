@@ -111,6 +111,9 @@ export declare class Song {
   readonly imageUrl: string;
   readonly lyrics: string;
   readonly referents?: (Referent | null)[];
+  readonly youtubeLink?: string;
+  readonly spotifyLink?: string;
+  readonly soundcloudLink?: string;
   constructor(init: ModelInit<Song>);
   static copyOf(source: Song, mutator: (draft: MutableModel<Song>) => MutableModel<Song> | void): Song;
 }

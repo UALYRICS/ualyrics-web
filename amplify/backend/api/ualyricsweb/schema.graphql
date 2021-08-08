@@ -71,6 +71,9 @@ type Song
   imageUrl: String!
   lyrics: String!
   referents: [Referent]
+  youtubeLink: String
+  spotifyLink: String
+  soundcloudLink: String
 }
 
 type Referent {

@@ -36,6 +36,9 @@ export const onCreateArtist = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -78,6 +81,9 @@ export const onUpdateArtist = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -120,6 +126,9 @@ export const onDeleteArtist = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -149,6 +158,9 @@ export const onCreateAlbum = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -178,6 +190,9 @@ export const onUpdateAlbum = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -207,6 +222,9 @@ export const onDeleteAlbum = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -237,6 +255,9 @@ export const onCreateSong = /* GraphQL */ `
           authorThumbnailUrl
         }
       }
+      youtubeLink
+      spotifyLink
+      soundcloudLink
       createdAt
       updatedAt
       artist {
@@ -305,6 +326,9 @@ export const onUpdateSong = /* GraphQL */ `
           authorThumbnailUrl
         }
       }
+      youtubeLink
+      spotifyLink
+      soundcloudLink
       createdAt
       updatedAt
       artist {
@@ -373,6 +397,9 @@ export const onDeleteSong = /* GraphQL */ `
           authorThumbnailUrl
         }
       }
+      youtubeLink
+      spotifyLink
+      soundcloudLink
       createdAt
       updatedAt
       artist {
@@ -448,6 +475,9 @@ export const onCreateTranslation = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -505,6 +535,9 @@ export const onUpdateTranslation = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -562,6 +595,9 @@ export const onDeleteTranslation = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -622,6 +658,9 @@ export const onCreateComment = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -662,6 +701,9 @@ export const onUpdateComment = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -702,6 +744,9 @@ export const onDeleteComment = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }

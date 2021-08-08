@@ -63,6 +63,9 @@ export const createSong = async (artistId: string, song: Song, albumId?: string)
         lyrics: song.lyrics,
         artistName: song.artistName,
         albumName: song.albumName,
+        youtubeLink: song.youtubeLink,
+        spotifyLink: song.spotifyLink,
+        soundcloudLink: song.soundcloudLink,
       } as CreateSongInput
     },
     authMode: GRAPHQL_AUTH_MODE.API_KEY,

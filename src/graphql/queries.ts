@@ -109,6 +109,9 @@ export const getArtist = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -202,6 +205,9 @@ export const getAlbum = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -288,6 +294,9 @@ export const getSong = /* GraphQL */ `
           authorThumbnailUrl
         }
       }
+      youtubeLink
+      spotifyLink
+      soundcloudLink
       createdAt
       updatedAt
       artist {
@@ -355,6 +364,9 @@ export const listSongs = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -415,6 +427,9 @@ export const getSongsByArtistId = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -475,6 +490,9 @@ export const getSongsByAlbumId = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -533,6 +551,9 @@ export const getSongByGeniuslId = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -591,6 +612,9 @@ export const getTranslation = /* GraphQL */ `
           geniusId
           content
         }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
         createdAt
         updatedAt
         artist {
@@ -649,6 +673,9 @@ export const listTranslations = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -697,6 +724,9 @@ export const getTranslationsBySongId = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -745,6 +775,9 @@ export const getTranslationsByOwner = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
@@ -785,6 +818,9 @@ export const getComment = /* GraphQL */ `
           albumName
           imageUrl
           lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
           createdAt
           updatedAt
         }
