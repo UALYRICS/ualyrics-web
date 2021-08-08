@@ -66,6 +66,9 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
           imageUrl
           createdAt
           updatedAt
+          youtubeLink
+          spotifyLink
+          soundcloudLink
         }
       }
     }
@@ -95,7 +98,10 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
       geniusId: translation.song!.geniusId,
       imageUrl: translation.song!.imageUrl,
       title: translation.song!.title,
-      lyrics: '', // We do not need song lyrics, they are in translation lyrics
+      lyrics: '', // We do not need song lyrics, they are in translation lyrics,
+      youtubeLink: translation.song?.youtubeLink || undefined,
+      spotifyLink: translation.song?.spotifyLink || undefined,
+      soundcloudLink: translation.song?.soundcloudLink || undefined,
       artist: {
         id: translation.song?.artistId!,
         title: translation.song?.artistName!,
