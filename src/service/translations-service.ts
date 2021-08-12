@@ -114,7 +114,7 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
 }
 
 const updateLatestFile = async (translation: Translation) => {
-  const data = await Storage.get(`recentlyadded.json`, { download: true }) as {Body: {text(): Promise<string>}};
+  const data = await Storage.get(`recentlyadded.json`, { download: true, cacheControl: 'no-cache' }) as {Body: {text(): Promise<string>}};
   const recentAddadData = await data.Body.text();
   const translations = JSON.parse(recentAddadData) as Array<Translation>;
 
