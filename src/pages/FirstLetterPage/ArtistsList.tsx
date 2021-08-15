@@ -3,10 +3,20 @@ import { Artist } from "../../models";
 import { Link } from "react-router-dom";
 import "./ArtistsList.css";
 
-export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter: string}> = ({artists, firstLetter}) => {
+export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter: string, searching: boolean}> = ({artists, firstLetter, searching}) => {
   console.log("artists:", artists);
   if(artists.length === 0){
-    return <div id="artists-list"><h6>Виконавців з перекладеними піснями на букву "{firstLetter}" не знайдено.</h6></div>;
+    if(searching) {
+      return (
+        <div className="text-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Searching...</span>
+          </div>
+        </div>
+      );
+    } else {
+      return <div id="artists-list" className="text-center"><h6>Виконавців з перекладеними піснями на букву "{firstLetter}" не знайдено.</h6></div>;
+    }
   }
   return (
     <div id="artists-list">

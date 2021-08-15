@@ -11,21 +11,23 @@ import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
 export const FirstLetterPage: FunctionComponent<{}> = () => {
   let { firstLetter } = useParams<{firstLetter: string}>();
   const [artists, setArtists] = useState<Array<Artist>>([]);
+  const [searching, setSearching] = useState<boolean>(false);
 
   useEffect(() => {
     async function getData() {
+      setSearching(true);
       const artistsData = await fetchArtistsByFirstLetter(new Char(firstLetter));
       setArtists(artistsData);
       document.getElementById('artists-list')?.scrollIntoView();
     }
-    getData();
+    getData().then(() => setSearching(false));
   }, [firstLetter]);
 
   return (
     <>
       <BrowseTools />
       <RightTitleSection title="Виконавці"/>
-      <ArtistsList artists={ artists } firstLetter={ firstLetter } />
+      <ArtistsList artists={ artists } firstLetter={ firstLetter } searching={ searching }/>
     </>
   );
 };
