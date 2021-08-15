@@ -20,7 +20,7 @@
   margin: 10px 7px 10px 7px;
   width: 40px;
   height: 40px;
-  box-shadow: 3px 5px 4px rgba(201, 201, 201, 0.35);
+  box-shadow: 0px 2px 3px rgba(201, 201, 201, 0.35);
   background: #F4F4F4;
 }
 
@@ -33,7 +33,27 @@
   font-size: 20px;
   line-height: 40px;
 }
+.selected{
+  font-weight: bold;
+}
 
 .first-letter-toolbar a:visited {
   color: #404040;
+}
+
+@media (max-width: 991px) {
+  .first-letter-toolbar {
+    padding: 10px;
+  }
+
+  .letter-box {
+    width: 30px;
+    height: 30px;
+    margin: 10px 5px 10px 5px;
+  }
+  
+  .letter {
+    font-size: 14px;
+    line-height: 30px;
+  }
 }

@@ -16,6 +16,7 @@ export const FirstLetterPage: FunctionComponent<{}> = () => {
     async function getData() {
       const artistsData = await fetchArtistsByFirstLetter(new Char(firstLetter));
       setArtists(artistsData);
+      document.getElementById('artists-list')?.scrollIntoView();
     }
     getData();
   }, [firstLetter]);
@@ -24,7 +25,7 @@ export const FirstLetterPage: FunctionComponent<{}> = () => {
     <>
       <BrowseTools />
       <RightTitleSection title="Виконавці"/>
-      <ArtistsList artists={ artists } />
+      <ArtistsList artists={ artists } firstLetter={ firstLetter } />
     </>
   );
 };

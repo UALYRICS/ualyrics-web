@@ -3,9 +3,13 @@ import { Artist } from "../../models";
 import { Link } from "react-router-dom";
 import "./ArtistsList.css";
 
-export const ArtistsList: FunctionComponent<{artists: Array<Artist>}> = ({artists}) => {
+export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter: string}> = ({artists, firstLetter}) => {
+  console.log("artists:", artists);
+  if(artists.length === 0){
+    return <div id="artists-list"><h6>Виконавців з перекладеними піснями на букву "{firstLetter}" не знайдено.</h6></div>;
+  }
   return (
-    <>
+    <div id="artists-list">
       {artists.map((artist) => (
         <div key={artist.id}>
           <div className="artists-row">
@@ -19,6 +23,6 @@ export const ArtistsList: FunctionComponent<{artists: Array<Artist>}> = ({artist
           <div className="clear"></div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
