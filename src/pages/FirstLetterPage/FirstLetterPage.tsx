@@ -15,10 +15,10 @@ export const FirstLetterPage: FunctionComponent<{}> = () => {
 
   useEffect(() => {
     async function getData() {
+      document.getElementById('artists-list')?.scrollIntoView();
       setSearching(true);
       const artistsData = await fetchArtistsByFirstLetter(new Char(firstLetter));
       setArtists(artistsData);
-      document.getElementById('artists-list')?.scrollIntoView();
     }
     getData().then(() => setSearching(false));
   }, [firstLetter]);
@@ -27,6 +27,7 @@ export const FirstLetterPage: FunctionComponent<{}> = () => {
     <>
       <BrowseTools />
       <RightTitleSection title="Виконавці"/>
+      <div id="artists-list"></div>
       <ArtistsList artists={ artists } firstLetter={ firstLetter } searching={ searching }/>
     </>
   );

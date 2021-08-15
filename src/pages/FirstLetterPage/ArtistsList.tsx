@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./ArtistsList.css";
 
 export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter: string, searching: boolean}> = ({artists, firstLetter, searching}) => {
-  console.log("artists:", artists);
   if(artists.length === 0){
     if(searching) {
       return (
@@ -15,11 +14,11 @@ export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter
         </div>
       );
     } else {
-      return <div id="artists-list" className="text-center"><h6>Виконавців з перекладеними піснями на букву "{firstLetter}" не знайдено.</h6></div>;
+      return <div className="text-center"><h6>Виконавців з перекладеними піснями на букву "{firstLetter}" не знайдено.</h6></div>;
     }
   }
   return (
-    <div id="artists-list">
+    <>
       {artists.map((artist) => (
         <div key={artist.id}>
           <div className="artists-row">
@@ -33,6 +32,6 @@ export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter
           <div className="clear"></div>
         </div>
       ))}
-    </div>
+    </>
   );
 }
