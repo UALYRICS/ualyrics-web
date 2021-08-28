@@ -1,5 +1,7 @@
-import { GetArtistListResult, GetArtistResult, SongResult } from "./result-types";
-import { Artist, GeniusSong, Song } from "../models";
+import { GetArtistResult, SongResult } from "./result-types";
+import { Artist, GeniusSong, Song, Translation } from "../models";
+import { CreateTranslationMutation, GetArtistsByFirstLetterQuery } from "../API";
+import { GraphQLResult } from "@aws-amplify/api-graphql";
 
 export function mapSingleArtistResultToArtist(item: GetArtistResult): Artist {
   return {
@@ -33,14 +35,39 @@ export function mapSongResultToSong(song: SongResult | null): Song {
   } as Song;
 }
 
-export function mapResultDataToArtist(item: GetArtistListResult | null): Artist {
-  return {
+export function mapResultDataToArtist(result: GraphQLResult<GetArtistsByFirstLetterQuery>): Artist | undefined {
+  const itemsList = result?.data?.getArtistsByFirstLetter;
+  return itemsList?.items?.map(item => {
+    return {
     id: item?.id,
     title: item?.title,
     geniusId: item?.geniusId,
     thumbnailUrl: item?.thumbnailUrl,
     description: item?.description,
-  } as Artist;
+    hasTranslations: item?.hasTranslations,
+  } as Artist}
+  )[0];
+}
+
+export function mapResultToTranslation(graphQLResult: GraphQLResult<CreateTranslationMutation>): Translation {
+  const result = graphQLResult.data?.createTranslation;
+  return {
+    id: result?.id,
+    createdAt: result?.createdAt,
+    owner: result?.owner,
+    ownerName: result?.ownerName,
+    rating: result?.rating,
+    song: {
+      id: result?.song?.id,
+      artistName: result?.song?.artistName,
+      title: result?.song?.title,
+      albumName: result?.song?.albumName,
+      imageUrl: result?.song?.imageUrl,
+      artist: {
+        id: result?.song?.artistId,
+      }
+    }
+  } as Translation;
 }
 
 export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Song {

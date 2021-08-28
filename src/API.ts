@@ -9,6 +9,7 @@ export type CreateArtistInput = {
   title: string,
   description?: string | null,
   thumbnailUrl: string,
+  hasTranslations?: boolean | null,
 };
 
 export type ModelArtistConditionInput = {
@@ -17,6 +18,7 @@ export type ModelArtistConditionInput = {
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
   thumbnailUrl?: ModelStringInput | null,
+  hasTranslations?: ModelBooleanInput | null,
   and?: Array< ModelArtistConditionInput | null > | null,
   or?: Array< ModelArtistConditionInput | null > | null,
   not?: ModelArtistConditionInput | null,
@@ -74,6 +76,13 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type Artist = {
   __typename: "Artist",
   id?: string,
@@ -82,6 +91,7 @@ export type Artist = {
   title?: string,
   description?: string | null,
   thumbnailUrl?: string,
+  hasTranslations?: boolean | null,
   createdAt?: string,
   updatedAt?: string,
   albums?: ModelAlbumConnection,
@@ -182,6 +192,7 @@ export type UpdateArtistInput = {
   title?: string | null,
   description?: string | null,
   thumbnailUrl?: string | null,
+  hasTranslations?: boolean | null,
 };
 
 export type DeleteArtistInput = {
@@ -443,6 +454,7 @@ export type ModelArtistFilterInput = {
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
   thumbnailUrl?: ModelStringInput | null,
+  hasTranslations?: ModelBooleanInput | null,
   and?: Array< ModelArtistFilterInput | null > | null,
   or?: Array< ModelArtistFilterInput | null > | null,
   not?: ModelArtistFilterInput | null,
@@ -552,6 +564,7 @@ export type CreateArtistMutation = {
     title: string,
     description?: string | null,
     thumbnailUrl: string,
+    hasTranslations?: boolean | null,
     createdAt: string,
     updatedAt: string,
     albums?:  {
@@ -606,6 +619,7 @@ export type UpdateArtistMutation = {
     title: string,
     description?: string | null,
     thumbnailUrl: string,
+    hasTranslations?: boolean | null,
     createdAt: string,
     updatedAt: string,
     albums?:  {
@@ -660,6 +674,7 @@ export type DeleteArtistMutation = {
     title: string,
     description?: string | null,
     thumbnailUrl: string,
+    hasTranslations?: boolean | null,
     createdAt: string,
     updatedAt: string,
     albums?:  {
@@ -859,6 +874,7 @@ export type CreateSongMutation = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -944,6 +960,7 @@ export type UpdateSongMutation = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -1029,6 +1046,7 @@ export type DeleteSongMutation = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -1122,6 +1140,7 @@ export type CreateTranslationMutation = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1193,6 +1212,7 @@ export type UpdateTranslationMutation = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1264,6 +1284,7 @@ export type DeleteTranslationMutation = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1548,6 +1569,7 @@ export type GetArtistQuery = {
     title: string,
     description?: string | null,
     thumbnailUrl: string,
+    hasTranslations?: boolean | null,
     createdAt: string,
     updatedAt: string,
     albums?:  {
@@ -1605,6 +1627,7 @@ export type ListArtistsQuery = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -1640,6 +1663,7 @@ export type GetArtistsByFirstLetterQuery = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -1791,6 +1815,7 @@ export type GetSongQuery = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -1872,6 +1897,7 @@ export type ListSongsQuery = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1935,6 +1961,7 @@ export type GetSongsByArtistIdQuery = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -1998,6 +2025,7 @@ export type GetSongsByAlbumIdQuery = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -2060,6 +2088,7 @@ export type GetSongByGeniuslIdQuery = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -2131,6 +2160,7 @@ export type GetTranslationQuery = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -2426,6 +2456,7 @@ export type OnCreateArtistSubscription = {
     title: string,
     description?: string | null,
     thumbnailUrl: string,
+    hasTranslations?: boolean | null,
     createdAt: string,
     updatedAt: string,
     albums?:  {
@@ -2475,6 +2506,7 @@ export type OnUpdateArtistSubscription = {
     title: string,
     description?: string | null,
     thumbnailUrl: string,
+    hasTranslations?: boolean | null,
     createdAt: string,
     updatedAt: string,
     albums?:  {
@@ -2524,6 +2556,7 @@ export type OnDeleteArtistSubscription = {
     title: string,
     description?: string | null,
     thumbnailUrl: string,
+    hasTranslations?: boolean | null,
     createdAt: string,
     updatedAt: string,
     albums?:  {
@@ -2703,6 +2736,7 @@ export type OnCreateSongSubscription = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -2783,6 +2817,7 @@ export type OnUpdateSongSubscription = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -2863,6 +2898,7 @@ export type OnDeleteSongSubscription = {
       title: string,
       description?: string | null,
       thumbnailUrl: string,
+      hasTranslations?: boolean | null,
       createdAt: string,
       updatedAt: string,
       albums?:  {
@@ -2955,6 +2991,7 @@ export type OnCreateTranslationSubscription = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -3025,6 +3062,7 @@ export type OnUpdateTranslationSubscription = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -3095,6 +3133,7 @@ export type OnDeleteTranslationSubscription = {
         title: string,
         description?: string | null,
         thumbnailUrl: string,
+        hasTranslations?: boolean | null,
         createdAt: string,
         updatedAt: string,
       } | null,

@@ -11,6 +11,7 @@ export const onCreateArtist = /* GraphQL */ `
       title
       description
       thumbnailUrl
+      hasTranslations
       createdAt
       updatedAt
       albums {
@@ -56,6 +57,7 @@ export const onUpdateArtist = /* GraphQL */ `
       title
       description
       thumbnailUrl
+      hasTranslations
       createdAt
       updatedAt
       albums {
@@ -101,6 +103,7 @@ export const onDeleteArtist = /* GraphQL */ `
       title
       description
       thumbnailUrl
+      hasTranslations
       createdAt
       updatedAt
       albums {
@@ -267,6 +270,7 @@ export const onCreateSong = /* GraphQL */ `
         title
         description
         thumbnailUrl
+        hasTranslations
         createdAt
         updatedAt
         albums {
@@ -338,6 +342,7 @@ export const onUpdateSong = /* GraphQL */ `
         title
         description
         thumbnailUrl
+        hasTranslations
         createdAt
         updatedAt
         albums {
@@ -409,6 +414,7 @@ export const onDeleteSong = /* GraphQL */ `
         title
         description
         thumbnailUrl
+        hasTranslations
         createdAt
         updatedAt
         albums {
@@ -487,6 +493,7 @@ export const onCreateTranslation = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }
@@ -547,6 +554,7 @@ export const onUpdateTranslation = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }
@@ -607,6 +615,7 @@ export const onDeleteTranslation = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }

@@ -3,13 +3,13 @@ import { Artist } from "../models";
 import { API } from "aws-amplify";
 import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
 import { getArtistsByFirstLetter } from "../graphql/queries";
-import { createArtist as createArtistMutation } from "../graphql/mutations";
-import { CreateArtistInput, CreateArtistMutation, GetArtistsByFirstLetterQuery, GetArtistQuery } from "../API";
+import { createArtist as createArtistMutation, updateArtist as updateArtistMutation } from "../graphql/mutations";
+import { CreateArtistInput, CreateArtistMutation, GetArtistsByFirstLetterQuery, GetArtistQuery, UpdateArtistInput, UpdateArtistMutation } from "../API";
 import { mapResultDataToArtist, mapSingleArtistResultToArtist } from "../mappers/mappers";
 import { LETTERS, NON_LETTER_SYMBOL_ARTISTS_URL } from "../utils/constants";
 
 export async function createArtistIfNotExists(artist: Artist): Promise<string>{
-  const existing = await fetchArtistsByFirstLetterAndTitle(new Char(artist.title), artist.title);
+  const existing = await fetchArtistsByFirstLetterAndTitle(new Char(getFirstLetter(artist)), artist.title);
   if(existing){
     return existing.id;
   }
@@ -68,7 +68,7 @@ export async function getArtistById(artistId: string): Promise<Artist> {
   return mapSingleArtistResultToArtist(result.data!.getArtist!);
 }
 
-async function fetchArtistsByFirstLetterAndTitle(firstLetter: Char, title: string): Promise<Artist | null> {
+async function fetchArtistsByFirstLetterAndTitle(firstLetter: Char, title: string): Promise<Artist | undefined> {
   const result = await API.graphql({
     query: getArtistsByFirstLetter,
     variables: {
@@ -80,7 +80,7 @@ async function fetchArtistsByFirstLetterAndTitle(firstLetter: Char, title: strin
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<GetArtistsByFirstLetterQuery>;
 
-  return result.data!.getArtistsByFirstLetter!.items!.map(mapResultDataToArtist)[0] || null;
+  return mapResultDataToArtist(result);
 }
 
 async function createArtist(artist: Artist): Promise<string>{
@@ -92,6 +92,7 @@ async function createArtist(artist: Artist): Promise<string>{
         geniusId: artist?.geniusId,
         firstLetter: getFirstLetter(artist),
         thumbnailUrl: artist?.thumbnailUrl,
+        hasTranslations: false,
       } as CreateArtistInput
     },
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
@@ -108,4 +109,14 @@ async function createArtist(artist: Artist): Promise<string>{
 export function getFirstLetter(artist: Artist): string{
   const firstChar = artist?.title.toUpperCase().charAt(0);
   return LETTERS.includes(firstChar) ? firstChar : NON_LETTER_SYMBOL_ARTISTS_URL;
+}
+
+export async function updateArtist(input: UpdateArtistInput): Promise<void> {
+  await API.graphql({
+    query: updateArtistMutation,
+    variables: { 
+      input
+    },
+    authMode: GRAPHQL_AUTH_MODE.API_KEY,
+  }) as GraphQLResult<UpdateArtistMutation>;
 }

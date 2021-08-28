@@ -84,6 +84,7 @@ export declare class Artist {
   readonly thumbnailUrl: string;
   readonly albums?: (Album | null)[];
   readonly songs?: (Song | null)[];
+  readonly hasTranslations?: boolean;
   constructor(init: ModelInit<Artist>);
   static copyOf(source: Artist, mutator: (draft: MutableModel<Artist>) => MutableModel<Artist> | void): Artist;
 }

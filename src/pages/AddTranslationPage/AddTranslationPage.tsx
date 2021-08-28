@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { LyricsLine, Song, Translation } from '../../models';
 import { getSongById } from "../../service/song-service";
 import { SongTranslationForm } from "./SongLyricsForm";
-import { createTranslation, getTranslationById, updateTranslation } from "../../service/translations-service";
+import { createSongTranslation, getTranslationById, updateTranslation } from "../../service/translations-service";
 import { useHistory } from "react-router"
 import useAuth from "../../componenets/Auth/UseAuth";
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
@@ -49,7 +49,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
         lyrics,
       });
     } else {
-      createTranslation({
+      createSongTranslation({
         songId: song!.id,
         title: titleTranslation,
         rating: 0,

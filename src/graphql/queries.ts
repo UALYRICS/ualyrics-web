@@ -84,6 +84,7 @@ export const getArtist = /* GraphQL */ `
       title
       description
       thumbnailUrl
+      hasTranslations
       createdAt
       updatedAt
       albums {
@@ -134,6 +135,7 @@ export const listArtists = /* GraphQL */ `
         title
         description
         thumbnailUrl
+        hasTranslations
         createdAt
         updatedAt
         albums {
@@ -171,6 +173,7 @@ export const getArtistsByFirstLetter = /* GraphQL */ `
         title
         description
         thumbnailUrl
+        hasTranslations
         createdAt
         updatedAt
         albums {
@@ -306,6 +309,7 @@ export const getSong = /* GraphQL */ `
         title
         description
         thumbnailUrl
+        hasTranslations
         createdAt
         updatedAt
         albums {
@@ -376,6 +380,7 @@ export const listSongs = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }
@@ -439,6 +444,7 @@ export const getSongsByArtistId = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }
@@ -502,6 +508,7 @@ export const getSongsByAlbumId = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }
@@ -563,6 +570,7 @@ export const getSongByGeniuslId = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }
@@ -624,6 +632,7 @@ export const getTranslation = /* GraphQL */ `
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
         }

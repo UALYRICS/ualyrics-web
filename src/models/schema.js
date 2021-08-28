@@ -72,6 +72,13 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "artist"
                     }
+                },
+                "hasTranslations": {
+                    "name": "hasTranslations",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1048,5 +1055,5 @@ export const schema = {
             }
         }
     },
-    "version": "8431a4f8f44dbdb73250cab348e8e0f9"
+    "version": "15c5ede0f9e376fa5dcbac02be206c7f"
 };
