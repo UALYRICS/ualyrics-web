@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./ArtistsList.css";
 
 export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter: string}> = ({artists, firstLetter}) => {
-  console.log("artists:", artists);
   if(artists.length === 0){
     return <div id="artists-list"><h6>Виконавців з перекладеними піснями на букву "{firstLetter}" не знайдено.</h6></div>;
   }

@@ -1,5 +1,5 @@
 import { Char } from "../models/char";
-import { Artist, Song } from "../models";
+import { Artist } from "../models";
 import { API } from "aws-amplify";
 import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
 
@@ -18,20 +18,9 @@ export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Arti
           title
           description
           thumbnailUrl
+          hasTranslations
           createdAt
           updatedAt
-          songs {
-            items {
-              id
-              title
-              translations {
-                items {
-                  id
-                }
-              }
-            }
-            nextToken
-          }
         }
         nextToken
       }
@@ -49,17 +38,7 @@ export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Arti
         thumbnailUrl: string,
         createdAt: string,
         updatedAt: string,
-        songs?:  {
-          items?:  Array< {
-            id: string,
-            title: string,
-            translations?:  {
-              items?:  Array< {
-                id: string,
-              }>,
-            },
-          }>,
-        },
+        hasTranslations: boolean,
       } >,
     },
   };
@@ -77,12 +56,8 @@ export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Arti
     geniusId: item.geniusId,
     thumbnailUrl: item.thumbnailUrl,
     description: item.description,
-    songs: item.songs?.items?.map(song => ({
-      id: song.id,
-      title: song.title,
-      translations: song.translations?.items
-    } as Song))
+    hasTranslations: item.hasTranslations || false,
   } as Artist))
-  .filter(artist => artist.songs?.flatMap(song => song?.translations).length !== 0)
+  .filter(artist => artist.hasTranslations)
   ;
 }

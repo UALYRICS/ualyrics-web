@@ -1,36 +1,28 @@
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 import { CreateTranslationInput, CreateTranslationMutation, GetTranslationQuery, UpdateTranslationInput, UpdateTranslationMutation } from "../API";
 import { createTranslation as createTranslationMutation, updateTranslation as updateTranslationMutation } from "../graphql/mutations";
+import { updateArtist } from "./artists-service";
 import { API, Storage } from "aws-amplify";
 import { Translation } from "../models";
+import { mapResultToTranslation } from "../mappers/mappers";
 
-export const createTranslation = async (input: CreateTranslationInput): Promise<Translation> => {
+export const createSongTranslation = async (input: CreateTranslationInput): Promise<Translation> => {
+  const translation = await createTranslation(input);
+
+  updateArtist({id: translation.song?.artist?.id!, hasTranslations: true});
+  updateLatestFile(translation);
+
+  return translation;
+}
+
+const createTranslation = async (input: CreateTranslationInput): Promise<Translation> => {
   const result = await API.graphql({
     query: createTranslationMutation,
     variables: { input },
     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
   }) as GraphQLResult<CreateTranslationMutation>;
 
-  const translationResult = result.data?.createTranslation;
-
-  const translation = {
-    id: translationResult?.id,
-    createdAt: translationResult?.createdAt,
-    owner: translationResult?.owner,
-    ownerName: translationResult?.ownerName,
-    rating: translationResult?.rating,
-    song: {
-      id: translationResult?.song?.id,
-      artistName: translationResult?.song?.artistName,
-      title: translationResult?.song?.title,
-      albumName: translationResult?.song?.albumName,
-      imageUrl: translationResult?.song?.imageUrl,
-    }
-  } as Translation;
-
-  updateLatestFile(translation);
-
-  return translation;
+  return mapResultToTranslation(result);
 }
 
 export const updateTranslation = async (input: UpdateTranslationInput): Promise<void> => {
