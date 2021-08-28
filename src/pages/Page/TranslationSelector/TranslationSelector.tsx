@@ -5,6 +5,7 @@ import { fetchArtistsByFirstLetter } from "../../../service/browse-service";
 import { Artist, Song } from "../../../models";
 import { useHistory } from "react-router";
 import "./TranslationSelector.css";
+import { getArtistById } from '../../../service/artists-service';
 
 export const TranslationSelector: FunctionComponent<{}> = () => {
   let history = useHistory();
@@ -27,8 +28,8 @@ export const TranslationSelector: FunctionComponent<{}> = () => {
       resetSongs();
       return;
     }
-    const artist = artists.find(artist => artist.id === target.value);
-    setSongs(artist!.songs!.filter(song => song?.translations?.length !== 0));
+    const artist = await getArtistById(target.value);
+    setSongs(artist!.songs!.filter(song => song!.translations!.length !== 0));
     resetSongId();
   }
 
@@ -41,7 +42,8 @@ export const TranslationSelector: FunctionComponent<{}> = () => {
   }
 
   function goToSongPage() {
-      history.push(`/songs/${songId}`);
+    const translationId = songs.find(song => song!.id === songId)!.translations![0]?.id;
+    history.push(`/translations/${translationId}`);
   }
 
   function resetArtists() {
