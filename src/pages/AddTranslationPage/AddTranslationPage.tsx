@@ -42,24 +42,25 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
   }, [songId, currentUser]);
 
   const handleSave = async () => {
+    let translationId: string;
     if(existing){
-      updateTranslation({
+      translationId = (await updateTranslation({
         id: existing.id,
         title: titleTranslation,
         lyrics,
-      });
+      })).data?.updateTranslation?.id!;
     } else {
-      createSongTranslation({
+      translationId = (await createSongTranslation({
         songId: song!.id,
         title: titleTranslation,
         rating: 0,
         owner: currentUser!.username,
         ownerName: currentUser!.attributes.name,
         lyrics,
-      });
+      })).id;
     }
 
-    history.push(`/songs/${songId}`);
+    history.push(`/translations/${translationId}`);
   }
 
   const handleChange = (lineIndex: number, newValue: string) => {

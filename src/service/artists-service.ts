@@ -111,8 +111,8 @@ export function getFirstLetter(artist: Artist): string{
   return LETTERS.includes(firstChar) ? firstChar : NON_LETTER_SYMBOL_ARTISTS_URL;
 }
 
-export async function updateArtist(input: UpdateArtistInput): Promise<void> {
-  await API.graphql({
+export async function updateArtist(input: UpdateArtistInput): Promise<GraphQLResult<UpdateArtistMutation>> {
+  return await API.graphql({
     query: updateArtistMutation,
     variables: { 
       input

@@ -9,8 +9,8 @@ import { mapResultToTranslation } from "../mappers/mappers";
 export const createSongTranslation = async (input: CreateTranslationInput): Promise<Translation> => {
   const translation = await createTranslation(input);
 
-  updateArtist({id: translation.song?.artist?.id!, hasTranslations: true});
-  updateLatestFile(translation);
+  await updateArtist({id: translation.song?.artist?.id!, hasTranslations: true});
+  await updateLatestFile(translation);
 
   return translation;
 }
@@ -25,8 +25,8 @@ const createTranslation = async (input: CreateTranslationInput): Promise<Transla
   return mapResultToTranslation(result);
 }
 
-export const updateTranslation = async (input: UpdateTranslationInput): Promise<void> => {
-  await API.graphql({
+export const updateTranslation = async (input: UpdateTranslationInput): Promise<GraphQLResult<UpdateTranslationMutation>> => {
+  return API.graphql({
     query: updateTranslationMutation,
     variables: { input },
     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
@@ -105,7 +105,7 @@ export const getTranslationById = async (id: string): Promise<Translation> => {
   }
 }
 
-const updateLatestFile = async (translation: Translation) => {
+const updateLatestFile = async (translation: Translation): Promise<Object> => {
   const data = await Storage.get(`recentlyadded.json`, { download: true, cacheControl: 'no-cache' }) as {Body: {text(): Promise<string>}};
   const recentAddadData = await data.Body.text();
   const translations = JSON.parse(recentAddadData) as Array<Translation>;
@@ -124,5 +124,5 @@ const updateLatestFile = async (translation: Translation) => {
   }
 
   // Save recent translations to S3
-  Storage.put(`recentlyadded.json`, JSON.stringify(mutatedTranslations));
+  return Storage.put(`recentlyadded.json`, JSON.stringify(mutatedTranslations));
 };
