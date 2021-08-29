@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/analytics": "^5.0.11",
     "@aws-amplify/api": "^4.0.0",
     "@aws-amplify/interactions": "^4.0.0",
     "@aws-amplify/storage": "^4.0.0",
