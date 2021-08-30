@@ -13,7 +13,7 @@ export interface SongCard {
 
 export const SongCardsList: FunctionComponent<{songs: Array<SongCard>}> = ({songs}) => {
   return (
-    <div>
+    <div data-test="song-card-list">
       {songs.map((song, idx) => {
         const artistTitle = song.artistPageUrl ? <Link to={song.artistPageUrl}>{song.artistTitle}</Link> : song.artistTitle;
         return (

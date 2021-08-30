@@ -1,17 +1,19 @@
-describe('Authenticator:', function() {
+describe('Search functionality', function() {
   // Step 1: setup the application state
   beforeEach(function() {
     cy.visit('/');
   });
   
-  describe('Sign In:', () => {
-    it('allows a user to signin', () => {
-      // Step 2: Take an action (Sign in)
+  describe('Search bar', () => {
+    it('finds songs using Genius API', () => {
+      // Arrange
       cy.get(selectors.searchInput).type("Somebody to love");
+
+      // Act
       cy.get(selectors.searchButton).contains('Пошук').click();
 
-      // Step 3: Make an assertion (Check for sign-out text)
-        //cy.get(selectors.signOutButton).contains('Sign Out');
+      // Assert
+      cy.get(selectors.songsList).should('have.length', 10);
     });
   });
 
@@ -19,5 +21,6 @@ describe('Authenticator:', function() {
 export const selectors = {
   // Auth component classes
   searchInput: '[data-test="search-input"]',
-  searchButton: '[data-test="search-button"]'
+  searchButton: '[data-test="search-button"]',
+  songsList: '[data-test="song-card-list"] .song',
 }
