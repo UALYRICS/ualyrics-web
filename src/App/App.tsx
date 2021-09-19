@@ -17,6 +17,7 @@ import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 import './App.css';
 import { TranslationPage } from '../pages/TranslationPage/TranslationPage';
 import { AuthWrapper } from '../componenets/Auth/AuthWrapper';
+import useDocumentTitle from '../utils/use-document-title';
 
 export const App: FunctionComponent<{}> = () => {
   return (
@@ -34,7 +35,7 @@ export const App: FunctionComponent<{}> = () => {
         </Route>
         <Route path="/login">
           <Page>
-            <LoginPage />
+            <Login />
           </Page>
         </Route>
         <Route path="/songs/:songId/translate">
@@ -72,4 +73,9 @@ export const App: FunctionComponent<{}> = () => {
       </Switch>
     </Router>
   );
+}
+
+function Login() {
+  useDocumentTitle(`Вхід | UALYRICS`);
+  return <LoginPage />;
 }

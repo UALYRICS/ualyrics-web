@@ -7,6 +7,7 @@ import { BrowseTools } from "../Page/BrowseTools";
 
 import { ArtistsList } from "./ArtistsList";
 import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
+import useDocumentTitle from '../../utils/use-document-title';
 
 export const FirstLetterPage: FunctionComponent<{}> = () => {
   let { firstLetter } = useParams<{firstLetter: string}>();
@@ -22,6 +23,8 @@ export const FirstLetterPage: FunctionComponent<{}> = () => {
     }
     getData().then(() => setSearching(false));
   }, [firstLetter]);
+
+  useDocumentTitle(`${firstLetter || ''} | виконавці за першою літерою | UALYRICS`);
 
   return (
     <>

@@ -5,6 +5,7 @@ import { SongDetails } from "../../componenets/Song/SongDetails";
 import { LyricsLine, Translation } from "../../models";
 import { getTranslationById } from "../../service/translations-service";
 import { TranslatedLyrics } from "./TranslatedLyrics";
+import useDocumentTitle from '../../utils/use-document-title';
 
 export const TranslationPage: FunctionComponent<{}> = () => {
   let { translationId } = useParams<{translationId: string}>();
@@ -17,6 +18,8 @@ export const TranslationPage: FunctionComponent<{}> = () => {
     }
     getData();
   }, [translationId]);
+
+  useDocumentTitle(`${translation?.song?.artistName || ''} - ${translation?.song?.title || ''} | переклад пісні | UALYRICS`);
 
   if(!translation){
     return <></>;

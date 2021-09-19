@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
 import { SongCard, SongCardsList } from "../../componenets/Song/SongCardsList";
+import useDocumentTitle from '../../utils/use-document-title';
 
 export const SearchPage: FunctionComponent<{}> = () => {
   let query = useQuery();
@@ -29,6 +30,8 @@ export const SearchPage: FunctionComponent<{}> = () => {
     }
     getData();
   }, [searchTerm]);
+
+  useDocumentTitle(`${searchTerm || ''} | пошук пісні | UALYRICS`);
 
   return (
     <>

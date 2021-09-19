@@ -8,6 +8,7 @@ import { SongTranslationsList } from "./SongTranslationsList";
 import {Link} from "react-router-dom";
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
 import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
+import useDocumentTitle from '../../utils/use-document-title';
 
 export const SongPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
@@ -20,6 +21,8 @@ export const SongPage: FunctionComponent<{}> = () => {
     }
     getData();
   }, [songId]);
+
+  useDocumentTitle(`${song?.artistName || ''} - ${song?.title || ''} | текст пісні | UALYRICS`);
 
   if(!song) {
     return <></>;

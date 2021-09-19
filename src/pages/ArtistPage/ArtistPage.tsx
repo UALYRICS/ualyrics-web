@@ -5,6 +5,7 @@ import { getArtistById } from "../../service/artists-service";
 import { useParams } from "react-router-dom";
 import { LeftTitleSection } from '../../componenets/Decor/LeftTitleSection';
 import { ArtistHeader } from './ArtistHeader';
+import useDocumentTitle from '../../utils/use-document-title';
 
 export const ArtistPage : FunctionComponent<{}> = () => {
   let { artistId } = useParams<{artistId: string}>();
@@ -21,6 +22,8 @@ export const ArtistPage : FunctionComponent<{}> = () => {
     }
     getData();
   }, [artistId]);
+
+  useDocumentTitle(`${artist?.title || ''} | сторінка виконавця | UALYRICS`);
 
   if(!artist) {
     return <></>;

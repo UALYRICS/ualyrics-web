@@ -7,6 +7,7 @@ import { createSongTranslation, getTranslationById, updateTranslation } from "..
 import { useHistory } from "react-router"
 import useAuth from "../../componenets/Auth/UseAuth";
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
+import useDocumentTitle from '../../utils/use-document-title';
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
@@ -79,6 +80,8 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
   const handleTitleChange = (value: string) => {
     setTitleTranslation(value);
   }
+
+  useDocumentTitle(`${song?.artistName || ''} - ${song?.title || ''} | додати переклад | UALYRICS`);
 
   if(!song || ! lyrics){
     return <></>;
