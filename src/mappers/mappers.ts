@@ -72,7 +72,7 @@ export function mapResultToTranslation(graphQLResult: GraphQLResult<CreateTransl
 
 export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Song {
   return {
-    id: '', // this is required but unknown
+    id: geniusSong.path.substring(1).replace(/-lyrics$/ig, ''), // removing leading slash and '-lyrics' sufix
     geniusId: geniusSong.id,
     title: geniusSong.title,
     imageUrl: geniusSong.song_art_image_thumbnail_url,

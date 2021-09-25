@@ -412,6 +412,7 @@ export type GeniusSong = {
   album?: GeniusAlbum,
   primary_artist?: GeniusArtist,
   media?:  Array<GeniusMedia | null >,
+  path?: string,
 };
 
 export type GeniusAlbum = {
@@ -1503,6 +1504,7 @@ export type GetGeniusSongQuery = {
       provider: string,
       url: string,
     } | null >,
+    path: string,
   } | null,
 };
 

@@ -115,14 +115,16 @@ export const schema = {
                                 "allow": "public",
                                 "operations": [
                                     "read",
-                                    "create"
+                                    "create",
+                                    "update"
                                 ]
                             },
                             {
                                 "allow": "private",
                                 "operations": [
                                     "read",
-                                    "create"
+                                    "create",
+                                    "update"
                                 ]
                             },
                             {
@@ -829,6 +831,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": false
+                },
+                "path": {
+                    "name": "path",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
                 }
             }
         },
@@ -1055,5 +1064,5 @@ export const schema = {
             }
         }
     },
-    "version": "15c5ede0f9e376fa5dcbac02be206c7f"
+    "version": "918a49c3913175b8283a17c7f82d9245"
 };

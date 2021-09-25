@@ -55,6 +55,7 @@ export const createSong = async (artistId: string, song: Song, albumId?: string)
     query: createSongMutation,
     variables: { 
       input: {
+        id: song.id,
         artistId,
         albumId,
         title: song?.title,

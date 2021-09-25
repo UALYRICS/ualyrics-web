@@ -178,6 +178,7 @@ type GeniusSong {
   album: GeniusAlbum
   primary_artist: GeniusArtist!
   media: [GeniusMedia]!
+  path: String!
 }
 
 type GeniusArtist {

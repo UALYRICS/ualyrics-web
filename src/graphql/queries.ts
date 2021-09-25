@@ -34,6 +34,7 @@ export const getGeniusSong = /* GraphQL */ `
         provider
         url
       }
+      path
     }
   }
 `;
