@@ -51,8 +51,9 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
         lyrics,
       })).data?.updateTranslation?.id!;
     } else {
+      const idSuffix = song!.translations!.length === 0 ? '' : `(${song!.translations!.length + 1})`;
       translationId = (await createSongTranslation({
-        id: song!.id + `(${song!.translations!.length + 1})`,
+        id: song!.id + idSuffix,
         songId: song!.id,
         title: titleTranslation,
         rating: 0,
