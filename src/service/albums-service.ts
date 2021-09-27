@@ -21,6 +21,7 @@ const createAlbum = async (artistId: string, album: Album): Promise<string> => {
     variables: { 
       input: {
         artistId,
+        id: album.id,
         title: album?.title,
         geniusId: album?.geniusId,
         thumbnailUrl: album?.thumbnailUrl,

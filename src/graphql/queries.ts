@@ -23,12 +23,14 @@ export const getGeniusSong = /* GraphQL */ `
         id
         name
         cover_art_url
+        url
       }
       primary_artist {
         id
         name
         header_image_url
         image_url
+        url
       }
       media {
         provider
@@ -53,6 +55,7 @@ export const searchGeniusSong = /* GraphQL */ `
         name
         header_image_url
         image_url
+        url
       }
     }
   }
@@ -72,6 +75,7 @@ export const getGeniusSongsByArtistId = /* GraphQL */ `
         name
         header_image_url
         image_url
+        url
       }
     }
   }

@@ -864,6 +864,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
+                },
+                "url": {
+                    "name": "url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
                 }
             }
         },
@@ -893,6 +900,13 @@ export const schema = {
                 },
                 "image_url": {
                     "name": "image_url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "url": {
+                    "name": "url",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -1064,5 +1078,5 @@ export const schema = {
             }
         }
     },
-    "version": "918a49c3913175b8283a17c7f82d9245"
+    "version": "d45aaf3c59b8f2d26b80b74e7725fc9b"
 };

@@ -71,8 +71,11 @@ export function mapResultToTranslation(graphQLResult: GraphQLResult<CreateTransl
 }
 
 export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Song {
+  const songId = geniusSong.path.substring(1).replace(/-lyrics$/ig, '');
+  const artistId = geniusSong?.primary_artist.url.substring(geniusSong?.primary_artist.url.lastIndexOf('/') + 1);
+  const albumId = geniusSong?.album?.url.substring(geniusSong?.album?.url.lastIndexOf('/') + 1);
   return {
-    id: geniusSong.path.substring(1).replace(/-lyrics$/ig, ''), // removing leading slash and '-lyrics' sufix
+    id: songId, // removing leading slash and '-lyrics' sufix
     geniusId: geniusSong.id,
     title: geniusSong.title,
     imageUrl: geniusSong.song_art_image_thumbnail_url,
@@ -80,15 +83,15 @@ export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Son
     artistName: geniusSong.primary_artist.name,
     albumName: geniusSong.album?.name,
     artist: {
-      id: '',
+      id: artistId,
       title: geniusSong?.primary_artist.name,
       thumbnailUrl: geniusSong?.primary_artist.image_url,
       firstLetter: geniusSong?.primary_artist?.name.charAt(0),
       geniusId: geniusSong?.primary_artist.id,
     },
     album: geniusSong.album ? {
-      id: '',
-      artistId: '',
+      id: albumId || '',
+      artistId: artistId,
       geniusId: geniusSong?.album?.id,
       title: geniusSong?.album?.name,
       thumbnailUrl: geniusSong?.album?.cover_art_url

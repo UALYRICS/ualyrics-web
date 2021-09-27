@@ -88,6 +88,7 @@ async function createArtist(artist: Artist): Promise<string>{
     query: createArtistMutation,
     variables: { 
       input: {
+        id: artist.id,
         title: artist?.title,
         geniusId: artist?.geniusId,
         firstLetter: getFirstLetter(artist),

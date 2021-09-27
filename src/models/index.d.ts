@@ -26,6 +26,7 @@ export declare class GeniusAlbum {
   readonly id: number;
   readonly name: string;
   readonly cover_art_url: string;
+  readonly url: string;
   constructor(init: ModelInit<GeniusAlbum>);
 }
 
@@ -34,6 +35,7 @@ export declare class GeniusArtist {
   readonly name: string;
   readonly header_image_url: string;
   readonly image_url: string;
+  readonly url: string;
   constructor(init: ModelInit<GeniusArtist>);
 }
 

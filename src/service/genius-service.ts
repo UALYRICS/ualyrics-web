@@ -30,13 +30,15 @@ export const getGeniusSongById = async (geniusId: number): Promise<GeniusSong> =
       id: geniusSong?.album?.id,
       artistId: geniusSong?.primary_artist.id,
       name: geniusSong?.album?.name,
-      cover_art_url: geniusSong?.album?.cover_art_url
+      cover_art_url: geniusSong?.album?.cover_art_url,
+      url: geniusSong?.album?.url,
     },
     primary_artist: {
       id: geniusSong?.primary_artist.id,
       name: geniusSong?.primary_artist.name,
       image_url: geniusSong?.primary_artist.image_url,
-      header_image_url: geniusSong?.primary_artist.header_image_url
+      header_image_url: geniusSong?.primary_artist.header_image_url,
+      url: geniusSong?.primary_artist.url,
     }
   } as GeniusSong;
 }

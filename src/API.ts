@@ -420,6 +420,7 @@ export type GeniusAlbum = {
   id?: number,
   name?: string,
   cover_art_url?: string,
+  url?: string,
 };
 
 export type GeniusArtist = {
@@ -428,6 +429,7 @@ export type GeniusArtist = {
   name?: string,
   header_image_url?: string,
   image_url?: string,
+  url?: string,
 };
 
 export type GeniusMedia = {
@@ -1491,6 +1493,7 @@ export type GetGeniusSongQuery = {
       id: number,
       name: string,
       cover_art_url: string,
+      url: string,
     } | null,
     primary_artist:  {
       __typename: "GeniusArtist",
@@ -1498,6 +1501,7 @@ export type GetGeniusSongQuery = {
       name: string,
       header_image_url: string,
       image_url: string,
+      url: string,
     },
     media:  Array< {
       __typename: "GeniusMedia",
@@ -1529,6 +1533,7 @@ export type SearchGeniusSongQuery = {
       name: string,
       header_image_url: string,
       image_url: string,
+      url: string,
     },
   } | null > | null,
 };
@@ -1554,6 +1559,7 @@ export type GetGeniusSongsByArtistIdQuery = {
       name: string,
       header_image_url: string,
       image_url: string,
+      url: string,
     },
   } | null > | null,
 };

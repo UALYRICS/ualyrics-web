@@ -186,12 +186,14 @@ type GeniusArtist {
   name: String!
   header_image_url: String!
   image_url: String!
+  url: String!
 }
 
 type GeniusAlbum {
   id: Int!
   name: String!
   cover_art_url: String!
+  url: String!
 }
 
 type GeniusMedia {
