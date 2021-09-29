@@ -5,8 +5,8 @@ describe('Add translation', () => {
 
   before(() => {
     cy.loginByCognitoApi(
-      Cypress.env('username'),
-      Cypress.env('password')
+      Cypress.env('USERNAME'),
+      Cypress.env('PASSWORD')
     )
   });
 

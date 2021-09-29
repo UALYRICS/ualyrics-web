@@ -27,10 +27,10 @@
 const Auth = require ( "aws-amplify" ).Auth;
 import "cypress-localstorage-commands";
 
-const username = Cypress.env("username");
-const password = Cypress.env("password");
-const userPoolId = Cypress.env("userPoolId");
-const clientId = Cypress.env("clientId");
+const username = Cypress.env("USERNAME");
+const password = Cypress.env("PASSWORD");
+const userPoolId = Cypress.env("USER_POOL_ID");
+const clientId = Cypress.env("CLIENT_ID");
 
 console.log('asadsfasdfsfasfasdfasf', userPoolId);
 
