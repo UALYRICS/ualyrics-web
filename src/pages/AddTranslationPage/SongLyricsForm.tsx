@@ -15,12 +15,12 @@ export const SongTranslationForm: FunctionComponent<Props> = ({lyrics, handleCha
     <>
       <div className="row mt-md-0 mt-1" >
         <span className="col-md-6 bg-light font-weight-bold">{song.title}</span>
-        <span className="col-md-6 bg-light"><input type="text" className="line-translation-input" value={titleTranslation} onChange={(e) => handleTitleChange(e.target.value)} /></span>
+        <span className="col-md-6 bg-light"><input type="text" data-test="line-translation-input" className="line-translation-input" value={titleTranslation} onChange={(e) => handleTitleChange(e.target.value)} /></span>
       </div>
       {lyrics?.map((line, index) => {
         const translationEl = line.original.length === 0 ?
         (<br/>) :
-        (<input type="text" className="line-translation-input" value={lyrics[index].translation} onChange={(e) => handleChange(index, e.target.value)} />)
+        (<input type="text" className="line-translation-input" data-test="line-translation-input" value={lyrics[index].translation} onChange={(e) => handleChange(index, e.target.value)} />)
           return (
             <div className="row mt-md-0 mt-1" key={index} >
               <span className="col-md-6 bg-light">{line.original}</span>

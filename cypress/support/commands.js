@@ -23,3 +23,76 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+const Auth = require ( "aws-amplify" ).Auth;
+import "cypress-localstorage-commands";
+
+const username = Cypress.env("username");
+const password = Cypress.env("password");
+const userPoolId = Cypress.env("userPoolId");
+const clientId = Cypress.env("clientId");
+
+console.log('asadsfasdfsfasfasdfasf', userPoolId);
+
+const awsconfig = {
+  aws_user_pools_id: userPoolId,
+  aws_user_pools_web_client_id: clientId,
+};
+
+Auth.configure (awsconfig);
+
+// Amazon Cognito
+Cypress.Commands.add('loginByCognitoApi', (username, password) => {
+  const log = Cypress.log({
+    displayName: 'COGNITO LOGIN',
+    message: [`🔐 Authenticating | ${username}`],
+    // @ts-ignore
+    autoEnd: false,
+  })
+
+  log.snapshot('before')
+
+  const signIn = Auth.signIn({ username, password })
+
+  cy.wrap(signIn, { log: false }).then((cognitoResponse) => {
+    const keyPrefixWithUsername = `${cognitoResponse.keyPrefix}.${cognitoResponse.username}`
+
+    window.localStorage.setItem(
+      `${keyPrefixWithUsername}.idToken`,
+      cognitoResponse.signInUserSession.idToken.jwtToken
+    )
+
+    window.localStorage.setItem(
+      `${keyPrefixWithUsername}.accessToken`,
+      cognitoResponse.signInUserSession.accessToken.jwtToken
+    )
+
+    window.localStorage.setItem(
+      `${keyPrefixWithUsername}.refreshToken`,
+      cognitoResponse.signInUserSession.refreshToken.token
+    )
+
+    window.localStorage.setItem(
+      `${keyPrefixWithUsername}.clockDrift`,
+      cognitoResponse.signInUserSession.clockDrift
+    )
+
+    window.localStorage.setItem(
+      `${cognitoResponse.keyPrefix}.LastAuthUser`,
+      cognitoResponse.username
+    )
+
+    window.localStorage.setItem('amplify-authenticator-authState', 'signedIn')
+
+    log.snapshot('after')
+    log.end()
+  })
+
+  cy.saveLocalStorage();
+  cy.visit('/');
+  cy.get(selectors.currentUser).contains('IT');
+});
+
+const selectors = {
+  currentUser: '[data-test="current-user"]',
+}

@@ -44,7 +44,7 @@ export const SongPage: FunctionComponent<{}> = () => {
       <SongLyrics song={song} />
       {translationsBlock}
       <div className="text-center"> 
-        <Link className="btn btn-outline-dark mt-4 center" to={`/songs/${songId}/translate`}>Додати переклад</Link>
+        <Link data-test="add-translation-button" className="btn btn-outline-dark mt-4 center" to={`/songs/${songId}/translate`}>Додати переклад</Link>
       </div>
     </>
   )

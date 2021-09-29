@@ -8,7 +8,7 @@ export const AuthStatus = () => {
 
   return currentUser ? (
       <>
-        <span className="circle ml-sm-2">{currentUser.attributes.name.split(' ').slice(0, 2).map(n => n.toUpperCase().substring(0, 1))}</span>
+        <span className="circle ml-sm-2" data-test="current-user">{currentUser.attributes.name.split(' ').slice(0, 2).map(n => n.toUpperCase().substring(0, 1))}</span>
         <button className="btn btn-link btn-sm auth-button" type="submit" onClick={() => Auth.signOut()}>Вийти</button>
       </>
   ) : (

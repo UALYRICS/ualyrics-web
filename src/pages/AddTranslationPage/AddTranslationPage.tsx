@@ -89,19 +89,20 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
     return <></>;
   }
 
-  const disabled = lyrics
+  const disabled = 
+    lyrics.length === 0
+    || titleTranslation.length === 0
+    || lyrics
     .filter(l => l.original.length > 0)
     .map(l => l.translation)
     .filter(t => t.length === 0)
-    .length !== 0
-    ||
-    titleTranslation.length === 0;
+    .length !== 0;
 
   return (
     <>
       <LeftTitleSection title="Додати переклад"/>
       <SongTranslationForm lyrics={lyrics} titleTranslation={titleTranslation} song={song} handleChange={handleChange} handleTitleChange={handleTitleChange}  />
-      <button className="btn btn-outline-dark btn-light btn-lg btn-block my-3" onClick={handleSave} disabled={disabled}>Опублікувати переклад</button>
+      <button className="btn btn-outline-dark btn-light btn-lg btn-block my-3" data-test="submit-translation-button"onClick={handleSave} disabled={disabled}>Опублікувати переклад</button>
     </>
   )
 }
