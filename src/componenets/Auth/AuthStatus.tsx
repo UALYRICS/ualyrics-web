@@ -12,6 +12,6 @@ export const AuthStatus = () => {
         <button className="btn btn-link btn-sm auth-button" type="submit" onClick={() => Auth.signOut()}>Вийти</button>
       </>
   ) : (
-      <a className="btn btn-link btn-sm auth-button" href="/login">Увійти</a>
+      <a className="btn btn-link btn-sm auth-button" href="/login" data-test="login-button">Увійти</a>
   );
 }

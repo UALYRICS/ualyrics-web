@@ -24,7 +24,7 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
   let loadMoreButton;
   if(recentlyAdded.length > page * ITEMS_PER_PAGE)
   {
-    loadMoreButton = (<button className="btn btn-outline-dark btn-light my-3" onClick={() => setPage(page + 1)}>Показати більше</button>);
+    loadMoreButton = (<button className="btn btn-outline-dark btn-light my-3" onClick={() => setPage(page + 1)} data-test="show-more-button">Показати більше</button>);
   }
 
   if(recentlyAdded.length === 0){
@@ -40,7 +40,7 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
             <img src={translation?.song?.imageUrl} className='icon' alt="Song thumbnail" />
           </div>	
           <div className="left-margin">
-            <h6><Link to={`/translations/${translation?.id}`}>{translation?.song?.title}</Link></h6>
+            <h6><Link to={`/translations/${translation?.id}`} data-test="recently-added-title">{translation?.song?.title}</Link></h6>
             <h6>{translation?.song?.artistName}</h6>
             <h6>Перекладено: <b>{translation?.ownerName}</b></h6>
           </div>

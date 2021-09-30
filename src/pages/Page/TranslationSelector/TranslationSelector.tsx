@@ -64,19 +64,19 @@ export const TranslationSelector: FunctionComponent<{}> = () => {
     <div className="translation-selector my-2">
       <div className="translation-selector-header">Перейти до перекладу</div>
       <form>
-        <select className="form-control my-2" onChange={firstLetterSelecter}>
+        <select className="form-control my-2" onChange={firstLetterSelecter} data-test="first-letter-select">
           <option key={"-"}>Оберіть першу літеру імені виконавця</option>
           {[...LETTERS].map(l => <option value={l} key={l}>{l}</option>)}
         </select>
-        <select className="form-control my-2" onChange={artistTitleSelected}>
+        <select className="form-control my-2" onChange={artistTitleSelected} data-test="artist-title-select">
           <option key={"-"}>Оберіть ім'я виконавця</option>
           {artists.map(artist => <option value={artist.id} key={artist.id}>{artist.title}</option>)}
         </select>
-        <select className="form-control my-2" onChange={songSelected}>
+        <select className="form-control my-2" onChange={songSelected} data-test="song-select">
           <option key={"-"}>Оберіть пісню</option>
           {songs.map(song => <option value={song!.id} key={song!.id}>{song!.title}</option>)}
         </select>
-        <button type="submit" className="btn btn-block btn-outline-dark mt-4" disabled={!songId} onClick={goToSongPage}>Перейти</button>
+        <button type="submit" className="btn btn-block btn-outline-dark mt-4" disabled={!songId} onClick={goToSongPage} data-test="go-to-translation-button">Перейти</button>
       </form>
     </div>
   );
