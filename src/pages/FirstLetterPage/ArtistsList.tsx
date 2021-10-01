@@ -14,7 +14,7 @@ export const ArtistsList: FunctionComponent<{artists: Array<Artist>, firstLetter
         </div>
       );
     } else {
-      return <div className="text-center"><h6>Виконавців з перекладеними піснями на букву "{firstLetter}" не знайдено.</h6></div>;
+      return <div className="text-center"><h6>Виконавців на букву "{firstLetter}" з перекладеними піснями не знайдено.</h6></div>;
     }
   }
   return (
