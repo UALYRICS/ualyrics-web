@@ -6,7 +6,7 @@ describe('Login functionality', () => {
     cy.get(selectors.loginButton).contains('Увійти').click();
 
     // Verify we are on login page
-    cy.location('pathname').should('eq', '/login');
+    cy.location('pathname').should('eq', '/');
 
     //Fill in username/password
     cy.get('amplify-authenticator').shadow().get(selectors.username).first().type(Cypress.env('USERNAME'));
@@ -14,6 +14,10 @@ describe('Login functionality', () => {
 
     // Click 'Login' button
     cy.get('amplify-authenticator').shadow().get('[data-test="sign-in-sign-in-button"]').contains('Увійти').click();
+
+
+    // Assert we are on home page
+    cy.location('pathname').should('eq', '/');
 
     // Assert we are logged in
     cy.get(selectors.currentUser).contains('IT');

@@ -11,13 +11,11 @@ import { SearchPage } from '../pages/SearchPage/SearchPage';
 import { SongPage } from '../pages/SongPage/SongPage';
 import { GeniusSongPage} from '../pages/GeniusSongPage/GeniusSongPage';
 import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
-import { LoginPage } from '../pages/LoginPage/LoginPage';
 import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 
 import './App.css';
 import { TranslationPage } from '../pages/TranslationPage/TranslationPage';
 import { AuthWrapper } from '../componenets/Auth/AuthWrapper';
-import useDocumentTitle from '../utils/use-document-title';
 
 export const App: FunctionComponent<{}> = () => {
   return (
@@ -31,11 +29,6 @@ export const App: FunctionComponent<{}> = () => {
         <Route exact path="/find">
           <Page>
             <SearchPage />
-          </Page>
-        </Route>
-        <Route path="/login">
-          <Page>
-            <Login />
           </Page>
         </Route>
         <Route path="/songs/:songId/translate">
@@ -73,9 +66,4 @@ export const App: FunctionComponent<{}> = () => {
       </Switch>
     </Router>
   );
-}
-
-function Login() {
-  useDocumentTitle(`Вхід | UALYRICS`);
-  return <LoginPage />;
 }
