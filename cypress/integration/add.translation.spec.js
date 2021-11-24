@@ -25,7 +25,7 @@ describe('Add translation', () => {
 
   it('to existing song', () => {
     // Find song
-    cy.visit('/songs/381a9878-9fd6-4521-a292-9acba6eb20a1/translate');
+    cy.visit('/songs/Kid-cudi-beautiful-trip/translate');
 
     // Fill lyrics translation
     cy.get(selectors.lineTranslationInput).each(input => cy.wrap(input).type('test'));
