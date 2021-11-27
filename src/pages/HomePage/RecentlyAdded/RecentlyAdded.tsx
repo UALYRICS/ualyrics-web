@@ -13,7 +13,7 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
 
   useEffect(() => {
     async function getData() {
-      const data = await Storage.get(`recentlyadded.json`, { download: true }) as {Body: {text(): Promise<string>}};
+      const data = await Storage.get(`recentlyadded.json`, { download: true, cacheControl: 'max-age=60' }) as {Body: {text(): Promise<string>}};
       data.Body.text().then(recentAddadData => { 
         setRecentlyAdded(JSON.parse(recentAddadData));
       })
