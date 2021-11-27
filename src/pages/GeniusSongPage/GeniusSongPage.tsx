@@ -1,13 +1,12 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { getGeniusSong } from '../../service/song-service';
-import { Song } from '../../models';
 import useDocumentTitle from '../../utils/use-document-title';
 import "./GeniusSongPage.css";
 
 export const GeniusSongPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
-  const [song, setSong] = useState<Song>();
+  const [song, setSong] = useState<string>();
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,7 +20,7 @@ export const GeniusSongPage: FunctionComponent<{}> = () => {
   useDocumentTitle(`Шукаємо текст пісні... | UALYRICS`);
 
   if(song){
-    return <Redirect to={`/songs/${song.id}`}/>;
+    return <Redirect to={`/songs/${song}`}/>;
   }
   if(error){
     return (
