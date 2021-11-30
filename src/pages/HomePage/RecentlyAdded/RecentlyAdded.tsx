@@ -6,7 +6,7 @@ import { RightTitleSection } from "../../../componenets/Decor/RightTitleSection"
 import "./RecentlyAdded.css";
 
 export const RecentlyAdded: FunctionComponent<{}> = () => {
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 24;
 
   const [recentlyAdded, setRecentlyAdded] = useState(new Array<Translation>());
   const [page, setPage] = useState<number>(1);
