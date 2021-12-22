@@ -40,7 +40,14 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
             <img src={translation?.song?.imageUrl} className='icon' alt="Song thumbnail" />
           </div>	
           <div className="left-margin">
-            <h6><Link to={`/translations/${translation?.id}`} data-test="recently-added-title">{translation?.song?.title}</Link></h6>
+            <h6>
+              <Link to={`/translations/${translation?.id}`} data-test="recently-added-title">
+                {translation?.song?.title}
+              </Link>
+              {isCurrentWeek(new Date(translation.createdAt)) &&
+                  <span className="badge badge-secondary title-badge">Новинка</span>
+                }
+              </h6>
             <h6>{translation?.song?.artistName}</h6>
             <h6>Перекладено: <b>{translation?.ownerName}</b></h6>
           </div>
@@ -52,4 +59,10 @@ export const RecentlyAdded: FunctionComponent<{}> = () => {
     </>
   )
 
+}
+
+const isCurrentWeek = (createdAt: Date) => {
+  const oneWeekAgo = new Date()
+  oneWeekAgo.setDate(oneWeekAgo.getDate()-7);
+  return createdAt > oneWeekAgo;
 }
