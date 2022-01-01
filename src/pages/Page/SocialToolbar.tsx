@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faInstagram, faYoutube, faPatreon } from "@fortawesome/free-brands-svg-icons";
 
 export const SocialToolbar: FunctionComponent<{}> = () => {
   return (
@@ -16,6 +16,9 @@ export const SocialToolbar: FunctionComponent<{}> = () => {
         </a>
         <a className="btn btn-light" href="https://www.youtube.com/channel/UC4ZJ9_PPMl7zDfq4C3QQVWQ" target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faYoutube} />
+        </a>
+        <a className="btn btn-light" href="https://www.patreon.com/ualyrics" target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faPatreon} />
         </a>
       </div>
     </nav>
