@@ -1,29 +1,4 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-ualyricsweb-dev-91648-authRole",
-      "UnauthRoleArn": "arn:aws:iam::031905398943:role/amplify-ualyricsweb-dev-91648-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::031905398943:role/amplify-ualyricsweb-dev-91648-authRole",
-      "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-ualyricsweb-dev-91648-deployment",
-      "UnauthRoleName": "amplify-ualyricsweb-dev-91648-unauthRole",
-      "StackName": "amplify-ualyricsweb-dev-91648",
-      "StackId": "arn:aws:cloudformation:eu-central-1:031905398943:stack/amplify-ualyricsweb-dev-91648/dbe92070-5189-11eb-b1dd-02420dd68934",
-      "AmplifyAppId": "d243dpnrs5mhvc"
-    },
-    "categories": {
-      "auth": {
-        "ualyricswebd8c7b1d8": {},
-        "userPoolGroups": {}
-      },
-      "function": {
-        "getlyrics": {
-          "deploymentBucketName": "amplify-ualyricsweb-dev-91648-deployment",
-          "s3Key": "amplify-builds/getlyrics-455a5739504139647338-build.zip"
-        }
-      }
-    }
-  },
   "production": {
     "awscloudformation": {
       "AuthRoleName": "amplify-ualyricsweb-production-120549-authRole",
