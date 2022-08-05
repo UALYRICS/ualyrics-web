@@ -3,12 +3,16 @@ export type AmplifyDependentResourcesAttributes = {
         "ualyricswebd8c7b1d8": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
+            "HostedUIDomain": "string",
+            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
             "AppClientID": "string",
-            "CreatedSNSRole": "string"
+            "CreatedSNSRole": "string",
+            "GoogleWebClient": "string",
+            "FacebookWebClient": "string"
         },
         "userPoolGroups": {
             "AdminGroupRole": "string"

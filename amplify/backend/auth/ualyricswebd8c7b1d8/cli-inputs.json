@@ -16,9 +16,11 @@
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": false,
+    "defaultPasswordPolicy": true,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [],
+    "passwordPolicyCharacters": [
+      "Requires Lowercase"
+    ],
     "requiredAttributes": [
       "email",
       "name"
@@ -27,17 +29,18 @@
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
-      "email"
+      "email",
+      "name"
     ],
     "userpoolClientReadAttributes": [
       "email"
     ],
     "userpoolClientLambdaRole": "ualyrid8c7b1d8_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "authSelections": "identityPoolAndUserPool",
     "resourceName": "ualyricswebd8c7b1d8",
     "serviceName": "Cognito",
-    "useDefault": "default",
+    "useDefault": "manual",
     "sharedId": "d8c7b1d8",
     "userPoolGroupList": [
       "Admin"
@@ -63,10 +66,23 @@
     "breakCircularDependency": false,
     "useEnabledMfas": false,
     "dependsOn": [],
-    "authProviders": [],
+    "authProviders": [
+      "graph.facebook.com",
+      "accounts.google.com"
+    ],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "thirdPartyAuth": true,
+    "userPoolGroups": true,
+    "adminQueries": false,
+    "hostedUIDomainName": "ualyricsweb57e34414-57e34414",
+    "authProvidersUserPool": [
+      "Facebook",
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.ualyrics.com/\"],\"LogoutURLs\":[\"https://www.ualyrics.com/\"]}"
   }
 }
