@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "ualyricswebd8c7b1d8_identitypool_d8c7b1d8",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "ualyrid8c7b1d8",
     "userPoolName": "ualyricswebd8c7b1d8_userpool_d8c7b1d8",
     "autoVerifiedAttributes": [
@@ -25,19 +25,20 @@
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
-    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientRefreshTokenValidity": "360",
     "userpoolClientWriteAttributes": [
-      "email"
+      "email",
+      "name"
     ],
     "userpoolClientReadAttributes": [
       "email"
     ],
     "userpoolClientLambdaRole": "ualyrid8c7b1d8_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "authSelections": "identityPoolAndUserPool",
     "resourceName": "ualyricswebd8c7b1d8",
     "serviceName": "Cognito",
-    "useDefault": "default",
+    "useDefault": "manual",
     "sharedId": "d8c7b1d8",
     "userPoolGroupList": [
       "Admin"
@@ -46,7 +47,7 @@
       "email"
     ],
     "usernameCaseSensitive": false,
-    "hostedUI": false,
+    "hostedUI": true,
     "triggers": {},
     "authRoleArn": {
       "Fn::GetAtt": [
@@ -63,10 +64,16 @@
     "breakCircularDependency": false,
     "useEnabledMfas": false,
     "dependsOn": [],
-    "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "authProviders": [
+      "graph.facebook.com",
+      "accounts.google.com"
+    ],
+    "thirdPartyAuth": true,
+    "userPoolGroups": true,
+    "adminQueries": false
   }
 }

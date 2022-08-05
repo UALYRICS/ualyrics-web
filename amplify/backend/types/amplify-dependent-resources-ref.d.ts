@@ -8,7 +8,9 @@ export type AmplifyDependentResourcesAttributes = {
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
             "AppClientID": "string",
-            "CreatedSNSRole": "string"
+            "CreatedSNSRole": "string",
+            "GoogleWebClient": "string",
+            "FacebookWebClient": "string"
         },
         "userPoolGroups": {
             "AdminGroupRole": "string"
