@@ -38,10 +38,7 @@
     },
     "categories": {
       "auth": {
-        "ualyricswebd8c7b1d8": {
-          "facebookAppId": "860076541531960",
-          "googleClientId": "918155515456-uu13p2h2l8hrne36k2r3emvp1j087hi3.apps.googleusercontent.com"
-        },
+        "ualyricswebd8c7b1d8": {},
         "userPoolGroups": {}
       },
       "function": {
