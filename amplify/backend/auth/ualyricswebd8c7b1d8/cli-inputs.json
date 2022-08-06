@@ -14,13 +14,11 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": true,
+    "emailVerificationSubject": "Ваш код підтвердження",
+    "emailVerificationMessage": "Ваш код підтвердження {####}",
+    "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [
-      "Requires Lowercase"
-    ],
+    "passwordPolicyCharacters": [],
     "requiredAttributes": [
       "email",
       "name"
@@ -33,7 +31,8 @@
       "name"
     ],
     "userpoolClientReadAttributes": [
-      "email"
+      "email",
+      "name"
     ],
     "userpoolClientLambdaRole": "ualyrid8c7b1d8_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": true,
