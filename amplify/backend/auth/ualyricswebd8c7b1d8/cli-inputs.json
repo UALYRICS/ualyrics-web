@@ -71,7 +71,7 @@
     "permissions": [],
     "userPoolGroups": true,
     "adminQueries": false,
-    "hostedUIDomainName": "ualyricsweb57e34414-84f98283",
+    "hostedUIDomainName": "ualyricsweb57e34414-57e34414",
     "authProvidersUserPool": [
       "Facebook",
       "Google"
