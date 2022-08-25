@@ -5,6 +5,6 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "genius-lyrics-api": "^3.0.6"
+    "genius-lyrics-api": "^3.2.0"
   }
 }
