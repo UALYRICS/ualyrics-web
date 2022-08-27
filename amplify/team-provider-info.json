@@ -22,7 +22,7 @@
       "function": {
         "getlyrics": {
           "deploymentBucketName": "amplify-ualyricsweb-production-120549-deployment",
-          "s3Key": "amplify-builds/getlyrics-6651444643507373422f-build.zip"
+          "s3Key": "amplify-builds/getlyrics-2b5a2f66454c6b564233-build.zip"
         }
       }
     }
