@@ -6,10 +6,12 @@ import { GraphQLResult, GRAPHQL_AUTH_MODE  } from "@aws-amplify/api";
 export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Artist[]> {
   const getArtistsWithTranslationsByFirstLetter = /* GraphQL */ `
     query GetArtistsByFirstLetter(
-      $firstLetter: String
+      $firstLetter: String,
+      $limit: Int
     ) {
       getArtistsByFirstLetter(
-        firstLetter: $firstLetter
+        firstLetter: $firstLetter,
+        limit: $limit
       ) {
         items {
           id
