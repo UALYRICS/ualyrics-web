@@ -45,7 +45,7 @@ export async function fetchArtistsByFirstLetter(firstLetter: Char): Promise<Arti
 
   const results = await API.graphql({
     query: getArtistsWithTranslationsByFirstLetter,
-    variables: {firstLetter: firstLetter.getValue},
+    variables: {firstLetter: firstLetter.getValue, limit: 200},
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
   }) as GraphQLResult<GetArtistsWithTranslationsByFirstLetterQuery>;
 
