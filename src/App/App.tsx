@@ -12,6 +12,7 @@ import { SongPage } from '../pages/SongPage/SongPage';
 import { GeniusSongPage} from '../pages/GeniusSongPage/GeniusSongPage';
 import { ArtistPage } from '../pages/ArtistPage/ArtistPage';
 import { PrivacyPolicyPage } from '../pages/PrivacyPolicyPage/PrivacyPolicyPage';
+import { DeletionInstructionsPage } from '../pages/DeletionInstructionsPage/DeletionInstructionsPage';
 import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 
 import './App.css';
@@ -35,6 +36,11 @@ export const App: FunctionComponent<{}> = () => {
         <Route exact path="/privacy-policy">
           <Page>
             <PrivacyPolicyPage />
+          </Page>
+        </Route>
+        <Route exact path="/deletion-instructions">
+          <Page>
+            <DeletionInstructionsPage />
           </Page>
         </Route>
         <Route path="/songs/:songId/translate">
