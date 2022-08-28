@@ -3,16 +3,16 @@ import React, { FunctionComponent } from 'react';
 export const DeletionInstructionsPage : FunctionComponent<{}> = () => {
   return (
     <>
-      <h1>Data Deletion Instructions</h1>
-      <p>Last updated: August 28, 2022</p>
-      <p>We retain and process minimal personal data of our users, that may include your Email address, name and usage data. </p>
-      <h1>Request for erasure of personal data</h1>
-      <p>We are currently processing data deletion requests manually. Please write an email to info@ualyrics.com providing your account's Email Address in ordet to have all of data related to your account deleted.</p>
-      <h1>Contact Us</h1>
-      <p>If you have any questions about this Data Deletion Instructions, You can contact us:</p>
-      <ul>
-      <li>By email: info@ualyrics.com</li>
-      </ul>
+      <h1>Інструкції щодо видалення даних</h1>
+       <p>Останнє оновлення: 28 серпня 2022 р.</p>
+       <p>Ми зберігаємо та обробляємо мінімальну кількість персональних даних наших користувачів, які можуть включати вашу електронну адресу, ім’я та дані про використання. </p>
+       <h1>Запит на видалення персональних даних</h1>
+       <p>Зараз ми обробляємо запити на видалення даних вручну. Будь ласка, напишіть електронний лист на info@ualyrics.com, вказавши адресу електронної пошти свого облікового запису, щоб видалити всі дані, пов’язані з вашим обліковим записом.</p>
+       <h1>Зв'яжіться з нами</h1>
+       <p>Якщо у вас виникли запитання щодо цих Інструкцій щодо видалення даних, ви можете зв’язатися з нами:</p>
+       <ul>
+       <li>Електронною поштою: info@ualyrics.com</li>
+       </ul>
     </>
   );
 };

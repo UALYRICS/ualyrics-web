@@ -11,6 +11,9 @@ export const Footer: FunctionComponent<{}> = () => {
         <div className="mr-auto"></div>
         <div className="float-right">
           <div>
+            <a className="btn btn-link btn-sm btn-light" href="/privacy-policy" target="_blank" rel="noreferrer">
+              Політика конфіденційності
+            </a>
             <a className="btn btn-light" href="https://web.facebook.com/ualyrics" target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faFacebook}/>
             </a>
@@ -21,7 +24,7 @@ export const Footer: FunctionComponent<{}> = () => {
               <FontAwesomeIcon icon={faYoutube} />
             </a>
           </div>
-          <div>@2022 UALYRICS</div>
+          <div className="float-right">@2022 UALYRICS</div>
         </div>
       </div>
     </div>
