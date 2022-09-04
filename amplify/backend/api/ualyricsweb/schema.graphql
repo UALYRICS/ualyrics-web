@@ -61,7 +61,7 @@ type Song
 {
   id: ID!
   artistId: ID!
-  albumId: ID!
+  albumId: ID
   geniusId: Int!
   artist: Artist @connection(fields: ["artistId"])
   album: Album @connection(fields: ["albumId"])

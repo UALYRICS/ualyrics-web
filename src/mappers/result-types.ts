@@ -30,7 +30,7 @@ export interface TranslationResultWithLyrics extends TranslationResult {
 export interface SongResult {
   id: string,
   artistId: string,
-  albumId: string,
+  albumId?: string | null,
   geniusId: number,
   title: string,
   artistName: string,

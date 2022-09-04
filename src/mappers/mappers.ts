@@ -73,7 +73,7 @@ export function mapResultToTranslation(graphQLResult: GraphQLResult<CreateTransl
 export function mapGeniusSongToSong(geniusSong: GeniusSong, lyrics: string): Song {
   const songId = geniusSong.path.substring(1).replace(/-lyrics$/ig, '');
   const artistId = geniusSong?.primary_artist.url.substring(geniusSong?.primary_artist.url.lastIndexOf('/') + 1);
-  const albumId = geniusSong?.album?.url.substring(geniusSong?.album?.url.lastIndexOf('/') + 1);
+  const albumId = geniusSong?.album?.url?.substring(geniusSong?.album?.url?.lastIndexOf('/') + 1);
   return {
     id: songId, // removing leading slash and '-lyrics' sufix
     geniusId: geniusSong.id,
