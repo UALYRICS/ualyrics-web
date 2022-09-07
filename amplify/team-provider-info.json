@@ -14,7 +14,8 @@
     "categories": {
       "auth": {
         "ualyricswebd8c7b1d8": {},
-        "userPoolGroups": {}
+        "userPoolGroups": {},
+        "true": {}
       },
       "function": {
         "getlyrics": {

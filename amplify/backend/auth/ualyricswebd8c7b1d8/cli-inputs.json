@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "ualyricswebd8c7b1d8_identitypool_d8c7b1d8",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "ualyrid8c7b1d8",
     "userPoolName": "ualyricswebd8c7b1d8_userpool_d8c7b1d8",
     "autoVerifiedAttributes": [
