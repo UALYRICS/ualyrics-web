@@ -4,11 +4,11 @@ import { SongDetails } from "../../componenets/Song/SongDetails";
 import { SongLyrics } from "../../componenets/Song/SongLyrics";
 import { Song } from "../../models";
 import { getSongById } from "../../service/song-service"; 
-import { SongTranslationsList } from "./SongTranslationsList";
 import {Link} from "react-router-dom";
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
 import { RightTitleSection } from "../../componenets/Decor/RightTitleSection";
 import useDocumentTitle from '../../utils/use-document-title';
+import { TranslationsBlock } from "../../componenets/TranslationsBlock/TranslationsBlock";
 
 export const SongPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
@@ -28,21 +28,13 @@ export const SongPage: FunctionComponent<{}> = () => {
     return <></>;
   }
 
-  const translationsBlock = song?.translations?.length === 0 ? <></> : (
-    <>
-      <LeftTitleSection title="Переклади"/>
-      <SongTranslationsList translations={song?.translations || []} />
-    </>
-  );
-
-
   return (
     <>
       <LeftTitleSection title="Пісня"/>
       <SongDetails song={song}/>      
       <RightTitleSection title="Текст"/>
       <SongLyrics song={song} />
-      {translationsBlock}
+      <TranslationsBlock songId={songId} translations={song?.translations || []} />
       <div className="text-center"> 
         <Link data-test="add-translation-button" className="btn btn-outline-dark mt-4 center" to={`/songs/${songId}/translate`}>Додати переклад</Link>
       </div>

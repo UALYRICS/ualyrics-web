@@ -1,0 +1,8 @@
+.translation-row {
+  font-family: 'Roboto';
+}
+
+.translation-row a {
+  text-decoration: none;
+  color: inherit;
+}

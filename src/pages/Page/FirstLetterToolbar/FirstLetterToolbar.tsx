@@ -12,7 +12,7 @@ export const FirstLetterToolbar: FunctionComponent<{}> = () => {
 
   return (
     <div className="first-letter-toolbar my-2">
-      <div className="first-letter-toolbar-header">Оберіть виконавця за першою літерою {firstLetter}</div>
+      <div className="first-letter-toolbar-header subheader">Оберіть виконавця за першою літерою {firstLetter}</div>
       <div className="first-letter-toolbar-body">
         {[...lettersAndSymbols].map(ch => (
           <Link to={'/' + (ch === NON_LETTER_SYMBOL ? NON_LETTER_SYMBOL_ARTISTS_URL : ch)} key={ch} className="letter-box" data-test={`first-letter-${ch}`}>
