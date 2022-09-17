@@ -809,3 +809,180 @@ export const deleteComment = /* GraphQL */ `
     }
   }
 `;
+export const createTranslationRequest = /* GraphQL */ `
+  mutation CreateTranslationRequest(
+    $input: CreateTranslationRequestInput!
+    $condition: ModelTranslationRequestConditionInput
+  ) {
+    createTranslationRequest(input: $input, condition: $condition) {
+      id
+      songId
+      owner
+      ownerName
+      createdAt
+      isComplete
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        artistName
+        albumName
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          hasTranslations
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        translations {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updateTranslationRequest = /* GraphQL */ `
+  mutation UpdateTranslationRequest(
+    $input: UpdateTranslationRequestInput!
+    $condition: ModelTranslationRequestConditionInput
+  ) {
+    updateTranslationRequest(input: $input, condition: $condition) {
+      id
+      songId
+      owner
+      ownerName
+      createdAt
+      isComplete
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        artistName
+        albumName
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          hasTranslations
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        translations {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deleteTranslationRequest = /* GraphQL */ `
+  mutation DeleteTranslationRequest(
+    $input: DeleteTranslationRequestInput!
+    $condition: ModelTranslationRequestConditionInput
+  ) {
+    deleteTranslationRequest(input: $input, condition: $condition) {
+      id
+      songId
+      owner
+      ownerName
+      createdAt
+      isComplete
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        artistName
+        albumName
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          hasTranslations
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        translations {
+          nextToken
+        }
+      }
+    }
+  }
+`;

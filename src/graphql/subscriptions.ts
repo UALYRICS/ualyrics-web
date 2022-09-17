@@ -764,3 +764,171 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTranslationRequest = /* GraphQL */ `
+  subscription OnCreateTranslationRequest($owner: String) {
+    onCreateTranslationRequest(owner: $owner) {
+      id
+      songId
+      owner
+      ownerName
+      createdAt
+      isComplete
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        artistName
+        albumName
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          hasTranslations
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        translations {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdateTranslationRequest = /* GraphQL */ `
+  subscription OnUpdateTranslationRequest($owner: String) {
+    onUpdateTranslationRequest(owner: $owner) {
+      id
+      songId
+      owner
+      ownerName
+      createdAt
+      isComplete
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        artistName
+        albumName
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          hasTranslations
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        translations {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeleteTranslationRequest = /* GraphQL */ `
+  subscription OnDeleteTranslationRequest($owner: String) {
+    onDeleteTranslationRequest(owner: $owner) {
+      id
+      songId
+      owner
+      ownerName
+      createdAt
+      isComplete
+      updatedAt
+      song {
+        id
+        artistId
+        albumId
+        geniusId
+        title
+        artistName
+        albumName
+        imageUrl
+        lyrics
+        referents {
+          geniusId
+          content
+        }
+        youtubeLink
+        spotifyLink
+        soundcloudLink
+        createdAt
+        updatedAt
+        artist {
+          id
+          geniusId
+          firstLetter
+          title
+          description
+          thumbnailUrl
+          hasTranslations
+          createdAt
+          updatedAt
+        }
+        album {
+          id
+          artistId
+          geniusId
+          title
+          thumbnailUrl
+          createdAt
+          updatedAt
+        }
+        translations {
+          nextToken
+        }
+      }
+    }
+  }
+`;
