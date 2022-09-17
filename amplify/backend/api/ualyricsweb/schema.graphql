@@ -158,8 +158,8 @@ type SongLyricsResponse {
 
 type TranslationRequest
   @model
-  @key(name: "bySong", fields: ["songId", "createdAt"], queryField:"getTranslationsBySongId")
-  @key(name: "byOwner", fields: ["owner", "createdAt"], queryField:"getTranslationsByOwner")
+  @key(name: "bySong", fields: ["songId", "createdAt"], queryField:"getTranslationReuestsBySongId")
+  @key(name: "byOwner", fields: ["owner", "createdAt"], queryField:"getTranslationRequestsByOwner")
   @aws_api_key
   @aws_cognito_user_pools
   @auth (
