@@ -698,6 +698,108 @@ export const listTranslations = /* GraphQL */ `
     }
   }
 `;
+export const getTranslationsBySongId = /* GraphQL */ `
+  query GetTranslationsBySongId(
+    $songId: ID
+    $rating: ModelIntKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelTranslationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getTranslationsBySongId(
+      songId: $songId
+      rating: $rating
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        ownerName
+        createdAt
+        songId
+        rating
+        lyrics {
+          original
+          translation
+        }
+        title
+        updatedAt
+        song {
+          id
+          artistId
+          albumId
+          geniusId
+          title
+          artistName
+          albumName
+          imageUrl
+          lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getTranslationsByOwner = /* GraphQL */ `
+  query GetTranslationsByOwner(
+    $owner: String
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelTranslationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getTranslationsByOwner(
+      owner: $owner
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        ownerName
+        createdAt
+        songId
+        rating
+        lyrics {
+          original
+          translation
+        }
+        title
+        updatedAt
+        song {
+          id
+          artistId
+          albumId
+          geniusId
+          title
+          artistName
+          albumName
+          imageUrl
+          lyrics
+          youtubeLink
+          spotifyLink
+          soundcloudLink
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {
@@ -812,198 +914,41 @@ export const getCommentsByTranslationId = /* GraphQL */ `
   }
 `;
 export const getTranslationRequest = /* GraphQL */ `
-  query GetTranslationRequest($id: ID!) {
-    getTranslationRequest(id: $id) {
-      id
+  query GetTranslationRequest($songId: ID!, $owner: String!) {
+    getTranslationRequest(songId: $songId, owner: $owner) {
       songId
       owner
       ownerName
       createdAt
       isComplete
       updatedAt
-      song {
-        id
-        artistId
-        albumId
-        geniusId
-        title
-        artistName
-        albumName
-        imageUrl
-        lyrics
-        referents {
-          geniusId
-          content
-        }
-        youtubeLink
-        spotifyLink
-        soundcloudLink
-        createdAt
-        updatedAt
-        artist {
-          id
-          geniusId
-          firstLetter
-          title
-          description
-          thumbnailUrl
-          hasTranslations
-          createdAt
-          updatedAt
-        }
-        album {
-          id
-          artistId
-          geniusId
-          title
-          thumbnailUrl
-          createdAt
-          updatedAt
-        }
-        translations {
-          nextToken
-        }
-      }
     }
   }
 `;
 export const listTranslationRequests = /* GraphQL */ `
   query ListTranslationRequests(
+    $songId: ID
+    $owner: ModelStringKeyConditionInput
     $filter: ModelTranslationRequestFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
     listTranslationRequests(
+      songId: $songId
+      owner: $owner
       filter: $filter
       limit: $limit
       nextToken: $nextToken
+      sortDirection: $sortDirection
     ) {
       items {
-        id
         songId
         owner
         ownerName
         createdAt
         isComplete
         updatedAt
-        song {
-          id
-          artistId
-          albumId
-          geniusId
-          title
-          artistName
-          albumName
-          imageUrl
-          lyrics
-          youtubeLink
-          spotifyLink
-          soundcloudLink
-          createdAt
-          updatedAt
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const getTranslationsBySongId = /* GraphQL */ `
-  query GetTranslationsBySongId(
-    $songId: ID
-    $rating: ModelIntKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelTranslationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    getTranslationsBySongId(
-      songId: $songId
-      rating: $rating
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        owner
-        ownerName
-        createdAt
-        songId
-        rating
-        lyrics {
-          original
-          translation
-        }
-        title
-        updatedAt
-        song {
-          id
-          artistId
-          albumId
-          geniusId
-          title
-          artistName
-          albumName
-          imageUrl
-          lyrics
-          youtubeLink
-          spotifyLink
-          soundcloudLink
-          createdAt
-          updatedAt
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const getTranslationsByOwner = /* GraphQL */ `
-  query GetTranslationsByOwner(
-    $owner: String
-    $createdAt: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelTranslationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    getTranslationsByOwner(
-      owner: $owner
-      createdAt: $createdAt
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        owner
-        ownerName
-        createdAt
-        songId
-        rating
-        lyrics {
-          original
-          translation
-        }
-        title
-        updatedAt
-        song {
-          id
-          artistId
-          albumId
-          geniusId
-          title
-          artistName
-          albumName
-          imageUrl
-          lyrics
-          youtubeLink
-          spotifyLink
-          soundcloudLink
-          createdAt
-          updatedAt
-        }
       }
       nextToken
     }

@@ -1,6 +1,4 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
+import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 
 export declare class SongLyricsResponse {
   readonly body: string;
@@ -15,7 +13,7 @@ export declare class GeniusSong {
   readonly header_image_url: string;
   readonly song_art_image_thumbnail_url: string;
   readonly song_art_image_url: string;
-  readonly album?: GeniusAlbum;
+  readonly album?: GeniusAlbum | null;
   readonly primary_artist: GeniusArtist;
   readonly media: (GeniusMedia | null)[];
   readonly path: string;
@@ -66,7 +64,7 @@ export declare class LyricsLine {
 export declare class Referent {
   readonly geniusId: number;
   readonly content: string;
-  readonly records?: (Annotation | null)[];
+  readonly records?: (Annotation | null)[] | null;
   constructor(init: ModelInit<Referent>);
 }
 
@@ -83,11 +81,11 @@ export declare class Artist {
   readonly geniusId: number;
   readonly firstLetter: string;
   readonly title: string;
-  readonly description?: string;
+  readonly description?: string | null;
   readonly thumbnailUrl: string;
-  readonly albums?: (Album | null)[];
-  readonly songs?: (Song | null)[];
-  readonly hasTranslations?: boolean;
+  readonly albums?: (Album | null)[] | null;
+  readonly songs?: (Song | null)[] | null;
+  readonly hasTranslations?: boolean | null;
   constructor(init: ModelInit<Artist>);
   static copyOf(source: Artist, mutator: (draft: MutableModel<Artist>) => MutableModel<Artist> | void): Artist;
 }
@@ -98,7 +96,7 @@ export declare class Album {
   readonly geniusId: number;
   readonly title: string;
   readonly thumbnailUrl: string;
-  readonly songs?: (Song | null)[];
+  readonly songs?: (Song | null)[] | null;
   constructor(init: ModelInit<Album>);
   static copyOf(source: Album, mutator: (draft: MutableModel<Album>) => MutableModel<Album> | void): Album;
 }
@@ -106,18 +104,18 @@ export declare class Album {
 export declare class Song {
   readonly id: string;
   readonly geniusId: number;
-  readonly artist?: Artist;
-  readonly album?: Album;
-  readonly translations?: (Translation | null)[];
+  readonly artist?: Artist | null;
+  readonly album?: Album | null;
+  readonly translations?: (Translation | null)[] | null;
   readonly title: string;
   readonly artistName: string;
-  readonly albumName?: string;
+  readonly albumName?: string | null;
   readonly imageUrl: string;
   readonly lyrics: string;
-  readonly referents?: (Referent | null)[];
-  readonly youtubeLink?: string;
-  readonly spotifyLink?: string;
-  readonly soundcloudLink?: string;
+  readonly referents?: (Referent | null)[] | null;
+  readonly youtubeLink?: string | null;
+  readonly spotifyLink?: string | null;
+  readonly soundcloudLink?: string | null;
   constructor(init: ModelInit<Song>);
   static copyOf(source: Song, mutator: (draft: MutableModel<Song>) => MutableModel<Song> | void): Song;
 }
@@ -130,7 +128,7 @@ export declare class Translation {
   readonly rating: number;
   readonly lyrics: (LyricsLine | null)[];
   readonly title: string;
-  readonly song?: Song;
+  readonly song?: Song | null;
   constructor(init: ModelInit<Translation>);
   static copyOf(source: Translation, mutator: (draft: MutableModel<Translation>) => MutableModel<Translation> | void): Translation;
 }
@@ -140,8 +138,18 @@ export declare class Comment {
   readonly translationId: string;
   readonly createdAt: string;
   readonly text: string;
-  readonly lineNumber?: number;
-  readonly translation?: Translation;
+  readonly lineNumber?: number | null;
+  readonly translation?: Translation | null;
   constructor(init: ModelInit<Comment>);
   static copyOf(source: Comment, mutator: (draft: MutableModel<Comment>) => MutableModel<Comment> | void): Comment;
+}
+
+export declare class TranslationRequest {
+  readonly songId: string;
+  readonly owner: string;
+  readonly ownerName: string;
+  readonly createdAt: string;
+  readonly isComplete: boolean;
+  constructor(init: ModelInit<TranslationRequest>);
+  static copyOf(source: TranslationRequest, mutator: (draft: MutableModel<TranslationRequest>) => MutableModel<TranslationRequest> | void): TranslationRequest;
 }

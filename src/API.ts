@@ -396,7 +396,6 @@ export type DeleteCommentInput = {
 };
 
 export type CreateTranslationRequestInput = {
-  id?: string | null,
   songId: string,
   owner: string,
   ownerName: string,
@@ -405,7 +404,6 @@ export type CreateTranslationRequestInput = {
 };
 
 export type ModelTranslationRequestConditionInput = {
-  songId?: ModelIDInput | null,
   ownerName?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   isComplete?: ModelBooleanInput | null,
@@ -416,27 +414,25 @@ export type ModelTranslationRequestConditionInput = {
 
 export type TranslationRequest = {
   __typename: "TranslationRequest",
-  id: string,
   songId: string,
   owner: string,
   ownerName: string,
   createdAt: string,
   isComplete: boolean,
   updatedAt: string,
-  song?: Song | null,
 };
 
 export type UpdateTranslationRequestInput = {
-  id: string,
-  songId?: string | null,
-  owner?: string | null,
+  songId: string,
+  owner: string,
   ownerName?: string | null,
   createdAt?: string | null,
   isComplete?: boolean | null,
 };
 
 export type DeleteTranslationRequestInput = {
-  id: string,
+  songId: string,
+  owner: string,
 };
 
 export type SongLyricsResponse = {
@@ -571,6 +567,15 @@ export type ModelTranslationFilterInput = {
   not?: ModelTranslationFilterInput | null,
 };
 
+export type ModelIntKeyConditionInput = {
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+};
+
 export type ModelCommentFilterInput = {
   id?: ModelIDInput | null,
   translationId?: ModelIDInput | null,
@@ -589,7 +594,6 @@ export type ModelCommentConnection = {
 };
 
 export type ModelTranslationRequestFilterInput = {
-  id?: ModelIDInput | null,
   songId?: ModelIDInput | null,
   owner?: ModelStringInput | null,
   ownerName?: ModelStringInput | null,
@@ -604,15 +608,6 @@ export type ModelTranslationRequestConnection = {
   __typename: "ModelTranslationRequestConnection",
   items:  Array<TranslationRequest | null >,
   nextToken?: string | null,
-};
-
-export type ModelIntKeyConditionInput = {
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
 };
 
 export type CreateArtistMutationVariables = {
@@ -1532,61 +1527,12 @@ export type CreateTranslationRequestMutationVariables = {
 export type CreateTranslationRequestMutation = {
   createTranslationRequest?:  {
     __typename: "TranslationRequest",
-    id: string,
     songId: string,
     owner: string,
     ownerName: string,
     createdAt: string,
     isComplete: boolean,
     updatedAt: string,
-    song?:  {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId?: string | null,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      youtubeLink?: string | null,
-      spotifyLink?: string | null,
-      soundcloudLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        hasTranslations?: boolean | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
   } | null,
 };
 
@@ -1598,61 +1544,12 @@ export type UpdateTranslationRequestMutationVariables = {
 export type UpdateTranslationRequestMutation = {
   updateTranslationRequest?:  {
     __typename: "TranslationRequest",
-    id: string,
     songId: string,
     owner: string,
     ownerName: string,
     createdAt: string,
     isComplete: boolean,
     updatedAt: string,
-    song?:  {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId?: string | null,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      youtubeLink?: string | null,
-      spotifyLink?: string | null,
-      soundcloudLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        hasTranslations?: boolean | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
   } | null,
 };
 
@@ -1664,61 +1561,12 @@ export type DeleteTranslationRequestMutationVariables = {
 export type DeleteTranslationRequestMutation = {
   deleteTranslationRequest?:  {
     __typename: "TranslationRequest",
-    id: string,
     songId: string,
     owner: string,
     ownerName: string,
     createdAt: string,
     isComplete: boolean,
     updatedAt: string,
-    song?:  {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId?: string | null,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      youtubeLink?: string | null,
-      spotifyLink?: string | null,
-      soundcloudLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        hasTranslations?: boolean | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
   } | null,
 };
 
@@ -2496,6 +2344,104 @@ export type ListTranslationsQuery = {
   } | null,
 };
 
+export type GetTranslationsBySongIdQueryVariables = {
+  songId?: string | null,
+  rating?: ModelIntKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelTranslationFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetTranslationsBySongIdQuery = {
+  getTranslationsBySongId?:  {
+    __typename: "ModelTranslationConnection",
+    items:  Array< {
+      __typename: "Translation",
+      id: string,
+      owner: string,
+      ownerName: string,
+      createdAt: string,
+      songId: string,
+      rating: number,
+      lyrics:  Array< {
+        __typename: "LyricsLine",
+        original: string,
+        translation: string,
+      } | null >,
+      title: string,
+      updatedAt: string,
+      song?:  {
+        __typename: "Song",
+        id: string,
+        artistId: string,
+        albumId?: string | null,
+        geniusId: number,
+        title: string,
+        artistName: string,
+        albumName?: string | null,
+        imageUrl: string,
+        lyrics: string,
+        youtubeLink?: string | null,
+        spotifyLink?: string | null,
+        soundcloudLink?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetTranslationsByOwnerQueryVariables = {
+  owner?: string | null,
+  createdAt?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelTranslationFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetTranslationsByOwnerQuery = {
+  getTranslationsByOwner?:  {
+    __typename: "ModelTranslationConnection",
+    items:  Array< {
+      __typename: "Translation",
+      id: string,
+      owner: string,
+      ownerName: string,
+      createdAt: string,
+      songId: string,
+      rating: number,
+      lyrics:  Array< {
+        __typename: "LyricsLine",
+        original: string,
+        translation: string,
+      } | null >,
+      title: string,
+      updatedAt: string,
+      song?:  {
+        __typename: "Song",
+        id: string,
+        artistId: string,
+        albumId?: string | null,
+        geniusId: number,
+        title: string,
+        artistName: string,
+        albumName?: string | null,
+        imageUrl: string,
+        lyrics: string,
+        youtubeLink?: string | null,
+        spotifyLink?: string | null,
+        soundcloudLink?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetCommentQueryVariables = {
   id: string,
 };
@@ -2618,74 +2564,29 @@ export type GetCommentsByTranslationIdQuery = {
 };
 
 export type GetTranslationRequestQueryVariables = {
-  id: string,
+  songId: string,
+  owner: string,
 };
 
 export type GetTranslationRequestQuery = {
   getTranslationRequest?:  {
     __typename: "TranslationRequest",
-    id: string,
     songId: string,
     owner: string,
     ownerName: string,
     createdAt: string,
     isComplete: boolean,
     updatedAt: string,
-    song?:  {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId?: string | null,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      youtubeLink?: string | null,
-      spotifyLink?: string | null,
-      soundcloudLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        hasTranslations?: boolean | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
   } | null,
 };
 
 export type ListTranslationRequestsQueryVariables = {
+  songId?: string | null,
+  owner?: ModelStringKeyConditionInput | null,
   filter?: ModelTranslationRequestFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListTranslationRequestsQuery = {
@@ -2693,128 +2594,12 @@ export type ListTranslationRequestsQuery = {
     __typename: "ModelTranslationRequestConnection",
     items:  Array< {
       __typename: "TranslationRequest",
-      id: string,
       songId: string,
       owner: string,
       ownerName: string,
       createdAt: string,
       isComplete: boolean,
       updatedAt: string,
-      song?:  {
-        __typename: "Song",
-        id: string,
-        artistId: string,
-        albumId?: string | null,
-        geniusId: number,
-        title: string,
-        artistName: string,
-        albumName?: string | null,
-        imageUrl: string,
-        lyrics: string,
-        youtubeLink?: string | null,
-        spotifyLink?: string | null,
-        soundcloudLink?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetTranslationsBySongIdQueryVariables = {
-  songId?: string | null,
-  rating?: ModelIntKeyConditionInput | null,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelTranslationFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type GetTranslationsBySongIdQuery = {
-  getTranslationsBySongId?:  {
-    __typename: "ModelTranslationConnection",
-    items:  Array< {
-      __typename: "Translation",
-      id: string,
-      owner: string,
-      ownerName: string,
-      createdAt: string,
-      songId: string,
-      rating: number,
-      lyrics:  Array< {
-        __typename: "LyricsLine",
-        original: string,
-        translation: string,
-      } | null >,
-      title: string,
-      updatedAt: string,
-      song?:  {
-        __typename: "Song",
-        id: string,
-        artistId: string,
-        albumId?: string | null,
-        geniusId: number,
-        title: string,
-        artistName: string,
-        albumName?: string | null,
-        imageUrl: string,
-        lyrics: string,
-        youtubeLink?: string | null,
-        spotifyLink?: string | null,
-        soundcloudLink?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetTranslationsByOwnerQueryVariables = {
-  owner?: string | null,
-  createdAt?: ModelStringKeyConditionInput | null,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelTranslationFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type GetTranslationsByOwnerQuery = {
-  getTranslationsByOwner?:  {
-    __typename: "ModelTranslationConnection",
-    items:  Array< {
-      __typename: "Translation",
-      id: string,
-      owner: string,
-      ownerName: string,
-      createdAt: string,
-      songId: string,
-      rating: number,
-      lyrics:  Array< {
-        __typename: "LyricsLine",
-        original: string,
-        translation: string,
-      } | null >,
-      title: string,
-      updatedAt: string,
-      song?:  {
-        __typename: "Song",
-        id: string,
-        artistId: string,
-        albumId?: string | null,
-        geniusId: number,
-        title: string,
-        artistName: string,
-        albumName?: string | null,
-        imageUrl: string,
-        lyrics: string,
-        youtubeLink?: string | null,
-        spotifyLink?: string | null,
-        soundcloudLink?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -3685,61 +3470,12 @@ export type OnCreateTranslationRequestSubscriptionVariables = {
 export type OnCreateTranslationRequestSubscription = {
   onCreateTranslationRequest?:  {
     __typename: "TranslationRequest",
-    id: string,
     songId: string,
     owner: string,
     ownerName: string,
     createdAt: string,
     isComplete: boolean,
     updatedAt: string,
-    song?:  {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId?: string | null,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      youtubeLink?: string | null,
-      spotifyLink?: string | null,
-      soundcloudLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        hasTranslations?: boolean | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
   } | null,
 };
 
@@ -3750,61 +3486,12 @@ export type OnUpdateTranslationRequestSubscriptionVariables = {
 export type OnUpdateTranslationRequestSubscription = {
   onUpdateTranslationRequest?:  {
     __typename: "TranslationRequest",
-    id: string,
     songId: string,
     owner: string,
     ownerName: string,
     createdAt: string,
     isComplete: boolean,
     updatedAt: string,
-    song?:  {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId?: string | null,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      youtubeLink?: string | null,
-      spotifyLink?: string | null,
-      soundcloudLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        hasTranslations?: boolean | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
   } | null,
 };
 
@@ -3815,60 +3502,11 @@ export type OnDeleteTranslationRequestSubscriptionVariables = {
 export type OnDeleteTranslationRequestSubscription = {
   onDeleteTranslationRequest?:  {
     __typename: "TranslationRequest",
-    id: string,
     songId: string,
     owner: string,
     ownerName: string,
     createdAt: string,
     isComplete: boolean,
     updatedAt: string,
-    song?:  {
-      __typename: "Song",
-      id: string,
-      artistId: string,
-      albumId?: string | null,
-      geniusId: number,
-      title: string,
-      artistName: string,
-      albumName?: string | null,
-      imageUrl: string,
-      lyrics: string,
-      referents?:  Array< {
-        __typename: "Referent",
-        geniusId: number,
-        content: string,
-      } | null > | null,
-      youtubeLink?: string | null,
-      spotifyLink?: string | null,
-      soundcloudLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      artist?:  {
-        __typename: "Artist",
-        id: string,
-        geniusId: number,
-        firstLetter: string,
-        title: string,
-        description?: string | null,
-        thumbnailUrl: string,
-        hasTranslations?: boolean | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      album?:  {
-        __typename: "Album",
-        id: string,
-        artistId: string,
-        geniusId: number,
-        title: string,
-        thumbnailUrl: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      translations?:  {
-        __typename: "ModelTranslationConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
   } | null,
 };

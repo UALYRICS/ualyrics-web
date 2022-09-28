@@ -815,56 +815,12 @@ export const createTranslationRequest = /* GraphQL */ `
     $condition: ModelTranslationRequestConditionInput
   ) {
     createTranslationRequest(input: $input, condition: $condition) {
-      id
       songId
       owner
       ownerName
       createdAt
       isComplete
       updatedAt
-      song {
-        id
-        artistId
-        albumId
-        geniusId
-        title
-        artistName
-        albumName
-        imageUrl
-        lyrics
-        referents {
-          geniusId
-          content
-        }
-        youtubeLink
-        spotifyLink
-        soundcloudLink
-        createdAt
-        updatedAt
-        artist {
-          id
-          geniusId
-          firstLetter
-          title
-          description
-          thumbnailUrl
-          hasTranslations
-          createdAt
-          updatedAt
-        }
-        album {
-          id
-          artistId
-          geniusId
-          title
-          thumbnailUrl
-          createdAt
-          updatedAt
-        }
-        translations {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -874,56 +830,12 @@ export const updateTranslationRequest = /* GraphQL */ `
     $condition: ModelTranslationRequestConditionInput
   ) {
     updateTranslationRequest(input: $input, condition: $condition) {
-      id
       songId
       owner
       ownerName
       createdAt
       isComplete
       updatedAt
-      song {
-        id
-        artistId
-        albumId
-        geniusId
-        title
-        artistName
-        albumName
-        imageUrl
-        lyrics
-        referents {
-          geniusId
-          content
-        }
-        youtubeLink
-        spotifyLink
-        soundcloudLink
-        createdAt
-        updatedAt
-        artist {
-          id
-          geniusId
-          firstLetter
-          title
-          description
-          thumbnailUrl
-          hasTranslations
-          createdAt
-          updatedAt
-        }
-        album {
-          id
-          artistId
-          geniusId
-          title
-          thumbnailUrl
-          createdAt
-          updatedAt
-        }
-        translations {
-          nextToken
-        }
-      }
     }
   }
 `;
@@ -933,56 +845,12 @@ export const deleteTranslationRequest = /* GraphQL */ `
     $condition: ModelTranslationRequestConditionInput
   ) {
     deleteTranslationRequest(input: $input, condition: $condition) {
-      id
       songId
       owner
       ownerName
       createdAt
       isComplete
       updatedAt
-      song {
-        id
-        artistId
-        albumId
-        geniusId
-        title
-        artistName
-        albumName
-        imageUrl
-        lyrics
-        referents {
-          geniusId
-          content
-        }
-        youtubeLink
-        spotifyLink
-        soundcloudLink
-        createdAt
-        updatedAt
-        artist {
-          id
-          geniusId
-          firstLetter
-          title
-          description
-          thumbnailUrl
-          hasTranslations
-          createdAt
-          updatedAt
-        }
-        album {
-          id
-          artistId
-          geniusId
-          title
-          thumbnailUrl
-          createdAt
-          updatedAt
-        }
-        translations {
-          nextToken
-        }
-      }
     }
   }
 `;
