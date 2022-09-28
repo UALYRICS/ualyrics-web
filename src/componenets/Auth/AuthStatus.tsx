@@ -1,10 +1,12 @@
 import React from "react";
 import useAuth from "./UseAuth";
 import Auth from "@aws-amplify/auth";
+import { useLocation } from 'react-router-dom';
 import "./AuthStatus.css";
 
 export const AuthStatus = () => {
   const { currentUser } = useAuth();
+  const path = useLocation().pathname;
 
   return currentUser ? (
       <>
@@ -12,6 +14,6 @@ export const AuthStatus = () => {
         <button className="btn btn-link btn-sm auth-button" type="submit" onClick={() => Auth.signOut()}>Вийти</button>
       </>
   ) : (
-      <a className="btn btn-link btn-sm auth-button" href="/?login" data-test="login-button">Увійти</a>
+      <a className="btn btn-link btn-sm auth-button" href={`/?login&redirectUrl=${path}`} data-test="login-button">Увійти</a>
   );
 }
