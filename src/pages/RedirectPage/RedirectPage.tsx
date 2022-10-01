@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { Redirect } from 'react-router';
 import { useCookies } from 'react-cookie';
 
 export const RedirectPage: FunctionComponent<{}> = () => {
@@ -10,5 +9,6 @@ export const RedirectPage: FunctionComponent<{}> = () => {
   // because it re-renders component and results in a wrong redirect.
   setCookie('login_redirect_url', redirectUrl, { path: '/', maxAge: 10 });
 
-  return (<Redirect to={redirectUrl} />);
+  window.location.href = redirectUrl;
+  return null;
 }
