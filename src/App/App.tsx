@@ -18,7 +18,6 @@ import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 import './App.css';
 import { TranslationPage } from '../pages/TranslationPage/TranslationPage';
 import { AuthWrapper } from '../componenets/Auth/AuthWrapper';
-import { RedirectPage } from '../pages/RedirectPage/RedirectPage';
 import { CookiesProvider } from 'react-cookie';
 
 export const App: FunctionComponent<{}> = () => {
@@ -44,11 +43,6 @@ export const App: FunctionComponent<{}> = () => {
           <Route exact path="/deletion-instructions">
             <Page>
               <DeletionInstructionsPage />
-            </Page>
-          </Route>
-          <Route exact path="/redirect">
-            <Page>
-              <RedirectPage />
             </Page>
           </Route>
           <Route path="/songs/:songId/translate">

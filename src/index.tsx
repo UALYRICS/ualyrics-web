@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Amplify, { Hub } from 'aws-amplify'
 import config from './aws-exports'
 
-config.oauth.redirectSignIn = `${window.location.origin}/redirect/`;
+config.oauth.redirectSignIn = `${window.location.origin}/`;
 config.oauth.redirectSignOut = `${window.location.origin}/`;
 
 Amplify.configure(config);

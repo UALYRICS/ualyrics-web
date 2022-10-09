@@ -16,7 +16,9 @@ export const AuthWrapper = ({children}) => {
   if(currentUser) {
     result = (<>{children}</>);
   } else {
-    setCookie('login_redirect_url', redirectUrl, { path: '/', maxAge: 3600 });
+    if(redirectUrl !== '/'){
+      setCookie('login_redirect_url', redirectUrl, { path: '/', maxAge: 3600 });
+    }
     result = <LoginPage />;
   }
 
