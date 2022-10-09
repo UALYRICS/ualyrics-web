@@ -10,17 +10,18 @@ export const Home: FunctionComponent<{}> = () => {
   useDocumentTitle('UALYRICS: переклади текстів пісень українською');
 
   const query = useQuery();
-  const [cookies, setCookie] = useCookies(['login_redirect_url']);
+  const [cookies, setCookie, removeCookie] = useCookies(['login_redirect_url']);
   const redirectUrl = cookies.login_redirect_url;
 
   if(redirectUrl) {
     // We set TTL on cookie instead of calling removeCookie,
     // because it re-renders component and results in a wrong redirect.
-    setCookie('login_redirect_url', redirectUrl, { path: '/', maxAge: 10 });
+    removeCookie('login_redirect_url');
 
     if(!query.has('login') && redirectUrl !== '/'){
       window.location.href = redirectUrl;
     }
+    return <></>;
   }
   
   const homeBody = (
