@@ -13,13 +13,16 @@
     },
     "categories": {
       "auth": {
-        "ualyricswebd8c7b1d8": {},
+        "ualyricswebd8c7b1d8": {
+          "facebookAppId": "860076541531960",
+          "googleClientId": "918155515456-uu13p2h2l8hrne36k2r3emvp1j087hi3.apps.googleusercontent.com"
+        },
         "userPoolGroups": {}
       },
       "function": {
         "getlyrics": {
           "deploymentBucketName": "amplify-ualyricsweb-dev-204912-deployment",
-          "s3Key": "amplify-builds/getlyrics-2b5a2f66454c6b564233-build.zip"
+          "s3Key": "amplify-builds/getlyrics-42696564474e424f675a-build.zip"
         }
       }
     }
