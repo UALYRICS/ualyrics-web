@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "ualyricswebd8c7b1d8_identitypool_d8c7b1d8",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "ualyrid8c7b1d8",
     "userPoolName": "ualyricswebd8c7b1d8_userpool_d8c7b1d8",
     "autoVerifiedAttributes": [
@@ -77,8 +77,7 @@
       "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"sub\"}}]",
-    "authProviders": [],
-    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\"},{\"ProviderName\":\"Google\"}]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.ualyrics.com/\",\"https://www.dev.ualyrics.com/\",\"http://localhost:3000/\"],\"LogoutURLs\":[\"https://www.ualyrics.com/\",\"https://www.dev.ualyrics.com/\",\"http://localhost:3000/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.ualyrics.com/\",\"https://www.dev.ualyrics.com/\",\"http://localhost:3000/\"],\"LogoutURLs\":[\"https://www.ualyrics.com/\",\"https://www.dev.ualyrics.com/\",\"http://localhost:3000/\"]}",
+    "authProviders": []
   }
 }

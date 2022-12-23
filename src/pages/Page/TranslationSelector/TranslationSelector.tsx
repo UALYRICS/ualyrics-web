@@ -62,7 +62,7 @@ export const TranslationSelector: FunctionComponent<{}> = () => {
 
   return (
     <div className="translation-selector my-2">
-      <div className="translation-selector-header subheader">Перейти до перекладу</div>
+      <div className="translation-selector-header">Перейти до перекладу</div>
       <form>
         <select className="form-control my-2" onChange={firstLetterSelecter} data-test="first-letter-select">
           <option key={"-"}>Оберіть першу літеру імені виконавця</option>

@@ -90,7 +90,7 @@ Cypress.Commands.add('loginByCognitoApi', (username, password) => {
 
   cy.saveLocalStorage();
   cy.visit('/');
-  cy.get(selectors.currentUser).contains('P');
+  cy.get(selectors.currentUser).contains('IT');
 });
 
 const selectors = {

@@ -20,7 +20,7 @@ describe('Login functionality', () => {
     cy.location('pathname').should('eq', '/');
 
     // Assert we are logged in
-    cy.get(selectors.currentUser).contains('P');
+    cy.get(selectors.currentUser).contains('IT');
   });
 });
 

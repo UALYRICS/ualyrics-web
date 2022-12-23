@@ -25,7 +25,7 @@ describe('Browse translations', () => {
     cy.location('pathname').should('match', translationPathRegex);
   });
 
-  xit('finds recently added translation', () => {
+  it('finds recently added translation', () => {
     // Click show more
     cy.get(selectors.showMoreButton).contains('Показати більше').click();
 

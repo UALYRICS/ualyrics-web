@@ -18,67 +18,64 @@ import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 import './App.css';
 import { TranslationPage } from '../pages/TranslationPage/TranslationPage';
 import { AuthWrapper } from '../componenets/Auth/AuthWrapper';
-import { CookiesProvider } from 'react-cookie';
 
 export const App: FunctionComponent<{}> = () => {
   return (
-    <CookiesProvider>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Page>
-              <Home />
-            </Page>
-          </Route>
-          <Route exact path="/find">
-            <Page>
-              <SearchPage />
-            </Page>
-          </Route>
-          <Route exact path="/privacy-policy">
-            <Page>
-              <PrivacyPolicyPage />
-            </Page>
-          </Route>
-          <Route exact path="/deletion-instructions">
-            <Page>
-              <DeletionInstructionsPage />
-            </Page>
-          </Route>
-          <Route path="/songs/:songId/translate">
-            <Page>
-              <AuthWrapper>
-                <AddTranslationPage />
-              </AuthWrapper>
-            </Page>
-          </Route>
-          <Route path="/translations/:translationId">
-            <Page>
-              <TranslationPage />
-            </Page>
-          </Route>        
-          <Route path="/songs/:songId">
-            <Page>
-              <SongPage />
-            </Page>
-          </Route>
-          <Route path="/genius-songs/:songId">
-            <Page>
-              <GeniusSongPage />
-            </Page>
-          </Route>
-          <Route path="/artists/:artistId">
-            <Page>
-              <ArtistPage />
-            </Page>
-          </Route>
-          <Route path="/:firstLetter">
-            <Page>
-              <FirstLetterPage />
-            </Page>
-          </Route>
-        </Switch>
-      </Router>
-    </CookiesProvider>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Page>
+            <Home />
+          </Page>
+        </Route>
+        <Route exact path="/find">
+          <Page>
+            <SearchPage />
+          </Page>
+        </Route>
+        <Route exact path="/privacy-policy">
+          <Page>
+            <PrivacyPolicyPage />
+          </Page>
+        </Route>
+        <Route exact path="/deletion-instructions">
+          <Page>
+            <DeletionInstructionsPage />
+          </Page>
+        </Route>
+        <Route path="/songs/:songId/translate">
+          <Page>
+            <AuthWrapper>
+              <AddTranslationPage />
+            </AuthWrapper>
+          </Page>
+        </Route>
+        <Route path="/translations/:translationId">
+          <Page>
+            <TranslationPage />
+          </Page>
+        </Route>        
+        <Route path="/songs/:songId">
+          <Page>
+            <SongPage />
+          </Page>
+        </Route>
+        <Route path="/genius-songs/:songId">
+          <Page>
+            <GeniusSongPage />
+          </Page>
+        </Route>
+        <Route path="/artists/:artistId">
+          <Page>
+            <ArtistPage />
+          </Page>
+        </Route>
+        <Route path="/:firstLetter">
+          <Page>
+            <FirstLetterPage />
+          </Page>
+        </Route>
+      </Switch>
+    </Router>
   );
 }

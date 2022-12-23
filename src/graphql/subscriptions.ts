@@ -764,39 +764,3 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTranslationRequest = /* GraphQL */ `
-  subscription OnCreateTranslationRequest($owner: String) {
-    onCreateTranslationRequest(owner: $owner) {
-      songId
-      owner
-      ownerName
-      createdAt
-      isComplete
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTranslationRequest = /* GraphQL */ `
-  subscription OnUpdateTranslationRequest($owner: String) {
-    onUpdateTranslationRequest(owner: $owner) {
-      songId
-      owner
-      ownerName
-      createdAt
-      isComplete
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTranslationRequest = /* GraphQL */ `
-  subscription OnDeleteTranslationRequest($owner: String) {
-    onDeleteTranslationRequest(owner: $owner) {
-      songId
-      owner
-      ownerName
-      createdAt
-      isComplete
-      updatedAt
-    }
-  }
-`;

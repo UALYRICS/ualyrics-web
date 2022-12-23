@@ -156,26 +156,6 @@ type SongLyricsResponse {
   body: String!
 }
 
-type TranslationRequest
-  @model
-  @key(fields: ["songId", "owner"])
-  @aws_api_key
-  @aws_cognito_user_pools
-  @auth (
-    rules: [
-      { allow: owner },
-      { allow: public, operations: [read] },
-      { allow: groups, groups: ["Admin"], operations: [create, update, read, delete] },
-    ]
-  )
-{
-  songId: ID!
-  owner: String!
-  ownerName: String!
-  createdAt: AWSDateTime!
-  isComplete: Boolean!
-}
-
 type GeniusSongEntry {
   id: Int!
   title: String!

@@ -395,46 +395,6 @@ export type DeleteCommentInput = {
   id: string,
 };
 
-export type CreateTranslationRequestInput = {
-  songId: string,
-  owner: string,
-  ownerName: string,
-  createdAt?: string | null,
-  isComplete: boolean,
-};
-
-export type ModelTranslationRequestConditionInput = {
-  ownerName?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  isComplete?: ModelBooleanInput | null,
-  and?: Array< ModelTranslationRequestConditionInput | null > | null,
-  or?: Array< ModelTranslationRequestConditionInput | null > | null,
-  not?: ModelTranslationRequestConditionInput | null,
-};
-
-export type TranslationRequest = {
-  __typename: "TranslationRequest",
-  songId: string,
-  owner: string,
-  ownerName: string,
-  createdAt: string,
-  isComplete: boolean,
-  updatedAt: string,
-};
-
-export type UpdateTranslationRequestInput = {
-  songId: string,
-  owner: string,
-  ownerName?: string | null,
-  createdAt?: string | null,
-  isComplete?: boolean | null,
-};
-
-export type DeleteTranslationRequestInput = {
-  songId: string,
-  owner: string,
-};
-
 export type SongLyricsResponse = {
   __typename: "SongLyricsResponse",
   body: string,
@@ -590,23 +550,6 @@ export type ModelCommentFilterInput = {
 export type ModelCommentConnection = {
   __typename: "ModelCommentConnection",
   items:  Array<Comment | null >,
-  nextToken?: string | null,
-};
-
-export type ModelTranslationRequestFilterInput = {
-  songId?: ModelIDInput | null,
-  owner?: ModelStringInput | null,
-  ownerName?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  isComplete?: ModelBooleanInput | null,
-  and?: Array< ModelTranslationRequestFilterInput | null > | null,
-  or?: Array< ModelTranslationRequestFilterInput | null > | null,
-  not?: ModelTranslationRequestFilterInput | null,
-};
-
-export type ModelTranslationRequestConnection = {
-  __typename: "ModelTranslationRequestConnection",
-  items:  Array<TranslationRequest | null >,
   nextToken?: string | null,
 };
 
@@ -1516,57 +1459,6 @@ export type DeleteCommentMutation = {
       } | null,
     } | null,
     owner?: string | null,
-  } | null,
-};
-
-export type CreateTranslationRequestMutationVariables = {
-  input: CreateTranslationRequestInput,
-  condition?: ModelTranslationRequestConditionInput | null,
-};
-
-export type CreateTranslationRequestMutation = {
-  createTranslationRequest?:  {
-    __typename: "TranslationRequest",
-    songId: string,
-    owner: string,
-    ownerName: string,
-    createdAt: string,
-    isComplete: boolean,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateTranslationRequestMutationVariables = {
-  input: UpdateTranslationRequestInput,
-  condition?: ModelTranslationRequestConditionInput | null,
-};
-
-export type UpdateTranslationRequestMutation = {
-  updateTranslationRequest?:  {
-    __typename: "TranslationRequest",
-    songId: string,
-    owner: string,
-    ownerName: string,
-    createdAt: string,
-    isComplete: boolean,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteTranslationRequestMutationVariables = {
-  input: DeleteTranslationRequestInput,
-  condition?: ModelTranslationRequestConditionInput | null,
-};
-
-export type DeleteTranslationRequestMutation = {
-  deleteTranslationRequest?:  {
-    __typename: "TranslationRequest",
-    songId: string,
-    owner: string,
-    ownerName: string,
-    createdAt: string,
-    isComplete: boolean,
-    updatedAt: string,
   } | null,
 };
 
@@ -2563,48 +2455,6 @@ export type GetCommentsByTranslationIdQuery = {
   } | null,
 };
 
-export type GetTranslationRequestQueryVariables = {
-  songId: string,
-  owner: string,
-};
-
-export type GetTranslationRequestQuery = {
-  getTranslationRequest?:  {
-    __typename: "TranslationRequest",
-    songId: string,
-    owner: string,
-    ownerName: string,
-    createdAt: string,
-    isComplete: boolean,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListTranslationRequestsQueryVariables = {
-  songId?: string | null,
-  owner?: ModelStringKeyConditionInput | null,
-  filter?: ModelTranslationRequestFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListTranslationRequestsQuery = {
-  listTranslationRequests?:  {
-    __typename: "ModelTranslationRequestConnection",
-    items:  Array< {
-      __typename: "TranslationRequest",
-      songId: string,
-      owner: string,
-      ownerName: string,
-      createdAt: string,
-      isComplete: boolean,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type OnCreateArtistSubscription = {
   onCreateArtist?:  {
     __typename: "Artist",
@@ -3460,53 +3310,5 @@ export type OnDeleteCommentSubscription = {
       } | null,
     } | null,
     owner?: string | null,
-  } | null,
-};
-
-export type OnCreateTranslationRequestSubscriptionVariables = {
-  owner?: string | null,
-};
-
-export type OnCreateTranslationRequestSubscription = {
-  onCreateTranslationRequest?:  {
-    __typename: "TranslationRequest",
-    songId: string,
-    owner: string,
-    ownerName: string,
-    createdAt: string,
-    isComplete: boolean,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateTranslationRequestSubscriptionVariables = {
-  owner?: string | null,
-};
-
-export type OnUpdateTranslationRequestSubscription = {
-  onUpdateTranslationRequest?:  {
-    __typename: "TranslationRequest",
-    songId: string,
-    owner: string,
-    ownerName: string,
-    createdAt: string,
-    isComplete: boolean,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteTranslationRequestSubscriptionVariables = {
-  owner?: string | null,
-};
-
-export type OnDeleteTranslationRequestSubscription = {
-  onDeleteTranslationRequest?:  {
-    __typename: "TranslationRequest",
-    songId: string,
-    owner: string,
-    ownerName: string,
-    createdAt: string,
-    isComplete: boolean,
-    updatedAt: string,
   } | null,
 };

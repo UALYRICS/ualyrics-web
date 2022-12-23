@@ -8,6 +8,9 @@
 }
 
 .first-letter-toolbar-header {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 21px;
   margin-top: 15px;
   margin-bottom: 45px;
 }

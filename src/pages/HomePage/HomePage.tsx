@@ -2,27 +2,19 @@ import React, { FunctionComponent } from "react";
 import { BrowseTools } from "../Page/BrowseTools";
 import { RecentlyAdded } from "./RecentlyAdded/RecentlyAdded";
 import useDocumentTitle from '../../utils/use-document-title';
+import { useLocation } from "react-router-dom";
 import { AuthWrapper } from "../../componenets/Auth/AuthWrapper";
-import { useQuery } from "../../utils/query-params";
-import { useCookies } from 'react-cookie';
+
+// A custom hook that builds on useLocation to parse
+// the query string for you.
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export const Home: FunctionComponent<{}> = () => {
   useDocumentTitle('UALYRICS: переклади текстів пісень українською');
 
   const query = useQuery();
-  const [cookies, setCookie, removeCookie] = useCookies(['login_redirect_url']);
-  const redirectUrl = cookies.login_redirect_url;
-
-  if(redirectUrl) {
-    // We set TTL on cookie instead of calling removeCookie,
-    // because it re-renders component and results in a wrong redirect.
-    removeCookie('login_redirect_url');
-
-    if(!query.has('login') && redirectUrl !== '/'){
-      window.location.href = redirectUrl;
-    }
-    return <></>;
-  }
   
   const homeBody = (
     <>
