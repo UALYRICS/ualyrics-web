@@ -70,7 +70,7 @@ export const App: FunctionComponent<{}> = () => {
             <ArtistPage />
           </Page>
         </Route>
-        <Route path="/:firstLetter">
+        <Route path="/:firstLetter(\w)">
           <Page>
             <FirstLetterPage />
           </Page>
