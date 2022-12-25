@@ -60,7 +60,7 @@ async function listTranslationIds(){
     const result = await API.graphql({
       query: listTranslations,
       variables: {
-        limit: 100,
+        limit: 20,
         nextToken: nextToken,
       },
       authMode: GRAPHQL_AUTH_MODE.API_KEY,
