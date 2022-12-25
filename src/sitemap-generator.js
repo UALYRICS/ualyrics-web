@@ -15,9 +15,9 @@ const GRAPHQL_AUTH_MODE = require("@aws-amplify/api").GRAPHQL_AUTH_MODE;
 Amplify.configure(config);
 
 async function generateSitemap() {
-  console.log('generateSitemap');
+  console.info('generateSitemap');
   const ids = await listTranslationIds();
-  console.log('generateSitemap ids length: ', ids.length);
+  console.info('generateSitemap ids length: ', ids.length);
 
   let idMap = [];
 
@@ -66,7 +66,7 @@ async function listTranslationIds(){
       authMode: GRAPHQL_AUTH_MODE.API_KEY,
     });
 
-    console.log('listTranslationIds fetched translations: ', result.data.listTranslations.items.length);
+    console.info('listTranslationIds fetched translations: ', result.data.listTranslations.items.length);
 
     translationIds = translationIds.concat(result.data.listTranslations.items.map(item => item.id));
     nextToken = result.data.listTranslations.nextToken;
@@ -76,4 +76,15 @@ async function listTranslationIds(){
 };
 
 
-generateSitemap();
+generateSitemap()
+.then(
+  () => {
+    console.info('Sitemap Generated')
+  },
+  err => {
+    console.info('Error while generating sitemap');
+    console.info(err);
+  }
+).finally(
+  () => process.exit()
+);
