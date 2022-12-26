@@ -56,18 +56,15 @@ async function listTranslationIds(){
 
   let nextToken = null;
   let translationIds = [];
-  {
+  do {
     const result = await API.graphql({
       query: listTranslations,
       variables: {
         limit: 100,
-        nextToken: nextToken,
+        nextToken,
       },
       authMode: GRAPHQL_AUTH_MODE.API_KEY,
     });
-
-    console.info('listTranslationIds fetched translations: ', result.data.listTranslations.items.length);
-
     translationIds = translationIds.concat(result.data.listTranslations.items.map(item => item.id));
     nextToken = result.data.listTranslations.nextToken;
   } while(nextToken != null);
