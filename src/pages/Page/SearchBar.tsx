@@ -1,16 +1,16 @@
 import React, { FunctionComponent, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const SearchBar: FunctionComponent<{}> = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const history = useHistory();
+  let navigate = useNavigate();
 
   const handleTermChange = event => {
     setSearchTerm(event.target.value);
   };
 
   const handleSubmit = event => {
-    history.push(`/find/?searchTerm=${searchTerm}`);
+    navigate(`/find/?searchTerm=${searchTerm}`);
     event.preventDefault();
   }
 

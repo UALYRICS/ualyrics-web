@@ -1,17 +1,16 @@
 import React, {useState, useEffect, FunctionComponent} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { LyricsLine, Song, Translation } from '../../models';
 import { getSongById } from "../../service/song-service";
 import { SongTranslationForm } from "./SongLyricsForm";
 import { createSongTranslation, getTranslationById, updateTranslation } from "../../service/translations-service";
-import { useHistory } from "react-router"
 import useAuth from "../../componenets/Auth/UseAuth";
 import { LeftTitleSection } from "../../componenets/Decor/LeftTitleSection";
 import useDocumentTitle from '../../utils/use-document-title';
 
 const AddTranslationPage: FunctionComponent<{}> = () => {
   let { songId } = useParams<{songId: string}>();
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const [song, setSong] = useState<Song>();
   const [lyrics, setLyrics] = useState<Array<LyricsLine>>([]);
@@ -24,7 +23,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
       if(!currentUser){
         return;
       }
-      const songData = await getSongById(songId);
+      const songData = await getSongById(songId!);
       setSong(songData);
   
       const existingTranslation = songData.translations?.find(t => t?.owner === currentUser.username);
@@ -63,7 +62,7 @@ const AddTranslationPage: FunctionComponent<{}> = () => {
       })).id;
     }
 
-    history.push(`/translations/${translationId}`);
+    navigate(`/translations/${translationId}`);
   }
 
   const handleChange = (lineIndex: number, newValue: string) => {

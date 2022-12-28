@@ -14,7 +14,7 @@ export const ArtistPage : FunctionComponent<{}> = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const artistsData = await getArtistById(artistId);
+        const artistsData = await getArtistById(artistId!);
         setArtist(artistsData);
       } catch (error) {
         console.error("Error fetching artists", error);
