@@ -32,7 +32,7 @@ export const App: FunctionComponent<{}> = () => {
         <Route path="/songs/:songId" element={(<Page><SongPage/></Page>)} />
         <Route path="/genius-songs/:songId" element={(<Page><GeniusSongPage/></Page>)} />
         <Route path="/artists/:artistId" element={(<Page><ArtistPage/></Page>)} />
-        <Route path="/:firstLetter(\w)" element={(<Page><FirstLetterPage/></Page>)} />
+        <Route path="/browse/:firstLetter" element={(<Page><FirstLetterPage/></Page>)} />
       </Routes>
     </Router>
   );
