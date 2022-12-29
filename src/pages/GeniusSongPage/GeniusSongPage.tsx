@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { getGeniusSong } from '../../service/song-service';
 import useDocumentTitle from '../../utils/use-document-title';
 import "./GeniusSongPage.css";
@@ -11,7 +11,7 @@ export const GeniusSongPage: FunctionComponent<{}> = () => {
 
   useEffect(() => {
     async function getData() {
-      const songData = await getGeniusSong(parseInt(songId));
+      const songData = await getGeniusSong(parseInt(songId!));
       setSong(songData);
     }
     getData().catch(error => setError(true));
@@ -20,7 +20,7 @@ export const GeniusSongPage: FunctionComponent<{}> = () => {
   useDocumentTitle(`Шукаємо текст пісні... | UALYRICS`);
 
   if(song){
-    return <Redirect to={`/songs/${song}`}/>;
+    return <Navigate to={`/songs/${song}`}/>;
   }
   if(error){
     return (

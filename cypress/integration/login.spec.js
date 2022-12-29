@@ -9,11 +9,11 @@ describe('Login functionality', () => {
     cy.location('pathname').should('eq', '/');
 
     //Fill in username/password
-    cy.get('amplify-authenticator').shadow().get(selectors.username).first().type(Cypress.env('USERNAME'));
-    cy.get('amplify-authenticator').shadow().get(selectors.password).first().type(Cypress.env('PASSWORD'));
+    cy.get(selectors.username).first().type(Cypress.env('USERNAME'));
+    cy.get(selectors.password).first().type(Cypress.env('PASSWORD'));
 
     // Click 'Login' button
-    cy.get('amplify-authenticator').shadow().get('[data-test="sign-in-sign-in-button"]').contains('Увійти').click();
+    cy.get('button[type="submit"]').contains('Увійти').click();
 
 
     // Assert we are on home page
@@ -26,7 +26,7 @@ describe('Login functionality', () => {
 
 const selectors = {
   loginButton: '[data-test="login-button"]',
-  username: 'input[name="email"]',
+  username: 'input[name="username"]',
   password: 'input[name="password"]',
   currentUser: '[data-test="current-user"]',
 }

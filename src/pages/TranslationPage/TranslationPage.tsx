@@ -17,7 +17,7 @@ export const TranslationPage: FunctionComponent<{}> = () => {
   useEffect(() => {
     async function getData() {
       try {
-      const translationData = await getTranslationById(translationId);
+      const translationData = await getTranslationById(translationId!);
       setTranslation(translationData);
       } catch (error){
         setError(error.message);

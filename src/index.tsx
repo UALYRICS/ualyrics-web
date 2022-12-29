@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './App/App';
 import reportWebVitals from './reportWebVitals';
-import Amplify, { Hub } from 'aws-amplify'
+import { Amplify, Hub } from 'aws-amplify';
+
 import config from './aws-exports'
 
 config.oauth.redirectSignIn = `${window.location.origin}/`;

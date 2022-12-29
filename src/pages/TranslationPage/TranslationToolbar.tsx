@@ -2,17 +2,17 @@ import React, {FunctionComponent} from "react";
 import { Translation } from "../../models";
 import useAuth from "../../componenets/Auth/UseAuth";
 import { deleteTranslation, removeTranslationFromLatestFile } from "../../service/translations-service";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const TranslationToolbar: FunctionComponent<{translation: Translation}> = ({translation}) => {
   const { currentUser } = useAuth();
-  const history = useHistory();
+  let navigate = useNavigate();
 
   const onDeleteTranslation = () => {
     deleteTranslation({id: translation.id});
     removeTranslationFromLatestFile(translation);
-    history.push(`/songs/${translation.song?.id}`);
+    navigate(`/songs/${translation.song?.id}`);
   }
 
   if(currentUser?.username === translation.owner){

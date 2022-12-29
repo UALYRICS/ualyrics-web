@@ -16,7 +16,7 @@ export const SongPage: FunctionComponent<{}> = () => {
 
   useEffect(() => {
     async function getData() {
-      const songData = await getSongById(songId);
+      const songData = await getSongById(songId!);
       setSong(songData);
     }
     getData();

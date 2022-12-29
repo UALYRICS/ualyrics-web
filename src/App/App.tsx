@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
 } from "react-router-dom";
 import { Home } from '../pages/HomePage/HomePage';
@@ -22,60 +22,18 @@ import { AuthWrapper } from '../componenets/Auth/AuthWrapper';
 export const App: FunctionComponent<{}> = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Page>
-            <Home />
-          </Page>
-        </Route>
-        <Route exact path="/find">
-          <Page>
-            <SearchPage />
-          </Page>
-        </Route>
-        <Route exact path="/privacy-policy">
-          <Page>
-            <PrivacyPolicyPage />
-          </Page>
-        </Route>
-        <Route exact path="/deletion-instructions">
-          <Page>
-            <DeletionInstructionsPage />
-          </Page>
-        </Route>
-        <Route path="/songs/:songId/translate">
-          <Page>
-            <AuthWrapper>
-              <AddTranslationPage />
-            </AuthWrapper>
-          </Page>
-        </Route>
-        <Route path="/translations/:translationId">
-          <Page>
-            <TranslationPage />
-          </Page>
-        </Route>        
-        <Route path="/songs/:songId">
-          <Page>
-            <SongPage />
-          </Page>
-        </Route>
-        <Route path="/genius-songs/:songId">
-          <Page>
-            <GeniusSongPage />
-          </Page>
-        </Route>
-        <Route path="/artists/:artistId">
-          <Page>
-            <ArtistPage />
-          </Page>
-        </Route>
-        <Route path="/:firstLetter(\w)">
-          <Page>
-            <FirstLetterPage />
-          </Page>
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={(<Page><Home/></Page>)} />
+        <Route path="/find" element={(<Page><SearchPage/></Page>)} />
+        <Route path="/privacy-policy" element={(<Page><PrivacyPolicyPage/></Page>)} />
+        <Route path="/deletion-instructions" element={(<Page><DeletionInstructionsPage/></Page>)} />
+        <Route path="/songs/:songId/translate" element={(<Page><AuthWrapper><AddTranslationPage/></AuthWrapper></Page>)} />
+        <Route path="/translations/:translationId" element={(<Page><TranslationPage/></Page>)} />
+        <Route path="/songs/:songId" element={(<Page><SongPage/></Page>)} />
+        <Route path="/genius-songs/:songId" element={(<Page><GeniusSongPage/></Page>)} />
+        <Route path="/artists/:artistId" element={(<Page><ArtistPage/></Page>)} />
+        <Route path="/browse/:firstLetter" element={(<Page><FirstLetterPage/></Page>)} />
+      </Routes>
     </Router>
   );
 }

@@ -3,12 +3,12 @@ import { Char } from '../../../models/char';
 import { LETTERS } from '../../../utils/constants';
 import { fetchArtistsByFirstLetter } from "../../../service/browse-service";
 import { Artist, Song } from "../../../models";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "./TranslationSelector.css";
 import { getArtistById } from '../../../service/artists-service';
 
 export const TranslationSelector: FunctionComponent<{}> = () => {
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const [artists, setArtists] = useState<Array<Artist>>([]);
   const [songs, setSongs] = useState<Array<Song | null>>([]);
@@ -43,7 +43,7 @@ export const TranslationSelector: FunctionComponent<{}> = () => {
 
   function goToSongPage() {
     const translationId = songs.find(song => song!.id === songId)!.translations![0]?.id;
-    history.push(`/translations/${translationId}`);
+    navigate(`/translations/${translationId}`);
   }
 
   function resetArtists() {
