@@ -17,6 +17,7 @@ import AddTranslationPage from '../pages/AddTranslationPage/AddTranslationPage';
 
 import './App.css';
 import { TranslationPage } from '../pages/TranslationPage/TranslationPage';
+import { AuthWrapper } from '../componenets/Auth/AuthWrapper';
 
 export const App: FunctionComponent<{}> = () => {
   return (
@@ -26,7 +27,7 @@ export const App: FunctionComponent<{}> = () => {
         <Route path="/find" element={(<Page><SearchPage/></Page>)} />
         <Route path="/privacy-policy" element={(<Page><PrivacyPolicyPage/></Page>)} />
         <Route path="/deletion-instructions" element={(<Page><DeletionInstructionsPage/></Page>)} />
-        <Route path="/songs/:songId/translate" element={(<Page><AddTranslationPage/></Page>)} />
+        <Route path="/songs/:songId/translate" element={(<Page><AuthWrapper><AddTranslationPage/></AuthWrapper></Page>)} />
         <Route path="/translations/:translationId" element={(<Page><TranslationPage/></Page>)} />
         <Route path="/songs/:songId" element={(<Page><SongPage/></Page>)} />
         <Route path="/genius-songs/:songId" element={(<Page><GeniusSongPage/></Page>)} />

@@ -6,7 +6,7 @@ const router = require("./sitemap-routes").default;
 const Sitemap = require("react-router-sitemap").default;
 
 const AWSAmplify = require("aws-amplify");
-const Amplify = AWSAmplify.default;
+const Amplify = AWSAmplify.Amplify;
 const config = require("./aws-exports").default;
 const API = AWSAmplify.API;
 

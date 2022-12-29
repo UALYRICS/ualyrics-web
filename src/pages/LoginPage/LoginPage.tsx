@@ -1,10 +1,8 @@
 import React from 'react';
 import './LoginPage.css';
-import { AuthPiece } from 'aws-amplify-react';
-import { IAuthPieceProps, IAuthPieceState } from 'aws-amplify-react/lib-esm/Auth/AuthPiece';
 import { UaLyricsAuthenticator } from '../../componenets/Auth/UaLyricsAuthenticator';
 
-export class LoginPage extends AuthPiece<IAuthPieceProps, IAuthPieceState> {
+export class LoginPage extends React.Component {
 
   render() {
     return (
