@@ -9,5 +9,12 @@
   "authAccess": [
     "CREATE_AND_UPDATE",
     "READ"
-  ]
+  ],
+  "groupAccess": {
+    "Admin": [
+      "CREATE_AND_UPDATE",
+      "READ",
+      "DELETE"
+    ]
+  }
 }
