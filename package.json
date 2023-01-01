@@ -37,7 +37,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "babel-node src/sitemap-generator.js"
+    "predeploy": "babel-node src/sitemap-generator.js && generate-robotstxt --config $ROBOTS_TXT_CONFIG_PATH ./public/robots.txt"
   },
   "eslintConfig": {
     "extends": [
@@ -64,6 +64,7 @@
     "babel-register": "^6.26.0",
     "cypress": "^8.3.1",
     "cypress-localstorage-commands": "^1.5.0",
+    "generate-robotstxt": "^8.0.3",
     "react-router-sitemap": "^1.2.0"
   }
 }
