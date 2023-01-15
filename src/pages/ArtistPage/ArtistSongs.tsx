@@ -55,7 +55,7 @@ const mapSongToCart = (song: Song | null) => {
   return {
     title: song?.title,
     icon: song?.imageUrl,
-    pageUrl: `/songs/${song?.id}`,
+    pageUrl: `/translations/${song?.translations?.sort((a, b) => a!.id.localeCompare(b!.id))[0]!.id}`,
     artistTitle: song?.artistName,
     artistPageUrl: `/artists/${song?.artist?.id}`,
   } as SongCard
