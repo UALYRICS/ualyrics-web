@@ -14,7 +14,10 @@ export const GeniusSongPage: FunctionComponent<{}> = () => {
       const songData = await getGeniusSong(parseInt(songId!));
       setSong(songData);
     }
-    getData().catch(error => setError(true));
+    getData().catch(error => {
+      console.error(error);
+      setError(true);
+    });
   }, [songId]);
 
   useDocumentTitle(`Шукаємо текст пісні... | UALYRICS`);
