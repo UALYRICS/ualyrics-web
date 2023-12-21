@@ -14,7 +14,7 @@ export const Footer: FunctionComponent<{}> = () => {
             <a className="btn btn-link btn-sm btn-light" href="/privacy-policy" target="_blank" rel="noreferrer">
               Політика конфіденційності
             </a>
-            <a className="btn btn-light" href="https://web.facebook.com/ualyrics" target="_blank" rel="noreferrer">
+            <a className="btn btn-light" href="https://facebook.com/ualyrics" target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faFacebook}/>
             </a>
             <a className="btn btn-light" href="https://www.instagram.com/ualyrics" target="_blank" rel="noreferrer">
