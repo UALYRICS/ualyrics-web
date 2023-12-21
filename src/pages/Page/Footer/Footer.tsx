@@ -24,7 +24,7 @@ export const Footer: FunctionComponent<{}> = () => {
               <FontAwesomeIcon icon={faYoutube} />
             </a>
           </div>
-          <div className="float-right">@2022 UALYRICS</div>
+          <div className="float-right">@2023 UALYRICS</div>
         </div>
       </div>
     </div>
