@@ -2,7 +2,7 @@ module.exports = {
   policy: [
     {
       userAgent: "*",
-      disallow: "",
+      disallow: "/",
     },
   ],
   sitemap: "https://www.ualyrics.com/sitemap.xml",
