@@ -8,7 +8,7 @@ export const SocialToolbar: FunctionComponent<{}> = () => {
       <div className="mr-auto"></div>
       <div className="mr-auto"><small>Слідкуйте за нами у соціальних мережах!</small></div>
       <div className="float-right">
-        <a className="btn btn-light" href="https://web.facebook.com/ualyrics" target="_blank" rel="noreferrer">
+        <a className="btn btn-light" href="https://facebook.com/ualyrics" target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faFacebook}/>
         </a>
         <a className="btn btn-light" href="https://www.instagram.com/ualyrics" target="_blank" rel="noreferrer">
