@@ -31,7 +31,7 @@ export const TranslationPage: FunctionComponent<{}> = () => {
   if(error){
     return (
       <div className="alert alert-danger" role="alert">
-        Перекдад не знайдено. Перейти на <Link to="/">головну</Link>.
+        Переклад не знайдено. Перейти на <Link to="/">головну</Link>.
       </div>);
   }
 

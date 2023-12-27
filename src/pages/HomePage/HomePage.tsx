@@ -12,7 +12,7 @@ function useQuery() {
 }
 
 export const Home: FunctionComponent<{}> = () => {
-  useDocumentTitle('UALYRICS: переклади текстів пісень українською');
+  useDocumentTitle('UALYRICS: Переклади текстів пісень українською мовою');
 
   const query = useQuery();
   
