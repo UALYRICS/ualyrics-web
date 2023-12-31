@@ -2,7 +2,15 @@ module.exports = {
   policy: [
     {
       userAgent: "*",
-      disallow: "",
+      allow: "/*.js*",
+      allow: "/*.css*",
+      allow: "/*.js*",
+      allow: "/*.jpg*",
+      allow: "/*.gif*",
+      
+      disallow: "/administrator/",
+      disallow: "/genius-songs/",
+      
     },
   ],
   sitemap: "https://www.ualyrics.com/sitemap.xml",
