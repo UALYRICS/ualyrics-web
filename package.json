@@ -2,6 +2,9 @@
   "name": "ualyrics-web",
   "version": "0.1.0",
   "private": true,
+  "resolutions": {
+ "glob": "^9.3.2"
+  },
   "license": "",
   "dependencies": {
     "@aws-amplify/analytics": "^6.0.8",
